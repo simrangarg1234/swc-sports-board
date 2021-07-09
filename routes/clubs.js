@@ -27,6 +27,7 @@ router.get('/new', (req, res) => {
 
 
 router.post('/', validateClub, catchAsync(async (req, res, next) => {
+    // if (!req.body.campground) throw new ExpressError('Invalid Campground Data', 400);
     const club = new Club(req.body.club);
     await club.save();
     req.flash('success', 'New club added successfully!');
