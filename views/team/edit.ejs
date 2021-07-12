@@ -1,0 +1,86 @@
+<% layout('layouts/boilerplate') %> 
+
+    <div class="row">
+    <h1 class="text-center">Edit Member</h1>
+        <div class="col-6 offset-3">
+        <form action="/team/<%=team._id%>?_method=PUT" method="POST" ><br>
+
+            <div class="row mb-3">
+                <div class="col-3 col-sm-3">
+                    <label class="form-label" for="priority">Priority</label>
+                </div>
+                <div class="col col-sm">
+                    <input class="form-control" type="text" id="priority" name="priority" value="<%=team.priority %>" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-3 col-sm-3">
+                    <label class="form-label" for="name">Name</label>
+                </div>
+                <div class="col col-sm">
+                    <input class="form-control" type="text" id="name" name="name" value="<%=team.name %>" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-3 col-sm-3">
+                    <label class="form-label" for="position">Position</label>
+                </div>
+                <div class="col col-sm">
+                    <input class="form-control" type="text" id="position" name="position" value="<%=team.position %>" required>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-3 col-sm-3">
+                    <label class="form-label" for="image">Image Url</label>
+                </div>
+                <div class="col col-sm">
+                    <input class="form-control" type="text" id="image" name="image" value="<%=team.image %>" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-3 col-sm-3">
+                    <label class="form-label" for="hostel">Hostel</label>
+                </div>
+                <div class="col col-sm">
+                    <input class="form-control" type="text" id="hostel" name="hostel" value="<%=team.hostel %>" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-3 col-sm-3">
+                    <label class="form-label" for="contact1">Contact No. 1</label>
+                </div>
+                <div class="col col-sm">
+                    <input class="form-control" type="tel" id="contact1" name="contact1" value="<%=team.contact1 %>" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-3 col-sm-3">
+                    <label class="form-label" for="contact2">Contact No. 2</label>
+                </div>
+                <div class="col col-sm">
+                    <input class="form-control" type="tel" id="contact2" name="contact2" value="<%=team.contact2 %>">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-3 col-sm-3">
+                    <label class="form-label" for="email">Email Id</label>
+                </div>
+                <div class="col col-sm">
+                    <input class="form-control" type="email" id="email" name="email" value="<%=team.email %>" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <button class="btn btn-success">Edit Member</button>
+            </div>
+        </form>
+        <a href="/team/<%= team._id%>">Back To Member</a>
+        </div>
+    </div>

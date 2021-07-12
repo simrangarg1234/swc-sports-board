@@ -1,0 +1,25 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <a href="/team">Back to Team</a>
+    <div class="col-6">
+        <div class="card mb-3">
+            <img src="<%= team.image%>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= team.name%></h5>
+                <p class="card-text"><%= team.position%></p>
+                <br>
+                <p class="card-text">Hostel: <%= team.hostel %> </p>
+                <p class="card-text">Contact No.: <%= team.contact1 %> </p>
+                <p class="card-text">Email Id: <%= team.email %> </p>
+            </div>
+            
+            <div class="card-body">
+                <a class="card-link btn btn-info" href="/team/<%=team._id%>/edit">Edit</a>
+                <form class="d-inline" action="/team/<%=team._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>      
+        </div>
+    </div>
+</div>
