@@ -37,34 +37,3 @@ const teamSchema = new Schema({
 var Teams = mongoose.model('Team',teamSchema);
 
 module.exports = Teams;
-
-// module.exports.Team = mongoose.model('Team', teamSchema);
-
-// // module.exports.TeamSchema = Joi.object({
-// //     team: Joi.object({
-// //         priority: Joi.number().required(),
-// //         name: Joi.string().required(),
-// //         position: Joi.string().required(),
-// //         image: Joi.string().required(),
-// //         hostel: Joi.string().required(),
-// //         contact1: Joi.string().required(),
-// //         email: Joi.string().required()
-// //     }).required()
-// // });
-// const validateTeam = (team) => {
-//     const schema = {
-//         priority: Joi.number().required(),
-//         name: Joi.string().required(),
-//         position: Joi.string().required(),
-//         image: Joi.string().required(),
-//         hostel: Joi.string().required(),
-//         contact1: Joi.string().required(),
-//         email: Joi.string().required()
-//     }
-
-//     return Joi.validate(team, schema);
-// }
-
-
-
-// module.exports.validate = validateTeam;
