@@ -24,4 +24,28 @@ const isAdmin = (req, res, next) => {
   }
 };
 
-module.exports = { isLoggedIn, isAdmin };
+//Multer
+var storageEngine= multer.diskStorage({
+  destination:(req,file,cb)=>{
+    cb(null,'./uploads')
+  },
+  filename:(req,file,cb)=>{
+    
+    cb(null,(file.originalname).split(" ").join("-")+'--'+Date.now()+path.extname(file.originalname))
+  }
+})
+
+
+const upload= multer(
+  {
+    storage:storageEngine,
+    fileFilter: (req,file,cb)=>{
+      // console.log('file.mimetype',file.mimetype)
+        if(file.mimetype==='application/pdf'||file.mimetype==='image/png'||file.mimetype==='image/jpg'||file.mimetype==='image/jpeg') return cb(null,true);
+        else  return cb(new Error('ONly pdfs and images are allowed'),false);
+    }
+  })
+
+
+
+module.exports = { isLoggedIn, isAdmin,upload };

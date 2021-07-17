@@ -1,11 +1,13 @@
 var express = require("express"),
   mongoose = require("mongoose"),
+  cors= require("cors")
   path = require("path"),
   session = require("express-session"),
   cookieParser = require("cookie-parser"),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override"),
   passport = require("passport"),
+  multer= require('multer')
   util = require("util"),
   User = require("./models/users"),
   ejs = require("ejs"),
@@ -14,7 +16,7 @@ var express = require("express"),
   teamRouter = require("./routes/team"),
   userRouter = require("./routes/user"),
   adminRouter = require("./routes/admin");
-
+//  const  {upload}= require('./middlewares/index')
 const url = "mongodb://localhost:27017/sports";
 //const url = process.env.MONGO_URI;
 const baseUrl = "/stud/gymkhana/sports";
@@ -40,9 +42,11 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
+
 
 const sessionConfig = {
   secret: "thisshouldbeabettersecret!",
@@ -64,6 +68,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/public", express.static("public"));
+app.use("/uploads",express.static("uploads"))
 app.set("trust proxy", 1);
 
 app.use(passport.initialize());
