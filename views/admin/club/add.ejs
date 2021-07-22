@@ -1,10 +1,10 @@
 <%- include("../partials/header.ejs") %>
-    <h1 class="text-3xl text-black pb-6">Add Notice</h1>
+    <h1 class="text-3xl text-black pb-6">Add Club</h1>
 
     <div class="flex flex-wrap justify-center">
         <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
             <p class="text-xl pb-6 flex items-center">
-                <i class="fas fa-list mr-3"></i> Add Notice
+                <i class="fas fa-list mr-3"></i> Add Club
             </p>
             <div class="flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3" role="alert">
                 <svg class="w-4 h-4 mr-2" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -17,9 +17,34 @@
                 <form class="p-10 bg-white rounded shadow-xl" action="" method="POST"
                     enctype="multipart/form-data">
                     <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="name">Name</label>
+                        <label class="block text-sm text-gray-600" for="name">Title</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
                             name="name" placeholder="Name">
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="name">Description</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
+                            name="name" placeholder="Name">
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="name">Achievements</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
+                            name="name" placeholder="Name">
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="name">What we do</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
+                            name="name" placeholder="Name">
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="name">Gallery</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="file"
+                            name="image" placeholder="Name">
+                    </div>
+                    <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="name">Score card</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="file"
+                            name="pdf" placeholder="Name">
                     </div>
                 </form>
             </div>
