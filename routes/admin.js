@@ -4,7 +4,7 @@ const { isAdmin, isLoggedIn } = require("../middlewares/index");
 
 adminRouter.get("/", isAdmin, function (req, res) {
   try {
-    return res.render("admin/club/index");
+    return res.redirect("/admin/club/");
   } catch (e) {
     console.log(e.message);
   }

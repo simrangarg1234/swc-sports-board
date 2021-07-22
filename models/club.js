@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const clubSchema = new Schema({
     title: { 
-        type: Number, 
+        type: String, 
         required: true
     },
     //Description
@@ -28,6 +28,6 @@ const clubSchema = new Schema({
         type: String
     }
 });
-var Clubs = mongoose.model('Club',clubSchema);
+var Club = mongoose.model('Club',clubSchema);
 
-module.exports = Clubs;
+module.exports = Club;

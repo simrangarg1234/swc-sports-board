@@ -14,38 +14,40 @@
                 <p>You need to add either file or link</p>
             </div>
             <div class="leading-loose">
-                <form class="p-10 bg-white rounded shadow-xl" action="" method="POST"
+                <form class="p-10 bg-white rounded shadow-xl" action="/admin/club/" method="POST"
                     enctype="multipart/form-data">
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="name">Title</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="name" placeholder="Name">
+                            name="title" placeholder="Name">
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="name">Description</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="name" placeholder="Name">
+                            name="desc" placeholder="Name">
                     </div>
                     <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="name">Achievements</label>
+                        <label class="block text-sm text-gray-600" for="achievements" name="achievements">Achievements</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
                             name="name" placeholder="Name">
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="name">What we do</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="name" placeholder="Name">
+                            name="info" placeholder="Name">
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="name">Gallery</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="file"
-                            name="image" placeholder="Name">
+                            name="images" placeholder="Name" multiple>
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="name">Score card</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="file"
                             name="pdf" placeholder="Name">
                     </div>
+                    <!-- <button type="submit" class="btn btn-primary block text-sm text-gray-600 b">Submit</button> -->
+                    <button type="submit" class="btn btn-primary bg-blue-400 rounded text-white-800 ">Submit</button>
                 </form>
             </div>
         </div>
