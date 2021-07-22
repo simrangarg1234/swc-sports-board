@@ -18,7 +18,7 @@ var uploadval= upload.fields([{name:'images',maxCount:5},{name:'pdf',maxCount:1}
 
 router.post('/',uploadval, async (req, res) => {
     const data = req.body;
-    // console.log('Rwq.body',req.body,"\n");
+    console.log('Req.body',req.body,"\n");
     // console.log('req.files',req.files,'\n')
     const club = await new Club({
         title:data.title,
@@ -57,22 +57,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
     res.render('admin/club/edit', { club });
 }));
     
-router.put('/:id', catchAsync(async (req, res) => {
-    const id = req.params.id;
-    const data = req.body;
-    let team = await Club.findByIdAndUpdate(id, {
-        priority: data.priority,
-        name: data.name,
-        position: data.position,
-        image: data.image,
-        hostel: data.hostel,
-        contact1: data.contact1,
-        email: data.email
-    }, {new: true});
-    if(!team) return res.status(404).send('Member with the given id not found');
-    req.flash('success', 'Member details updated!');
-    res.redirect(`/admin/team`);
-}));
+
     
 router.get('/:id/delete/', catchAsync(async (req, res) => {
     const { id } = req.params;

@@ -3,15 +3,15 @@
   <div class="gallery">
     <%=data%>
     <%for(let i=0;i<data.gallery.length;i++){%>
-      <img src="https://localhost/<%=data.gallery[i].path%>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+      <img src="http://localhost:3000/<%=data.gallery[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
     <%}%>
   </div>
   <div class="title"><h1><%=data.title%></h1></div>
-  <div class="desc">Desc</div>
-  <div class="info">Infromation</div>
-  <div class="info">Achievements</div>
-  <div class="score"><a href="https://localhost/<%=data.score%>">
+  <div class="desc"><%=data.desc%></div>
+  <div class="info"><%=data.info%></div>
+  <div class="info"><%=data.achievements%></div>
+  <div class="score"><a href="http://localhost:3000/<%=data.score%>">
     Score card</a></div>
-    https://localhost/<%=data.score%>
+    http://localhost:3000/<%=data.score%>
 </main>
 <%- include("../partials/footer.ejs") %> 
