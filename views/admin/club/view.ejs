@@ -1,0 +1,17 @@
+<%- include("../partials/header.ejs") %> 
+<main>
+  <div class="gallery">
+    <%=data%>
+    <%for(let i=0;i<data.gallery.length;i++){%>
+      <img src="http://localhost:3000/<%=data.gallery[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+    <%}%>
+  </div>
+  <div class="title"><h1><%=data.title%></h1></div>
+  <div class="desc"><%=data.desc%></div>
+  <div class="info"><%=data.info%></div>
+  <div class="info"><%=data.achievements%></div>
+  <div class="score"><a href="http://localhost:3000/<%=data.score%>">
+    Score card</a></div>
+    http://localhost:3000/<%=data.score%>
+</main>
+<%- include("../partials/footer.ejs") %> 

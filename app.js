@@ -15,6 +15,7 @@ var express = require("express"),
   flash = require("connect-flash"),
   teamRouter = require("./routes/team"),
   alumniRouter = require("./routes/alumni");
+  clubRouter=require("./routes/club")
   userRouter = require("./routes/user"),
   adminRouter = require("./routes/admin");
 //  const  {upload}= require('./middlewares/index')
@@ -75,7 +76,13 @@ app.set("trust proxy", 1);
 app.use(passport.initialize());
 app.use(passport.session());
 
+// app.get('/',(req,res)=>{
+//   res.render('admin/club/index')
+// })
+
 app.use("/", userRouter);
+app.use("/admin/team", teamRouter);
+app.use("/admin/club",clubRouter);
 app.use("/admin", adminRouter);
 app.use("/admin/team", teamRouter);
 app.use("/admin/alumni", alumniRouter);
