@@ -14,6 +14,7 @@ var express = require("express"),
   ejsMate = require("ejs-mate"),
   flash = require("connect-flash"),
   teamRouter = require("./routes/team"),
+  alumniRouter = require("./routes/alumni");
   userRouter = require("./routes/user"),
   adminRouter = require("./routes/admin");
 //  const  {upload}= require('./middlewares/index')
@@ -75,8 +76,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", userRouter);
-app.use("/admin/team", teamRouter);
 app.use("/admin", adminRouter);
+app.use("/admin/team", teamRouter);
+app.use("/admin/alumni", alumniRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

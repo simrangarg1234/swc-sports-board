@@ -1,75 +1,71 @@
 const express = require('express');
 var router = express.Router();
+const mongoose = require('mongoose');
 const catchAsync = require('../utils/catchAsync');
-const Team = require('../models/team');
+const Alumni = require('../models/alumni');
 const { isAdmin } = require("../middlewares/index");
 
 router.get('/', async (req, res) => {
-    const teams = await Team.find({}).sort({priority: 1});
-    res.render('admin/team/index', {teams});
+    const alumnis = await Alumni.find({}).sort({priority: 1});
+    res.render('admin/alumni/index', {alumnis});
 });
 
 router.post('/', async (req, res) => {
     const data = req.body;
-    const team = await new Team({
+    const alumni = await new Alumni({
         priority: data.priority,
         name: data.name,
-        position: data.position,
         image: data.image,
-        hostel: data.hostel,
-        contact1: data.contact1,
-        contact2: data.contact2,
-        email: data.email
+        email: data.email,
+        achievements: data.achievements
     });
-    await team.save();
+    await alumni.save();
     //req.flash('success', 'New member added successfully!');
-    res.redirect('/admin/team');
+    res.redirect('/admin/alumni');
 });
 
 router.get('/add', (req, res) => {
-    res.render('admin/team/add');
+    res.render('admin/alumni/add');
 });
 
 router.get('/:id', catchAsync(async (req, res,) => {
-    const team = await Team.findById(req.params.id);
-    if (!team) {
+    const alumni = await Alumni.findById(req.params.id);
+    if (!alumni) {
         req.flash('error', 'Cannot find this member!');
-        return res.redirect('/admin/team');
+        return res.redirect('/admin/alumni');
     }
-    res.render('admin/team/show', { team });
+    res.render('admin/alumni/show', { alumni });
 }));
 
 router.get('/:id/edit', catchAsync(async (req, res) => {
-    const team = await Team.findById(req.params.id)
-    if (!team) {
+    const alumni = await Alumni.findById(req.params.id)
+    if (!alumni) {
         req.flash('error', 'Cannot find this member!');
-        return res.redirect('/admin/team');
+        return res.redirect('/admin/alumni');
     }
-    res.render('admin/team/edit', { team });
+    res.render('admin/alumni/edit', { alumni });
 }));
     
 router.put('/:id', catchAsync(async (req, res) => {
     const id = req.params.id;
     const data = req.body;
-    let team = await Team.findByIdAndUpdate(id, {
+    let alumni = await Alumni.findByIdAndUpdate(id, {
         priority: data.priority,
         name: data.name,
-        position: data.position,
         image: data.image,
-        hostel: data.hostel,
-        contact1: data.contact1,
-        email: data.email
+        email: data.email,
+        achievements: data.achievements
     }, {new: true});
-    if(!team) return res.status(404).send('Member with the given id not found');
+    if(!alumni) return res.status(404).send('Member with the given id not found');
     req.flash('success', 'Member details updated!');
-    res.redirect(`/admin/team`);
+    res.redirect(`/admin/alumni`);
 }));
     
 router.delete('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
-    await Team.findByIdAndDelete(id);
+    await Alumni.findByIdAndDelete(id);
     req.flash('success', 'Member no longer exists!')
-    res.redirect('/admin/team');
+    res.redirect('/admin/alumni');
 }));
 
 module.exports = router;
