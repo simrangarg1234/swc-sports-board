@@ -7,7 +7,7 @@ const { isAdmin } = require("../middlewares/index");
 const {upload}= require('../middlewares/index')
 router.get('/', async (req, res) => {
     Club.find({},(err,data)=>{
-        console.log("data",data)
+        // console.log("data",data)
         res.render('admin/club/index',{clubs:data});
     })
     
@@ -47,7 +47,7 @@ router.get('/view/:id',(req,res)=>{
     })
 })
 
-
+//For editing particular club
 router.get('/:id/edit', catchAsync(async (req, res) => {
     const club = await Club.findById(req.params.id)
     if (!club) {
@@ -58,7 +58,45 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
 }));
     
 
-    
+//Delete images
+router.get('/:id/delimg/:idx/',(req,res)=>{
+    Club.findOne({_id:req.params.id}).then(data=>{
+        data.gallery.splice(req.params.idx,1);
+        data.save().then(()=>{
+            res.redirect(`/admin/club/${req.params.id}/edit`);
+        })
+    })
+})
+
+//Save updated data
+router.post('/edit',uploadval,(req,res)=>{
+    // console.log('Req.body',req.body,"\n");
+    // console.log('req.files',req.files,'\n')
+    Club.findOne({_id:req.body.clubid},(err,data)=>{
+        data.title=req.body.club,
+        data.desc=req.body.description,
+        data.info=req.body.info,
+        data.achievements=req.body.achievements;
+        // console.log("req.files",req.files)
+        //pdf 
+        if(req.files['pdf']){
+            data.score=req.files['pdf'][0].path;
+        }  
+        //images
+        if(req.files['images']){
+            for(let i=0;i<req.files['images'].length;i++){
+                data.gallery.push(req.files['images'][i].path);
+            }
+        }
+        
+        data.save().then(()=>{
+            req.flash('success', 'Club Updated successfully!');
+            res.redirect('/admin/club');
+        })
+    });
+})
+
+//Delete club    
 router.get('/:id/delete/', catchAsync(async (req, res) => {
     const { id } = req.params;
     await Club.findByIdAndDelete(id);
