@@ -1,23 +1,24 @@
 var express = require("express"),
   mongoose = require("mongoose"),
-  cors= require("cors")
-  path = require("path"),
-  session = require("express-session"),
-  cookieParser = require("cookie-parser"),
-  bodyParser = require("body-parser"),
-  methodOverride = require("method-override"),
-  passport = require("passport"),
-  multer= require('multer')
-  util = require("util"),
-  User = require("./models/users"),
-  ejs = require("ejs"),
-  ejsMate = require("ejs-mate"),
-  flash = require("connect-flash"),
-  teamRouter = require("./routes/team"),
-  alumniRouter = require("./routes/alumni");
-  clubRouter=require("./routes/club")
-  userRouter = require("./routes/user"),
-  adminRouter = require("./routes/admin");
+  cors = require("cors");
+(path = require("path")),
+  (session = require("express-session")),
+  (cookieParser = require("cookie-parser")),
+  (bodyParser = require("body-parser")),
+  (methodOverride = require("method-override")),
+  (passport = require("passport")),
+  (multer = require("multer"));
+(util = require("util")),
+  (User = require("./models/users")),
+  (ejs = require("ejs")),
+  (ejsMate = require("ejs-mate")),
+  (flash = require("connect-flash")),
+  (teamRouter = require("./routes/team")),
+  (alumniRouter = require("./routes/alumni"));
+clubRouter = require("./routes/club");
+(userRouter = require("./routes/user")),
+  (adminRouter = require("./routes/admin"));
+facilityRouter = require("./routes/facility");
 //  const  {upload}= require('./middlewares/index')
 const url = "mongodb://localhost:27017/sports";
 //const url = process.env.MONGO_URI;
@@ -44,11 +45,10 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.use(cors())
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
-
 
 const sessionConfig = {
   secret: "thisshouldbeabettersecret!",
@@ -70,7 +70,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/public", express.static("public"));
-app.use("/uploads",express.static("uploads"))
+app.use("/uploads", express.static("uploads"));
 app.set("trust proxy", 1);
 
 app.use(passport.initialize());
@@ -82,10 +82,11 @@ app.use(passport.session());
 
 app.use("/", userRouter);
 app.use("/admin/team", teamRouter);
-app.use("/admin/club",clubRouter);
+app.use("/admin/club", clubRouter);
 app.use("/admin", adminRouter);
 app.use("/admin/team", teamRouter);
 app.use("/admin/alumni", alumniRouter);
+app.use("/admin/facility", facilityRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
