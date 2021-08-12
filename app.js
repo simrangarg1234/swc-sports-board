@@ -88,6 +88,10 @@ app.use("/admin/team", teamRouter);
 app.use("/admin/alumni", alumniRouter);
 app.use("/admin/facility", facilityRouter);
 
+app.get('/clubs', (req, res) => {
+  res.render('clubs/view');
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
