@@ -13,9 +13,22 @@ router.get('/', async (req, res) => {
     
 });
 
+//Create Club
+router.post('/create',async(req,res)=>{
+    const data= req.body;
+
+    console.log("Create Req.body",req.body);
+    const club= await new Club({
+        title:data.title,
+        desc:data.desc
+    })
+    await club.save();
+    res.redirect('/admin/club/')
+})
 
 var uploadval= upload.fields([{name:'images',maxCount:5},{name:'pdf',maxCount:1}])
 
+//Not using this. This is previously used for creating and updating data of club
 router.post('/',uploadval, async (req, res) => {
     const data = req.body;
     console.log('Req.body',req.body,"\n");
@@ -24,13 +37,18 @@ router.post('/',uploadval, async (req, res) => {
         title:data.title,
         desc:data.desc,
         info:data.info,
-        achievements:data.achievements,
         score:req.files['pdf'][0].path
     });
     
     for(let i=0;i<req.files['images'].length;i++){
         club.gallery.push(req.files['images'][i].path);
     }
+    var temp={
+        qstn:req.body.qstn,
+        ans:req.body.ans
+    }
+    club.faq.push(temp);
+    club.achievements.push(req.body.achievements);
     console.log("club",club)
     await club.save();
     req.flash('success', 'New Club added successfully!');
@@ -56,36 +74,82 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
     }
     res.render('admin/club/edit', { club });
 }));
-    
 
-//Delete images
-router.get('/:id/delimg/:idx/',(req,res)=>{
-    Club.findOne({_id:req.params.id}).then(data=>{
-        data.gallery.splice(req.params.idx,1);
-        data.save().then(()=>{
-            res.redirect(`/admin/club/${req.params.id}/edit`);
-        })
-    })
-})
 
 //Save updated data
 router.post('/edit',uploadval,(req,res)=>{
-    // console.log('Req.body',req.body,"\n");
-    // console.log('req.files',req.files,'\n')
     Club.findOne({_id:req.body.clubid},(err,data)=>{
         data.title=req.body.club,
         data.desc=req.body.description,
-        data.info=req.body.info,
-        data.achievements=req.body.achievements;
+        data.info=req.body.info;
+        console.log("req.body",req.body)
+        
+        //Achievements
+        if(req.body.achievements){
+            
+            data.achievements.splice(0,data.achievements.length);
+            
+            if(Array.isArray(req.body.achievements)){
+                for(let i=0;i<req.body.achievements.length;i++){
+                    if(req.body.achievements[i]!=''&&req.body.achievements[i].length>1)
+                    data.achievements.push(req.body.achievements[i]);
+                }
+            }
+            else{
+                data.achievements.push(req.body.achievements);
+            }
+            
+        }
+        //What we do
+        if(req.body.info){
+            
+            data.info.splice(0,data.info.length);
+            
+            if(Array.isArray(req.body.info)){
+                for(let i=0;i<req.body.info.length;i++){
+                    if(req.body.info[i]!=''&&req.body.info[i].length>1)
+                    data.info.push(req.body.info[i]);
+                }
+            }
+            else{
+                data.info.push(req.body.info);
+            }
+            
+        }
+        
         // console.log("req.files",req.files)
-        //pdf 
+        //pdf :Score Card
         if(req.files['pdf']){
             data.score=req.files['pdf'][0].path;
         }  
-        //images
+        //images: Gallery
         if(req.files['images']){
             for(let i=0;i<req.files['images'].length;i++){
                 data.gallery.push(req.files['images'][i].path);
+            }
+        }
+        //Faqs 
+        if(req.body.qstn){
+            //Removing previous data Since new data can be edited 
+            data.faq.splice(0,data.faq.length);
+            //If we get an array
+            if(Array.isArray(req.body.qstn)){
+                for(let i=0;i<req.body.qstn.length;i++){
+                    if(req.body.qstn[i]!=''&&req.body.ans[i]!=''){
+                        data.faq.push({
+                            qstn:req.body.qstn[i],
+                            ans:req.body.ans[i]
+                        })
+                    }
+                }
+            }
+            //If we get a single object
+            else{
+                if(req.body.qstn!=''&&req.body.ans!='')
+                data.faq.push({
+                    qstn:req.body.qstn,
+                    ans:req.body.ans
+                })
             }
         }
         
@@ -94,6 +158,16 @@ router.post('/edit',uploadval,(req,res)=>{
             res.redirect('/admin/club');
         })
     });
+})
+
+//Delete images by clicking on X :Sub part of Update or Edit 
+router.get('/:id/delimg/:idx/',(req,res)=>{
+    Club.findOne({_id:req.params.id}).then(data=>{
+        data.gallery.splice(req.params.idx,1);
+        data.save().then(()=>{
+            res.redirect(`/admin/club/${req.params.id}/edit`);
+        })
+    })
 })
 
 //Delete club    

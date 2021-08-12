@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+const faqSchema=new Schema({
+    qstn:{
+        type:String
+    },
+    ans:{
+        type:String
+    }
+})
 const clubSchema = new Schema({
     title: { 
         type: String, 
@@ -13,12 +20,11 @@ const clubSchema = new Schema({
     },
     //Achievements
     achievements: { 
-        type: String, 
+        type: [String], 
     },
     //what we do
   	info: { 
-        type: String, 
-        required: true 
+        type: [String], 
     },
   	gallery: { 
           //images adress
@@ -26,6 +32,9 @@ const clubSchema = new Schema({
     },
     score: { 
         type: String
+    },
+    faq:{
+        type:[faqSchema]
     }
 });
 var Club = mongoose.model('Club',clubSchema);

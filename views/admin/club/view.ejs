@@ -1,17 +1,44 @@
 <%- include("../partials/header.ejs") %> 
 <main>
+  
+  Title
+  <div class="title w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><h1><%=data.title%></h1></div>
+  Description
+  <div class="desc w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=data.desc%></div>
+  What we do
+  <%for(let i=0;i<data.info.length;i++){%>
+    <div class="info w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=data.info[i]%></div>
+  <%}%>
+  Achievements
+  <%for(let i=0;i<data.achievements.length;i++){%>
+    <div class="achievements w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=data.achievements[i]%></div>
+  <%}%>
   <div class="gallery">
+    <input type="hidden" name="clubid" value="<%=data._id%>">
+    <!-- <%=data._id%> -->
     <!-- <%=data%> -->
+    IMAGES
     <%for(let i=0;i<data.gallery.length;i++){%>
-      <img src="http://localhost:3000/<%=data.gallery[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+      <img src="http://localhost:3000/<%=data.gallery[i]%>" width="200px" height="200px" class="img-fluid  m-2 ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
     <%}%>
   </div>
-  <div class="title"><h1><%=data.title%></h1></div>
-  <div class="desc"><%=data.desc%></div>
-  <div class="info"><%=data.info%></div>
-  <div class="info"><%=data.achievements%></div>
-  <div class="score"><a href="http://localhost:3000/<%=data.score%>">
-    Score card</a></div>
-    http://localhost:3000/<%=data.score%>
+  <%if(data.score){%>
+    <div class="btn btn-primary bg-blue-400 w-50px p-2 m-2 rounded"><a href="http://localhost:3000/<%=data.score%>">
+      Score card</a></div>
+  <%}%>
+  
+    <!-- http://localhost:3000/<%=data.score%> -->
+  <div class="faqs">
+    <%for(let i=0;i<data.faq.length;i++){%>
+      Question <%=i+1%>
+      <div class="faq-qstn w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded">
+        <%=data.faq[i].qstn%>
+      </div>
+      Answer<%=i+1%>
+      <div class="faq-answer w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded">
+        <%=data.faq[i].ans%>
+      </div>
+    <%}%>
+  </div>
 </main>
 <%- include("../partials/footer.ejs") %> 
