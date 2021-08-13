@@ -1,13 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const faqSchema=new Schema({
-    qstn:{
-        type:String
-    },
-    ans:{
-        type:String
-    }
-})
+
 const clubSchema = new Schema({
     title: { 
         type: String, 
