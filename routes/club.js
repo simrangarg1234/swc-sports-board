@@ -5,6 +5,9 @@ const catchAsync = require('../utils/catchAsync');
 const Club = require('../models/club');
 const { isAdmin } = require("../middlewares/index");
 const {upload}= require('../middlewares/index')
+var uploadval= upload.fields([{name:'images',maxCount:10},{name:'pdf',maxCount:1}])
+
+//Main page
 router.get('/', async (req, res) => {
     Club.find({},(err,data)=>{
         // console.log("data",data)
@@ -13,7 +16,7 @@ router.get('/', async (req, res) => {
     
 });
 
-//Create Club
+//Create Club:Post request
 router.post('/create',async(req,res)=>{
     const data= req.body;
 
@@ -26,7 +29,181 @@ router.post('/create',async(req,res)=>{
     res.redirect('/admin/club/')
 })
 
-var uploadval= upload.fields([{name:'images',maxCount:5},{name:'pdf',maxCount:1}])
+
+//Add club :GET Request
+router.get('/add', (req, res) => {
+    res.render('admin/club/add');
+});
+
+
+//View:Update data
+router.get('/view/:id',(req,res)=>{
+    Club.findOne({_id:req.params.id},(err,data)=>{
+        res.render('admin/club/view',{data})
+    })
+})
+
+//View:Add Achievements->GET Request
+router.get('/:clubid/add/achievement',(req,res)=>{
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        res.render('admin/club/add_achievements',{data,idx:-1})
+    })
+})
+
+//View:Add Achievements Edit/First time adding->POST Request
+router.post('/add/achievement',(req,res)=>{
+    console.log("req.body/ achievement",req.body)
+    Club.findOne({_id:req.body.clubid},(err,data)=>{
+        if(req.body.idx!='-1')
+        {   
+            // console.log('number',Number(req.body.idx))
+            //data.achievements[Number(req.body.idx)]=req.body.achievement;
+            data.achievements.splice(req.body.idx,1,req.body.achievement);
+            
+            console.log("data.achievements",data.achievements)
+            
+        }
+        else{
+            data.achievements.push(req.body.achievement);
+        } 
+        data.save().then((record)=>{
+            console.log("data.achievements2",data.achievements)
+            console.log("record",record)
+            req.flash('success', 'Achievement Addedd successfully!');
+            res.redirect(`/admin/club/view/${data._id}`);
+        }).catch(err=>{
+            console.log(err)
+            res.redirect(`/admin/club/view/${data._id}`);
+        })
+    })
+})
+//View :Add Achievements ->edit->GET request
+router.get('/:clubid/edit/achievement/:idx',(req,res)=>{
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        res.render('admin/club/add_achievements',{data,idx:req.params.idx})
+    })
+})
+//View :Add Achievement ->delete->GET request
+router.get('/:clubid/delete/achievement/:idx',(req,res)=>{
+    //console.log('req.params',req.params)
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        data.achievements.splice(req.params.idx,1);
+        data.save().then(()=>{
+            res.redirect(`/admin/club/view/${req.params.clubid}`)
+        })
+    })
+})
+
+
+//Info or What we do
+//View:Add info->GET Request
+router.get('/:clubid/add/info',(req,res)=>{
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        res.render('admin/club/add_info',{data,idx:-1})
+    })
+})
+
+//View:Add info Edit/First time adding->POST Request
+router.post('/add/info',(req,res)=>{
+    console.log("req.body/ info",req.body)
+    Club.findOne({_id:req.body.clubid},(err,data)=>{
+        if(req.body.idx!='-1')
+        {   
+            data.info.splice(req.body.idx,1,req.body.info);    
+        }
+        else{
+            data.info.push(req.body.info);
+        } 
+        data.save().then((record)=>{
+            console.log("info",data.info)
+            console.log("record",record)
+            req.flash('success', 'Achievement Addedd successfully!');
+            res.redirect(`/admin/club/view/${data._id}`);
+        }).catch(err=>{
+            console.log(err)
+            res.redirect(`/admin/club/view/${data._id}`);
+        })
+    })
+})
+//View :Add info ->edit->GET request
+router.get('/:clubid/edit/info/:idx',(req,res)=>{
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        res.render('admin/club/add_info',{data,idx:req.params.idx})
+    })
+})
+//View :Add info ->delete->GET request
+router.get('/:clubid/delete/info/:idx',(req,res)=>{
+    //console.log('req.params',req.params)
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        data.info.splice(req.params.idx,1);
+        data.save().then(()=>{
+            res.redirect(`/admin/club/view/${req.params.clubid}`)
+        })
+    })
+})
+
+
+//Save updated images and pdf/Score Card
+router.post('/imgpdf',uploadval,(req,res)=>{
+    Club.findOne({_id:req.body.clubid},(err,data)=>{
+        //pdf :Score Card
+        if(req.files['pdf']){
+            data.score=req.files['pdf'][0].path;
+        }  
+        //images: Gallery
+        if(req.files['images']){
+            for(let i=0;i<req.files['images'].length;i++){
+                data.gallery.push(req.files['images'][i].path);
+            }
+        }
+        
+        data.save().then(()=>{
+            req.flash('success', 'Club Updated successfully!');
+            res.redirect('/admin/club');
+        })
+    });
+})
+
+//Delete images by clicking on X :Sub part of View->images
+router.get('/:id/delimg/:idx/',(req,res)=>{
+    Club.findOne({_id:req.params.id}).then(data=>{
+        data.gallery.splice(req.params.idx,1);
+        data.save().then(()=>{
+            res.redirect(`/admin/club/view/${req.params.id}`);
+        })
+    })
+})
+
+
+
+
+//For editing particular club
+router.get('/:id/edit', catchAsync(async (req, res) => {
+    const club = await Club.findById(req.params.id)
+    if (!club) {
+        req.flash('error', 'Cannot find this member!');
+        return res.redirect('/admin/club');
+    }
+    res.render('admin/club/edit', { club });
+}));
+//For updating/Editing Title and Description
+router.post('/edit',(req,res)=>{
+    Club.findOne({_id:req.body.clubid}).then(data=>{
+        data.title=req.body.title;
+        data.desc= req.body.desc;
+        data.save().then(()=>{
+            res.redirect(`/admin/club`);
+        })
+    })
+})
+
+//Delete club    
+router.get('/:id/delete/', catchAsync(async (req, res) => {
+    const { id } = req.params;
+    await Club.findByIdAndDelete(id);
+    req.flash('success', 'Member no longer exists!')
+    res.redirect('/admin/club');
+}));
 
 //Not using this. This is previously used for creating and updating data of club
 router.post('/',uploadval, async (req, res) => {
@@ -55,127 +232,5 @@ router.post('/',uploadval, async (req, res) => {
     res.redirect('/admin/club/');
 });
 
-router.get('/add', (req, res) => {
-    res.render('admin/club/add');
-});
-
-router.get('/view/:id',(req,res)=>{
-    Club.findOne({_id:req.params.id},(err,data)=>{
-        res.render('admin/club/view',{data})
-    })
-})
-
-//For editing particular club
-router.get('/:id/edit', catchAsync(async (req, res) => {
-    const club = await Club.findById(req.params.id)
-    if (!club) {
-        req.flash('error', 'Cannot find this member!');
-        return res.redirect('/admin/club');
-    }
-    res.render('admin/club/edit', { club });
-}));
-
-
-//Save updated data
-router.post('/edit',uploadval,(req,res)=>{
-    Club.findOne({_id:req.body.clubid},(err,data)=>{
-        data.title=req.body.club,
-        data.desc=req.body.description,
-        data.info=req.body.info;
-        console.log("req.body",req.body)
-        
-        //Achievements
-        if(req.body.achievements){
-            
-            data.achievements.splice(0,data.achievements.length);
-            
-            if(Array.isArray(req.body.achievements)){
-                for(let i=0;i<req.body.achievements.length;i++){
-                    if(req.body.achievements[i]!=''&&req.body.achievements[i].length>1)
-                    data.achievements.push(req.body.achievements[i]);
-                }
-            }
-            else{
-                data.achievements.push(req.body.achievements);
-            }
-            
-        }
-        //What we do
-        if(req.body.info){
-            
-            data.info.splice(0,data.info.length);
-            
-            if(Array.isArray(req.body.info)){
-                for(let i=0;i<req.body.info.length;i++){
-                    if(req.body.info[i]!=''&&req.body.info[i].length>1)
-                    data.info.push(req.body.info[i]);
-                }
-            }
-            else{
-                data.info.push(req.body.info);
-            }
-            
-        }
-        
-        // console.log("req.files",req.files)
-        //pdf :Score Card
-        if(req.files['pdf']){
-            data.score=req.files['pdf'][0].path;
-        }  
-        //images: Gallery
-        if(req.files['images']){
-            for(let i=0;i<req.files['images'].length;i++){
-                data.gallery.push(req.files['images'][i].path);
-            }
-        }
-        //Faqs 
-        if(req.body.qstn){
-            //Removing previous data Since new data can be edited 
-            data.faq.splice(0,data.faq.length);
-            //If we get an array
-            if(Array.isArray(req.body.qstn)){
-                for(let i=0;i<req.body.qstn.length;i++){
-                    if(req.body.qstn[i]!=''&&req.body.ans[i]!=''){
-                        data.faq.push({
-                            qstn:req.body.qstn[i],
-                            ans:req.body.ans[i]
-                        })
-                    }
-                }
-            }
-            //If we get a single object
-            else{
-                if(req.body.qstn!=''&&req.body.ans!='')
-                data.faq.push({
-                    qstn:req.body.qstn,
-                    ans:req.body.ans
-                })
-            }
-        }
-        
-        data.save().then(()=>{
-            req.flash('success', 'Club Updated successfully!');
-            res.redirect('/admin/club');
-        })
-    });
-})
-
-//Delete images by clicking on X :Sub part of Update or Edit 
-router.get('/:id/delimg/:idx/',(req,res)=>{
-    Club.findOne({_id:req.params.id}).then(data=>{
-        data.gallery.splice(req.params.idx,1);
-        data.save().then(()=>{
-            res.redirect(`/admin/club/${req.params.id}/edit`);
-        })
-    })
-})
-
-//Delete club    
-router.get('/:id/delete/', catchAsync(async (req, res) => {
-    const { id } = req.params;
-    await Club.findByIdAndDelete(id);
-    req.flash('success', 'Member no longer exists!')
-    res.redirect('/admin/club');
-}));
 
 module.exports = router;

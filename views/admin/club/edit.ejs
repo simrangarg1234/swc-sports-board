@@ -15,82 +15,17 @@
             </div>
             <div class="leading-loose">
                 <form class="p-10 bg-white rounded shadow-xl" action="/admin/club/edit" method="POST"
-                    enctype="multipart/form-data">
+                    >
                     <input type="hidden" name="clubid" value="<%=club._id%>">
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="club">Club</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="club" type="text"
-                            name="club" value="<%= club.title%>">
+                            name="title" value="<%= club.title%>">
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="description">Description</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="description" type="text"
-                            name="description" value="<%= club.desc%>">
-                    </div>
-                    <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="achievements">Achievements</label>
-                        <%for(let i=0;i<club.achievements.length;i++){%>
-
-                            <input class="w-full px-5  m-2 py-4 text-gray-700 bg-gray-200 rounded" id="achievements" type="text"
-                            name="achievements" value="<%= club.achievements[i] %>">
-
-                        <%}%>
-                        <input class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded" id="achievements" type="text"
-                            name="achievements" placeholder="You can add new Achievements">
-                        
-                    </div>
-                    <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="wwd">What we do</label>
-                        <%for(let i=0;i<club.info.length;i++){%>
-
-                            <input class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded" id="wwd" name="info" type="text"
-                            name="info" placeholder="Add something about club"value="<%= club.info[i] %>">
-
-                        <%}%>
-
-                        <input class="w-full m-2 px-5  py-4 text-gray-700 bg-gray-200 rounded" id="wwd" name="info" type="text"
-                        name="info" placeholder="You can add extra info about club">
-                       
-                    </div>
-                    <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="image">Add images</label>
-                        <div class="gallery shadow-sm">
-                            
-                            <%for(let i=0;i<club.gallery.length;i++){%>
-                                <div class="imgwrap shadow-sm">
-                                    <img src="http://localhost:3000/<%=club.gallery[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
-                                    <a href="/admin/club/<%=club._id%>/delimg/<%=i%>/">X</a>
-                                </div>
-                             
-                            <%}%>
-                          </div>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="gallery" type="file"
-                            name="images" multiple >
-                    </div>
-                    <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="pdf">Score card</label>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="scoreCard" type="file"
-                            name="pdf" >
-                    </div>
-                    <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="name">FAQs</label>
-                        <%for(let i=0;i<club.faq.length;i++){%>
-                            Question <%=i+1%>
-                            <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="qstn" value="<%=club.faq[i].qstn%>" >
-                            Answer <%=i+1%>
-                            <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="ans" value="<%=club.faq[i].ans%>" >
-
-                        <%}%>
-                        Question
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                        name="qstn"placeholder="Add a question" >
-                        Answer
-                        <input class="w-full px-5   py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                        name="ans" placeholder="Add answer">
-                        <!-- <button type="submit" class="btn btn-primary">Add</button> -->
-                        
+                            name="desc" value="<%= club.desc%>">
                     </div>
                     <button type="submit" class="btn btn-primary bg-blue-400 rounded">Update</button>
                 </form>

@@ -15,8 +15,11 @@ const clubSchema = new Schema({
     },
     //Description
 	  desc: { 
-        type: String, 
-        required: true 
+        type: String
+    },
+    //Aboutus
+    about:{
+        type:String
     },
     //Achievements
     achievements: { 
@@ -32,9 +35,6 @@ const clubSchema = new Schema({
     },
     score: { 
         type: String
-    },
-    faq:{
-        type:[faqSchema]
     }
 });
 var Club = mongoose.model('Club',clubSchema);
