@@ -33,7 +33,7 @@ userRouter.get("/logout", function (req, res) {
 });
 
 userRouter.get("/", function (req, res) {
-  res.render("user/home");
+  res.render("home");
 });
 
 module.exports = userRouter;
