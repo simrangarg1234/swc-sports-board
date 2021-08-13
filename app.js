@@ -92,6 +92,10 @@ app.get('/clubs', (req, res) => {
   res.render('clubs/view');
 });
 
+app.get("/home", (req, res) => {
+  res.render("home");
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
