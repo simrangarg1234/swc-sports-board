@@ -2,15 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Board</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Board</title>
 
-    <!--tailwind and fontawesome-->
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-    
-      <style>
+  <!--tailwind and fontawesome-->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <style>
     @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
 
     /* navbar */
@@ -51,6 +50,19 @@
 
       /* Dark Blue - For text and dark bg */
 
+      color: #1E2532;
+    }
+
+    .what-we-do {
+      width: 850px;
+      font-family: Red Hat Display;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 24px;
+      /* or 150% */
+      letter-spacing: 0.0075em;
+      /* Dark Blue - For text and dark bg */
       color: #1E2532;
     }
 
@@ -145,12 +157,12 @@
 </head>
 
 <body>
-  
-    <main>
-        <%- body %>
-    </main>
-    <!--<%- include('../partials/footer')%>-->
-    <script src='/javascripts/validateForms.js'></script>
+
+  <main>
+    <%- body %>
+  </main>
+  <!--<%- include('../partials/footer')%>-->
+  <script src='/javascripts/validateForms.js'></script>
 </body>
 
 </html>
