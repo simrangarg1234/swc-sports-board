@@ -92,7 +92,7 @@ app.get("/clubs/home", (req, res) => {
   res.render("clubs/home");
 });
 app.get('/clubs', (req, res) => {
-  res.render('clubs/view');
+  res.render('clubs/club');
 });
 
 app.get('/spardha', (req, res) => {
