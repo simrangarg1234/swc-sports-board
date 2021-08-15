@@ -91,10 +91,13 @@ app.use("/admin/facility", facilityRouter);
 app.get("/clubs/home", (req, res) => {
   res.render("clubs/home");
 });
-
 app.get('/clubs', (req, res) => {
   res.render('clubs/view');
 });
+
+app.get('/spardha', (req, res) => {
+  res.render('spardha/view');
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
