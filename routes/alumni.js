@@ -17,6 +17,7 @@ router.post('/', async (req, res) => {
         name: data.name,
         image: data.image,
         email: data.email,
+        experience: data.experience,
         achievements: data.achievements
     });
     await alumni.save();
@@ -54,6 +55,7 @@ router.put('/:id', catchAsync(async (req, res) => {
         name: data.name,
         image: data.image,
         email: data.email,
+        experience:data.experience,
         achievements: data.achievements
     }, {new: true});
     if(!alumni) return res.status(404).send('Member with the given id not found');

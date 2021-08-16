@@ -14,6 +14,10 @@ const alumniSchema = new Schema({
         type: String, 
         required: true
     },
+    experience: { 
+        type: String, 
+        required: true 
+    },
   	achievements: { 
         type: String, 
         required: true 
