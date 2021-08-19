@@ -97,6 +97,10 @@ app.get('/clubs', (req, res) => {
 
 app.get('/spardha', (req, res) => {
   res.render('spardha/view');
+});
+
+app.get('/alumni', (req, res) => {
+  res.render('alumni/view');
 })
 
 app.listen(PORT, () => {
