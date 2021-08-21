@@ -1,0 +1,51 @@
+<div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center"
+    id="description-modal">
+    <div class="relative w-auto my-6 mx-auto max-w-6xl">
+        <!--content-->
+        <div class="grid grid-cols-2 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <!--image-->
+            <div class="p-10 overflow-hidden">
+                <img src="https://source.unsplash.com/random/1280x720" style="height: 350px; width: auto;"  alt="">
+                <div class="p-4" >
+                    <div class="grid grid-cols-3">
+                        <div class="col-span-2 text-left text-2xl">Tony Stark</div>
+                        <div class="col-span-1 text-right font-normal text-lg">Dean</div>
+                    </div>
+                    <div class="grid grid-cols-1">
+                        <div class="grid grid-cols-1 divide-y divide-black"><br>
+                            <div class="grid grid-cols-3">
+                                <div class="col-span-1 text-left font-normal text-md">email@iitg.ac.in</div>
+                                <div class="col-span-2 text-right font-normal text-md">+91 1234567890</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--body-->
+            <div class="relative p-6 flex-auto">
+                <div class="flex items-start justify-between p-5 border-b border-solid border-gray-200 rounded-t">
+                    <button class="p-1 ml-auto bg-transparent border-0 text-gray-300 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                        onclick="toggleModal('description-modal')">
+                        <span class="bg-transparent h-6 w-6 text-2xl block outline-none focus:outline-none">
+                            <i class="fas fa-times"></i>
+                        </span>
+                    </button>
+                </div>  
+                <p class="my-4 text-gray-500 text-lg leading-relaxed">
+                    The Hostel Affairs Board is the apex decision and pollicy making body for Hostels.
+                    It acts as a central coordinating body and its main function is to ensure proper working of the
+                    HMC in individual hostels as per the directions laid by HABPR.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="description-modal-backdrop"></div>
+<script type="text/javascript">
+  function toggleModal(modalID) {
+    document.getElementById(modalID).classList.toggle("hidden");
+    document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
+    document.getElementById(modalID).classList.toggle("flex");
+    document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+  }
+</script>
