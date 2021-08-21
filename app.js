@@ -80,7 +80,7 @@ app.use(passport.session());
 //   res.render('admin/club/index')
 // })
 
-app.use("/", userRouter);
+
 app.use("/admin/team", teamRouter);
 app.use("/admin/club", clubRouter);
 app.use("/admin", adminRouter);
@@ -102,6 +102,8 @@ app.get('/spardha', (req, res) => {
 app.get('/alumni', (req, res) => {
   res.render('alumni/view');
 })
+
+app.use("/", userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
