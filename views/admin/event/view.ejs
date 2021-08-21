@@ -1,0 +1,38 @@
+<%- include("../partials/header.ejs") %>
+<main>
+
+    <div class="text-center">
+
+        <div class="text-2xl font-bold"><%=data.name%></div>
+
+    </div>
+
+   <div class="mb-8">
+    <label class="block text-sm text-gray-600" for="pdf">Score card</label>
+    <%if(data.score){%>
+      Present Score card:
+      <div class="btn btn-primary bg-blue-400  rounded"><a class="w-auto" style="width:60px"href="http://localhost:3000/<%=data.score%>">
+        Score card</a></div>
+      
+    <%}%>
+
+   </div>
+
+  <div class="grid grid-cols-2 gap-12 ml-8 mr-8">
+    <div class="gallery">
+        <%if(data.image){%>
+          
+              <div class="imgwrap shadow-sm">
+                  <img src="http://localhost:3000/<%=data.image%>"  height="auto" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+              </div>
+           
+          
+    
+        <%}%>
+    </div>
+    <div class=""><%=data.desc%></div>
+  </div>
+
+</main>
+
+<%- include("../partials/footer.ejs") %>

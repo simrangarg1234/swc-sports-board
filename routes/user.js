@@ -1,6 +1,8 @@
 var express = require("express"),
   passport = require("passport"),
   userRouter = express.Router();
+  Event = require('../models/events');
+
 require("../config/passportsetup")(passport);
 
 userRouter.get("/login", function (req, res) {
@@ -32,8 +34,11 @@ userRouter.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
-userRouter.get("/", function (req, res) {
-  res.render("home");
+userRouter.get("/", async(req, res)=> {
+  id = req.params.id;
+  const events = await Event.find({});
+  console.log(events);
+  res.render("home", {events});
 });
 
 module.exports = userRouter;

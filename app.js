@@ -18,6 +18,7 @@ var express = require("express"),
 clubRouter = require("./routes/club");
 (userRouter = require("./routes/user")),
   (adminRouter = require("./routes/admin"));
+  eventsRouter = require("./routes/events");
 facilityRouter = require("./routes/facility");
 //  const  {upload}= require('./middlewares/index')
 const url = "mongodb://localhost:27017/sports";
@@ -80,7 +81,7 @@ app.use(passport.session());
 //   res.render('admin/club/index')
 // })
 
-
+app.use("/admin/events", eventsRouter);
 app.use("/admin/team", teamRouter);
 app.use("/admin/club", clubRouter);
 app.use("/admin", adminRouter);
@@ -101,9 +102,19 @@ app.get('/spardha', (req, res) => {
 
 app.get('/alumni', (req, res) => {
   res.render('alumni/view');
-})
+});
+
+// app.get('/team', (req,res)=>{
+//   res.send("hello teams");
+// });
+
+// app.get('/facilities', (req,res)=>{
+//   res.render('facility');
+// } )
 
 app.use("/", userRouter);
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
