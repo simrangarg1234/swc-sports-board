@@ -16,11 +16,15 @@ const clubSchema = new Schema({
     },
     //Achievements
     achievements: { 
-        type: [String], 
+        type: [String]
     },
     //what we do
   	info: { 
-        type: [String], 
+        type: [String] 
+    },
+    //Past evets
+    pe: {
+        type:[String]
     },
   	gallery: { 
           //images adress

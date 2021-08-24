@@ -142,6 +142,53 @@ router.get('/:clubid/delete/info/:idx',(req,res)=>{
     })
 })
 
+//Past Events
+//View:Past events->GET Request
+router.get('/:clubid/add/pe',(req,res)=>{
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        res.render('admin/club/add_pe',{data,idx:-1})
+    })
+})
+
+//View:Add pe Edit/First time adding->POST Request
+router.post('/add/pe',(req,res)=>{
+    console.log("req.body/ pe",req.body)
+    Club.findOne({_id:req.body.clubid},(err,data)=>{
+        if(req.body.idx!='-1')
+        {   
+            data.pe.splice(req.body.idx,1,req.body.pe);    
+        }
+        else{
+            data.pe.push(req.body.pe);
+        } 
+        data.save().then((record)=>{
+            console.log("pe",data.pe)
+            console.log("record",record)
+            req.flash('success', 'Achievement Addedd successfully!');
+            res.redirect(`/admin/club/view/${data._id}`);
+        }).catch(err=>{
+            console.log(err)
+            res.redirect(`/admin/club/view/${data._id}`);
+        })
+    })
+})
+//View :Add pe ->edit->GET request
+router.get('/:clubid/edit/pe/:idx',(req,res)=>{
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        res.render('admin/club/add_pe',{data,idx:req.params.idx})
+    })
+})
+//View :Add pe ->delete->GET request
+router.get('/:clubid/delete/pe/:idx',(req,res)=>{
+    //console.log('req.params',req.params)
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        data.pe.splice(req.params.idx,1);
+        data.save().then(()=>{
+            res.redirect(`/admin/club/view/${req.params.clubid}`)
+        })
+    })
+})
+
 
 //Save updated images and pdf/Score Card
 router.post('/imgpdf',uploadval,(req,res)=>{

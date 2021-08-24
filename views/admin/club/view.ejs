@@ -60,6 +60,33 @@
       </table>
   </div>
 </div>
+<div class="mt-6">
+  <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/pe">Add Your Past Events</a>
+</div>
+<div class="w-auto mt-6 overflow-auto">
+  <div class="bg-white">
+      <table class="min-w-full bg-white">
+          <thead class="bg-gray-800 text-white">
+              <tr>
+                  <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Past Events</th>
+                  <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Edit</th>
+                  <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
+              </tr>
+          </thead>
+          <tbody class="text-gray-700" id="myMenu">
+              <%for(let i=0;i<data.pe.length;i++){%>
+
+                  <tr>
+                      <td class="text-left py-3 px-4"><tbody class="text-gray-700" id="myMenu">
+                      <td class="text-left py-3 px-4"><%=data.pe[i]%></td>
+                      <td class="w-1/3 text-left py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/pe/<%=i%>">Edit</a></td>
+                      <td class="w-1/3 text-left py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/pe/<%=i%>">Delete</a></td>
+                  </tr>
+              <%}%>    
+          </tbody>
+      </table>
+  </div>
+</div>
 <!-- <form action="" method="POST" enctype="multipart/form-data">
   <div class="gallery">
     <input type="hidden" name="clubid" value="<%=data._id%>">
