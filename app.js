@@ -18,10 +18,10 @@ var express = require("express"),
 clubRouter = require("./routes/club");
 (userRouter = require("./routes/user")),
   (adminRouter = require("./routes/admin"));
-  eventsRouter = require("./routes/events");
+eventsRouter = require("./routes/events");
 facilityRouter = require("./routes/facility");
 //  const  {upload}= require('./middlewares/index')
-const url = "mongodb://localhost:27017/sports";
+const url = "mongodb+srv://sports:board@data.tii7o.mongodb.net/sportsBoard";
 //const url = process.env.MONGO_URI;
 const baseUrl = "/stud/gymkhana/sports";
 
@@ -90,28 +90,28 @@ app.use("/admin/alumni", alumniRouter);
 app.use("/admin/facility", facilityRouter);
 
 //Mini Club Pages
-const Club = require('./models/club');
+const Club = require("./models/club");
 app.get("/clubs/:clubid/home", (req, res) => {
-  Club.findOne({_id:req.params.clubid},(err,data)=>{
-    console.log("Club data",data);
-    res.render("clubs/home",{club:data});
-  })
+  Club.find({ _id: req.params.clubid }, (err, data) => {
+    console.log("Club data", data);
+    res.render("clubs/home", { club: data });
+  });
 });
 //Home page for clubs
-app.get('/clubs', (req, res) => {
-  Club.find({},(err,data)=>{
-    console.log("Club data",data);
-    res.render("clubs/club",{data});
-  })
+app.get("/clubs", (req, res) => {
+  Club.find({}, (err, data) => {
+    console.log("Club data", data);
+    res.render("clubs/club", { data });
+  });
   // res.render('clubs/club');
 });
 
-app.get('/spardha', (req, res) => {
-  res.render('spardha/view');
+app.get("/spardha", (req, res) => {
+  res.render("spardha/view");
 });
 
-app.get('/alumni', (req, res) => {
-  res.render('alumni/view');
+app.get("/alumni", (req, res) => {
+  res.render("alumni/view");
 });
 
 // app.get('/team', (req,res)=>{
@@ -123,8 +123,6 @@ app.get('/alumni', (req, res) => {
 // } )
 
 app.use("/", userRouter);
-
-
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
