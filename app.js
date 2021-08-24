@@ -89,11 +89,21 @@ app.use("/admin/team", teamRouter);
 app.use("/admin/alumni", alumniRouter);
 app.use("/admin/facility", facilityRouter);
 
-app.get("/clubs/home", (req, res) => {
-  res.render("clubs/home");
+//Mini Club Pages
+const Club = require('./models/club');
+app.get("/clubs/:clubid/home", (req, res) => {
+  Club.find({_id:req.params.clubid},(err,data)=>{
+    console.log("Club data",data);
+    res.render("clubs/home",{club:data});
+  })
 });
+//Home page for clubs
 app.get('/clubs', (req, res) => {
-  res.render('clubs/club');
+  Club.find({},(err,data)=>{
+    console.log("Club data",data);
+    res.render("clubs/club",{data});
+  })
+  // res.render('clubs/club');
 });
 
 app.get('/spardha', (req, res) => {
