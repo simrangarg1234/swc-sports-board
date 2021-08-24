@@ -11,14 +11,17 @@
       <h1>About Us</h1>
     </div>
     <p>
-      You are here for an overall development of your personality, so to keep you healthy and fit, we have all the facilities for sports, both indoor and outdoor.
+      <br>
+      <%=club.desc%>
+      <br>
+      <!-- You are here for an overall development of your personality, so to keep you healthy and fit, we have all the facilities for sports, both indoor and outdoor.
       <br>
       <br>
       All outdoor sports like athletics, swimming, cricket, football, hockey, basketball, volleyball, etc. and indoor sports like table tennis, weight lifting, chess, carrom, squash, etc. are actively played by all throughout the year.
       <br>
       <br>
       We organize and promote all extra-curricular activities in the field of sports. It has currently twelve clubs: Athletics and Gymnastics Club, aquatics Club, Badminton Club, Basketball Club, Cricket Club, Football Club, Hockey Club, Lawn Tennis
-      Club, Table Tennis Club, Squash Club, Volleyball Club and Weightlifting Club. The three main events conducted every year are Inter IIT Sports Meet, Spardha and Spirit.
+      Club, Table Tennis Club, Squash Club, Volleyball Club and Weightlifting Club. The three main events conducted every year are Inter IIT Sports Meet, Spardha and Spirit. -->
     </p>
   </div>
 
@@ -38,7 +41,16 @@
 
   <div class="grid grid-cols-2 gap-8">
 
-    <div class="col-span-1 mb-8">
+    <%for(let i=0;i<club.info.length;i++){%>
+
+      <div class="col-span-1 mb-8">
+        <%=club.info[i]%>
+      </div>
+
+    <%}%>
+   
+
+    <!-- <div class="col-span-1 mb-8">
       Train the Inter IIT Contingent.
       Organise summer camps for swimming.
       Organise beginners classes for non-swimmers.
@@ -63,7 +75,7 @@
       Train the Inter IIT Contingent.
       Organise summer camps for swimming.
       Organise beginners classes for non-swimmers.
-      Compete with other teams in the State/Country.
+      Compete with other teams in the State/Country. -->
     </div>
 
     <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class=" col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
@@ -101,8 +113,15 @@
 </div>
 
 <div class="grid grid-cols-3 gap-4 ml-8 mr-8 pb-32">
+  <%for(let i=0;i<club.gallery.length;i++){%>
 
-  <div class="shadow-md rounded-md overflow-hidden mb-2">
+    <div class="shadow-md rounded-md overflow-hidden mb-2">
+      <img src="http://localhost:3000/<%=club.gallery[i]%>" style="width: 419px; height: 250px" alt="">
+    </div>
+
+  <%}%>
+  
+  <!-- <div class="shadow-md rounded-md overflow-hidden mb-2">
     <img src="https://source.unsplash.com/random/1280x720" style="width: 419px; height: 250px" alt="">
   </div>
 
@@ -124,6 +143,6 @@
 
   <div class="shadow-md rounded-md overflow-hidden mb-2">
     <img src="https://source.unsplash.com/random/1280x720" style="width: 419px; height: 250px" alt="">
-  </div>
+  </div> -->
 
 </div>

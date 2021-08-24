@@ -92,7 +92,7 @@ app.use("/admin/facility", facilityRouter);
 //Mini Club Pages
 const Club = require('./models/club');
 app.get("/clubs/:clubid/home", (req, res) => {
-  Club.find({_id:req.params.clubid},(err,data)=>{
+  Club.findOne({_id:req.params.clubid},(err,data)=>{
     console.log("Club data",data);
     res.render("clubs/home",{club:data});
   })
