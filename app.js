@@ -20,6 +20,7 @@ clubRouter = require("./routes/club");
   (adminRouter = require("./routes/admin"));
 eventsRouter = require("./routes/events");
 facilityRouter = require("./routes/facility");
+spardhaRouter = require("./routes/spardha");
 //  const  {upload}= require('./middlewares/index')
 const url = "mongodb+srv://sports:board@data.tii7o.mongodb.net/sportsBoard";
 //const url = process.env.MONGO_URI;
@@ -88,6 +89,7 @@ app.use("/admin", adminRouter);
 app.use("/admin/team", teamRouter);
 app.use("/admin/alumni", alumniRouter);
 app.use("/admin/facility", facilityRouter);
+app.use("/admin/spardha", spardhaRouter);
 
 //Mini Club Pages
 const Club = require("./models/club");

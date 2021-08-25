@@ -1,0 +1,56 @@
+<%- include("../partials/header.ejs") %> 
+<main class="px-4 py-4">
+  
+    Club Name
+    <div class="w-full px-5 m-2 py-4 text-gray-700 bg-gray-200 rounded"><h1><%=spardha.Clubname%></h1></div>
+    Description
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=spardha.Description%></div>
+    Date / Time
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=spardha.DateTime%></div>
+    Status
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=spardha.Status%></div>
+
+
+    <!-- Uploading images and pdf  -->
+    <div class="leading-loose">
+        <form class="p-10 bg-white rounded shadow-xl" action="/admin/spardha/imgpdf" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<%=spardha._id%>">
+            <div class="mt-2">
+                <label class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" for="image">Gallery</label>
+                <div class="gallery shadow-sm">
+                    <%if(spardha.Images.length>0){%>
+                        Present Gallery
+                        <%for(let i=0;i<spardha.Images.length;i++){%>
+                            <div class="mb-5 imgwrap shadow-sm">
+                                <img src="http://localhost:3000/<%=spardha.Images[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                <a href="/admin/spardha/<%=spardha._id%>/delimg/<%=i%>/">X</a>
+                            </div>
+                        <%}%>
+                    <%}%>    
+                </div>
+                <label class="block text-sm text-gray-600" for="pdf"> You can add Images</label>
+                <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="Images" type="file"
+                    name="images" multiple >
+            </div>
+            <% if(spardha.Status === "Running"){ %>
+                <div class="mt-5">
+                    <label class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" for="pdf">Score card</label>
+                    <%if(spardha.Scorecard){%>
+                        <div class="mb-5">
+                            Present Score card:
+                            <a class="px-4 py-1 text-black font-light tracking-wider bg-blue-400 rounded" href="http://localhost:3000/<%=spardha.Scorecard%>">
+                            Score card</a>
+                        </div>
+                    <%}%>
+                    <label class="block text-sm text-gray-600" for="pdf"> You can add Score card</label>
+                    
+                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="scoreCard" type="file"
+                        name="pdf" >
+                </div>
+            <% } %> 
+            
+            <button type="submit" class="mt-5 px-4 py-1 font-light tracking-wider text-white bg-blue-900 rounded">Update</button>
+        </form>
+    </div>
+</main>
+<%- include("../partials/footer.ejs") %> 
