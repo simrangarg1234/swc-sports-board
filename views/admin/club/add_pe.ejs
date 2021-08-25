@@ -14,13 +14,13 @@
                 <p>You can add Past events of your Club</p>
             </div>
             <div class="leading-loose">
-                <form class="p-10 bg-white rounded shadow-xl" action="/admin/club/add/info" method="POST"
+                <form class="p-10 bg-white rounded shadow-xl" action="/admin/club/add/pe" method="POST"
                     >
                     <input type="hidden" name="clubid" value="<%=data._id%>">
                     <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="name">What we do</label>
+                        <label class="block text-sm text-gray-600" for="name">Past Events</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="info" type="text"
-                            name="info" placeholder="Add What we do"
+                            name="pe" placeholder="Add What we do"
                               <% if ( idx !=  -1 ) {%>
                               value="<%=data.pe[idx]%>"
                             <%}%>

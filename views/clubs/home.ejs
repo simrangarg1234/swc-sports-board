@@ -78,6 +78,36 @@
       Compete with other teams in the State/Country. -->
     </div>
 
+    <div class="about-header mb-4">
+      <h1>Achievements</h1>
+    </div>
+  
+    <div class="grid grid-cols-2 gap-8">
+  
+      <%for(let i=0;i<club.achievements.length;i++){%>
+  
+        <div class="col-span-1 mb-8">
+          <%=club.achievements[i]%>
+        </div>
+  
+      <%}%>
+    </div>
+
+    <div class="about-header mb-4">
+      <h1>Past Events</h1>
+    </div>
+  
+    <div class="grid grid-cols-2 gap-8">
+  
+      <%for(let i=0;i<club.pe.length;i++){%>
+  
+        <div class="col-span-1 mb-8">
+          <%=club.pe[i]%>
+        </div>
+  
+      <%}%>
+    </div>
+
     <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class=" col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
       <div class="shadow-md rounded-md overflow-hidden">
         <img src="https://source.unsplash.com/random/1280x720" style="width: 350px; height: 350px" alt="">
