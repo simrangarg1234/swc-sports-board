@@ -122,6 +122,20 @@ app.get("/alumni", (req, res) => {
 //   res.render('facility');
 // } )
 
+
+
+app.get('/teams', (req,res)=>{
+  res.render('teams/view');
+});
+
+
+
+app.get('/facilities', (req, res) => {
+  res.render('facilities/view');
+});
+
+
+
 app.use("/", userRouter);
 
 app.listen(PORT, () => {
