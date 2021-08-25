@@ -48,18 +48,35 @@
 
   </div>
 
-  <!-- <div  style="cursor: pointer;" class="flex flex-wrap pb-10 pt-4">
-    <div class="shadow-md rounded-md overflow-hidden" style="width: 850px" alt="event-img">
-      <img style="width: 850px; height: 300px">
-      <div class="p-4 event-text">
-        <p class="mb-4"></p>
-        <div> <i class="fas fa-arrow-right"></i> </div>
-      </div>
-      
-    </div>
-  </div> -->
 
-  <div class="flex flex-wrap divide-x divide-white-500">
+
+  <div class="overflow-x-scroll flex flex-row" >
+
+    <% for(var i = 0; i<events.length; i++) { %>
+      <div style="cursor: pointer;" class="flex flex-wrap pb-10 pt-4 pl-4 pr-4">
+        <div class="shadow-md rounded-md overflow-hidden" style="width: 650px" alt="event-img">
+          <img src= <%=events[i].image %> style="width: 650px; height: 300px" >
+          <div class="p-4 event-text mb-4 grid grid-cols-5">
+            <div class="col-span-4">
+              <div class="event-dates"> <%=events[i].start%> - <%=events[i].end%></div>
+              <div class="sub-event-header"> <%=events[i].desc%></div>
+            </div>
+            <div>
+
+              <div class="event-arrow">
+                <a href=<%=events[i].score%>> <i class="fas fa-arrow-right fa-sm"></i></a>
+             </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    <%}%>
+  </div>
+
+  <div class="flex flex-wrap divide-x divide-white-500 mt-20">
     <div class="text-xl pr-4 footer">
       IITG Hostal Affairs Board
     </div>
