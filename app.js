@@ -108,8 +108,12 @@ app.get("/clubs", (req, res) => {
   // res.render('clubs/club');
 });
 
+const Spardha = require('./models/spardha');
 app.get("/spardha", (req, res) => {
-  res.render("spardha/view");
+  Spardha.find({}, (err, data) => {
+    console.log("Spardha data", data);
+    res.render("spardha/view", { data });
+  }); 
 });
 
 app.get("/alumni", (req, res) => {
