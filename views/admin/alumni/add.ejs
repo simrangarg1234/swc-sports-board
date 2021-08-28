@@ -15,16 +15,16 @@
                 <p>You need to add either file or link</p>
             </div>
             <div class="leading-loose">
-                <form class="p-10 bg-white rounded shadow-xl" action="/admin/alumni" method="POST">
+                <form class="p-10 bg-white rounded shadow-xl" action="/admin/alumni" method="POST" enctype="multipart/form-data">
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="name">Name</label>
                         <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
                             name="name" placeholder="Name" required>
                     </div>
                     <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="image">Image Url</label>
-                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="image" type="text"
-                            name="image" placeholder="Image Url" required>
+                        <label class="block text-sm text-gray-600" for="image">Image</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="image" type="file"
+                            name="images"  >
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="email">Email Id</label>
@@ -35,11 +35,6 @@
                         <label class="block text-sm text-gray-600" for="experience">Experience</label>
                         <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="experience" type="text"
                             name="experience" placeholder="Experience" required>
-                    </div>
-                    <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="achievements">Achievements</label>
-                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="achievements" type="text"
-                            name="achievements" placeholder="Achievements" required>
                     </div>
                     
                     <div class="mt-3">

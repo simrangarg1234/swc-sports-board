@@ -7,8 +7,7 @@ const alumniSchema = new Schema({
         required: true 
     },
     image: { 
-        type: String, 
-        required: true 
+        type: String 
     },
     email: {
         type: String, 
@@ -19,10 +18,8 @@ const alumniSchema = new Schema({
         required: true 
     },
   	achievements: { 
-        type: String, 
-        required: true 
+        type: [String]
     }
-    
 });
 var Alumnis = mongoose.model('Alumni',alumniSchema);
 

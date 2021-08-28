@@ -1,23 +1,40 @@
-<% layout('layouts/boilerplate')%>
+<%- include("../partials/header.ejs") %> 
+<main class="px-4 py-4">
+  
+    <div class="imgwrap shadow-sm">
+        <img src="http://localhost:3000/<%=data.image%>" height="auto" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+    </div>
+    Name
+    <div class="w-full px-5 m-2 py-4 text-gray-700 bg-gray-200 rounded"><h1><%=data.name%></h1></div>
+    Email ID
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=data.email%></div>
+    Experience
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=data.experience%></div>
 
-<div class="row">
-    <a href="/alumni">Back to Alumni</a>
-    <div class="col-6">
-        <div class="mb-3 card">
-            <img src="<%= alumni.image%>" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><%= alumni.name%></h5>
-                <br>
-                <p class="card-text">Experience: <%= alumni.experience %> </p>
-                <p class="card-text">Achievements: <%= alumni.achievements %> </p>
-            </div>
-            
-            <div class="card-body">
-                <a class="card-link btn btn-info" href="/alumni/<%=alumni._id%>/edit">Edit</a>
-                <form class="d-inline" action="/alumni/<%=alumni._id%>?_method=DELETE" method="POST">
-                    <button class="btn btn-danger">Delete</button>
-                </form>
-            </div>      
+    <div class="mt-6">
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/alumni/<%=data._id%>/add/achievement">Add Achievements</a>
+    </div>
+    <div class="w-auto mt-6 overflow-auto">
+        <div class="bg-white">
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Achievement</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Edit</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700" id="myMenu">
+                    <%for(let i=0;i<data.achievements.length;i++){%>
+                        <tr>
+                            <td class="text-left py-3 px-4"><%=data.achievements[i]%></td>
+                            <td class="w-1/3 text-left py-3 px-4"><a href="/admin/alumni/<%=data._id%>/edit/achievement/<%=i%>">Edit</a></td>
+                            <td class="w-1/3 text-left py-3 px-4"><a href="/admin/alumni/<%=data._id%>/delete/achievement/<%=i%>">Delete</a></td>
+                        </tr>
+                    <%}%>    
+                </tbody>
+            </table>
         </div>
     </div>
-</div>
+</main>
+<%- include("../partials/footer.ejs") %> 
