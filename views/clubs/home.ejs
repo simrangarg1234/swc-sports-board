@@ -35,48 +35,25 @@
 
 <div class="what-we-do mt-24 ml-20 mb-12">
 
-  <div class="about-header mb-4">
-    <h1>What we do?</h1>
-  </div>
+  <%if(club.info.length>0){%>
 
-  <div class="grid grid-cols-2 gap-8">
-
-    <%for(let i=0;i<club.info.length;i++){%>
-
-      <div class="col-span-1 mb-8">
-        <%=club.info[i]%>
-      </div>
-
-    <%}%>
-   
-
-    <!-- <div class="col-span-1 mb-8">
-      Train the Inter IIT Contingent.
-      Organise summer camps for swimming.
-      Organise beginners classes for non-swimmers.
-      Compete with other teams in the State/Country.
+    <div class="about-header mb-4">
+      <h1>What we do?</h1>
+    </div>
+  
+    <div class="grid grid-cols-2 gap-8">
+  
+      <%for(let i=0;i<club.info.length;i++){%>
+  
+        <div class="col-span-1 mb-8">
+          <%=club.info[i]%>
+        </div>
+  
+      <%}%>
     </div>
 
-    <div class="col-span-1 mb-8">
-      Train the Inter IIT Contingent.
-      Organise summer camps for swimming.
-      Organise beginners classes for non-swimmers.
-      Compete with other teams in the State/Country.
-    </div>
-
-    <div class="col-span-1 mb-8">
-      Train the Inter IIT Contingent.
-      Organise summer camps for swimming.
-      Organise beginners classes for non-swimmers.
-      Compete with other teams in the State/Country.
-    </div>
-
-    <div class="col-span-1 mb-8">
-      Train the Inter IIT Contingent.
-      Organise summer camps for swimming.
-      Organise beginners classes for non-swimmers.
-      Compete with other teams in the State/Country. -->
-    </div>
+ <%}%>
+  
 
     <div class="about-header mb-4">
       <h1>Achievements</h1>
