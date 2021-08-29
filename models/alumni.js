@@ -13,6 +13,10 @@ const alumniSchema = new Schema({
         type: String, 
         required: true
     },
+    contact: {
+        type: Number,
+        required: true
+    },
     experience: { 
         type: String, 
         required: true 

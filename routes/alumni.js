@@ -17,6 +17,7 @@ router.post('/', uploadval, async (req, res) => {
     const alumni = await new Alumni({
         name: data.name,
         email: data.email,
+        contact: data.contact,
         experience: data.experience,
     })
     alumni.image = req.files["images"][0].path;
@@ -53,6 +54,7 @@ router.put('/:id', uploadval, catchAsync(async (req, res) => {
     console.log(req.body);
     const name =  data.name;
     const email =  data.email;
+    const contact = data.contact;
     const experience =  data.experience;
     
      
@@ -61,6 +63,7 @@ router.put('/:id', uploadval, catchAsync(async (req, res) => {
         $set: {
             name,
             email,
+            contact,
             experience,
         }
     }, {new: true})

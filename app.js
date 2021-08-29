@@ -116,9 +116,19 @@ app.get("/spardha", (req, res) => {
   }); 
 });
 
+const Alumni = require('./models/alumni');
 app.get("/alumni", (req, res) => {
-  res.render("alumni/view");
+  Alumni.find({}, (err, data) => {
+    console.log("Alumni data", data);
+    res.render("alumni/view", { data });
+  });
 });
+// app.get("/alumni", (req, res) => {
+//   Alumni.findOne({id: req.body._id}, (err, data) => {
+//     console.log("Desc", data);
+//     res.render("alumni/description", { desc: data });
+//   });
+// });
 
 // app.get('/team', (req,res)=>{
 //   res.send("hello teams");
