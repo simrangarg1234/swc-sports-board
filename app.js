@@ -134,11 +134,35 @@ app.get("/alumni", (req, res) => {
 //   res.send("hello teams");
 // });
 
-// app.get('/facilities', (req,res)=>{
-//   res.render('facility');
-// } )
 
+//Past Spardhas
+app.get('/spardha/spardha2020', (req,res)=>{
+   res.render('spardha/spardha2020');
+ } );
 
+ app.get('/spardha/spardha2019', (req,res)=>{
+  res.render('spardha/spardha2019');
+} );
+
+app.get('/spardha/spardha2018', (req,res)=>{
+  res.render('spardha/spardha2018');
+} );
+
+app.get('/spardha/spardha2017', (req,res)=>{
+  res.render('spardha/spardha2017');
+} );
+
+app.get('/spardha/spardha2016', (req,res)=>{
+  res.render('spardha/spardha2016');
+} );
+
+app.get('/spardha/spardha2015', (req,res)=>{
+  res.render('spardha/spardha2015');
+} );
+
+app.get('/spardha/spardha2014', (req,res)=>{
+  res.render('spardha/spardha2014');
+} );
 
 app.get('/teams', (req,res)=>{
   res.render('teams/view');
