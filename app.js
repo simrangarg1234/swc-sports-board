@@ -111,63 +111,56 @@ app.get("/clubs", (req, res) => {
 const Spardha = require('./models/spardha');
 app.get("/spardha", (req, res) => {
   Spardha.find({}, (err, data) => {
-    console.log("Spardha data", data);
     res.render("spardha/view", { data });
+  }); 
+});
+
+app.get("/spardha/past", (req, res) => {
+  Spardha.find({}, (err, data) => {
+    res.render("spardha/past", { data });
   }); 
 });
 
 const Alumni = require('./models/alumni');
 app.get("/alumni", (req, res) => {
   Alumni.find({}, (err, data) => {
-    console.log("Alumni data", data);
     res.render("alumni/view", { data });
   });
 });
-// app.get("/alumni", (req, res) => {
-//   Alumni.findOne({id: req.body._id}, (err, data) => {
-//     console.log("Desc", data);
-//     res.render("alumni/description", { desc: data });
-//   });
-// });
-
-// app.get('/team', (req,res)=>{
-//   res.send("hello teams");
-// });
 
 
 //Past Spardhas
 app.get('/spardha/spardha2020', (req,res)=>{
    res.render('spardha/spardha2020');
- } );
+});
 
  app.get('/spardha/spardha2019', (req,res)=>{
   res.render('spardha/spardha2019');
-} );
+});
 
 app.get('/spardha/spardha2018', (req,res)=>{
   res.render('spardha/spardha2018');
-} );
+});
 
 app.get('/spardha/spardha2017', (req,res)=>{
   res.render('spardha/spardha2017');
-} );
+});
 
 app.get('/spardha/spardha2016', (req,res)=>{
   res.render('spardha/spardha2016');
-} );
+});
 
 app.get('/spardha/spardha2015', (req,res)=>{
   res.render('spardha/spardha2015');
-} );
+});
 
 app.get('/spardha/spardha2014', (req,res)=>{
   res.render('spardha/spardha2014');
-} );
+});
 
 app.get('/teams', (req,res)=>{
   res.render('teams/view');
 });
-
 
 
 app.get('/facilities', (req, res) => {

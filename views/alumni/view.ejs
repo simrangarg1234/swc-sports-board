@@ -35,59 +35,60 @@
             </div>
         </div>
 
+        <!--Modal-->
         <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center"
-    id="description-modal-<%= data[i]._id %>">
-    <div class="relative w-auto my-6 mx-auto max-w-6xl">
-        <!--content-->
-        <div class="grid grid-cols-2 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-            <!--image-->
-            <div class="p-10 overflow-hidden">
-                <img src=<%= data[i].image %>  style="height: 350px; width: auto;"  alt="">
-                <div class="p-4" >
-                    <div class="grid grid-cols-3">
-                        <div class="col-span-2 text-left text-2xl"><%= data[i].name %>  </div>
-                        <!--<div class="col-span-1 text-right font-normal text-lg">Dean</div>-->
-                    </div>
-                    <div class="grid grid-cols-1">
-                        <div class="grid grid-cols-1 divide-y divide-black"><br>
+            id="description-modal-<%= data[i]._id %>">
+            <div class="relative w-auto my-6 mx-auto max-w-6xl">
+                <!--content-->
+                <div class="grid grid-cols-2 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                    <!--image-->
+                    <div class="p-10 overflow-hidden">
+                        <img src=<%= data[i].image %>  style="height: 350px; width: auto;"  alt="">
+                        <div class="p-4" >
                             <div class="grid grid-cols-3">
-                                <div class="col-span-1 text-left font-normal text-md"><%= data[i].email %> </div>
-                                <div class="col-span-2 text-right font-normal text-md">+91 <%= data[i].contact %> </div>
+                                <div class="col-span-2 text-left text-2xl"><%= data[i].name %>  </div>
+                                <!--<div class="col-span-1 text-right font-normal text-lg">Dean</div>-->
+                            </div>
+                            <div class="grid grid-cols-1">
+                                <div class="grid grid-cols-1 divide-y divide-black"><br>
+                                    <div class="grid grid-cols-3">
+                                        <div class="col-span-1 text-left font-normal text-md"><%= data[i].email %> </div>
+                                        <div class="col-span-2 text-right font-normal text-md">+91 <%= data[i].contact %> </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!--body-->
+                    <div class="relative p-6 flex-auto">
+                        <div class="flex items-start justify-between border-b border-solid border-gray-200 rounded-t">
+                            <button class="pb-1 ml-auto bg-transparent border-0 text-gray-500 float-right text-l leading-none font-semibold outline-none focus:outline-none"
+                                onclick="toggleModal('description-modal-<%= data[i]._id %>')">
+                                <span > <i class="fas fa-times"></i> </span>
+                            </button>
+                        </div>  
+                        <h1 class="my-4 text-gray-700 text-xl font-semibold">Experience</h1>
+                        <p class="my-4 text-gray-500 text-md ">
+                            <%= data[i].experience %> 
+                        </p>
+                        <h1 class="my-4 mt-10 text-gray-700 text-xl font-semibold">Achievements</h1>
+                        <% for(let j=0; j<data[i].achievements.length; j++){ %> 
+                        <p class="my-4 text-gray-500 text-md ">
+                            <%= j+1 %>. <%= data[i].achievements[j] %> <br>
+                        </p>
+                        <% } %> 
+                    </div>
                 </div>
             </div>
-            <!--body-->
-            <div class="relative p-6 flex-auto">
-                <div class="flex items-start justify-between border-b border-solid border-gray-200 rounded-t">
-                    <button class="pb-1 ml-auto bg-transparent border-0 text-gray-500 float-right text-l leading-none font-semibold outline-none focus:outline-none"
-                        onclick="toggleModal('description-modal-<%= data[i]._id %>')">
-                        <span > <i class="fas fa-times"></i> </span>
-                    </button>
-                </div>  
-                <h1 class="my-4 text-gray-700 text-xl font-semibold">Experience</h1>
-                <p class="my-4 text-gray-500 text-md ">
-                    <%= data[i].experience %> 
-                </p>
-                <h1 class="my-4 mt-10 text-gray-700 text-xl font-semibold">Achievements</h1>
-                <% for(let j=0; j<data[i].achievements.length; j++){ %> 
-                <p class="my-4 text-gray-500 text-md ">
-                    <%= j+1 %>. <%= data[i].achievements[j] %> <br>
-                </p>
-                <% } %> 
-            </div>
         </div>
-    </div>
-</div>
-<div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="description-modal-<%= data[i]._id %>-backdrop"></div>
-<script type="text/javascript">
-  function toggleModal(modalID) {
-    document.getElementById(modalID).classList.toggle("hidden");
-    document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
-    document.getElementById(modalID).classList.toggle("flex");
-    document.getElementById(modalID + "-backdrop").classList.toggle("flex");
-  }
-</script>
+        <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="description-modal-<%= data[i]._id %>-backdrop"></div>
+        <script type="text/javascript">
+        function toggleModal(modalID) {
+            document.getElementById(modalID).classList.toggle("hidden");
+            document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
+            document.getElementById(modalID).classList.toggle("flex");
+            document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+        }
+        </script>
     <% } %>
 </div> 

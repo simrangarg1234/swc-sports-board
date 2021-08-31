@@ -1,0 +1,39 @@
+<% layout('layouts/layout') %>
+<%- include('../partials/carousel')  %>
+<%- include('../partials/navbar') %>
+<%- include('./spardhaList') %> 
+
+<div class="flex flex-wrap mt-10 ml-20">
+  <div class="about">
+    <div class="about-header ">
+      <h1>Spardha 2021</h1>
+    </div>
+  </div>
+</div>
+<div class="grid grid-cols-2 gap-4 p-20">
+    <%for(let i=0;i<data.length;i++){%>
+        <% if(data[i].Status === "Past Event"){ %>
+            <div class="flex flex-wrap col-span-1 pt-4 pb-10 ">
+                <div class="overflow-hidden rounded-md shadow-md">
+                    <img src="http://localhost:3000/<%=data[i].Images[0]%>" style="width: 563.41px; height: 418.41px" alt="">
+                    <div class="p-4 event-text" style="width: 563.41px">
+                        <div class="grid grid-cols-3">
+                            <div class="col-span-2 text-2xl text-left"><%=data[i].Clubname%></div>
+                            <div class="col-span-1 text-sm font-normal text-right"><%=data[i].DateTime%></div>
+                        </div>
+                        <div class="grid grid-cols-1">
+                            <div class="grid grid-cols-1 divide-y divide-white"><br>
+                                <div class="grid grid-cols-3">
+                                    <div class="col-span-2 text-sm text-left"><%=data[i].Description%></div>
+                                    <div class="col-span-1 text-lg font-normal text-right mr-5">
+                                        <a href="http://localhost:3000/<%=data[i].Scorecard%>"><i class="fas fa-arrow-right fa-sm"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    <% } %>  
+</div>

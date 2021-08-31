@@ -1,118 +1,104 @@
 <% layout('layouts/layout') %> 
 <%- include('../partials/carousel')  %> 
 <%- include('../partials/navbar') %>
+<%- include('./spardhaList') %> 
 
-<div class="w-3/4 p-8 m-auto">
-  <button
-    class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
-    type="button">
-    <a href="/spardha">Spardha 2021</a>
-  </button>
-  <button
-    class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
-    type="button">
-    <a href="/spardha/spardha2020">Spardha 2020</a>
-  </button>
-  <button
-    class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
-    type="button">
-    <a href="/spardha/spardha2019">Spardha 2019</a>
-  </button>
-  <button
-    class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
-    type="button">
-    <a href="/spardha/spardha2018">Spardha 2018</a>
-  </button>
-  <button
-    class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
-    type="button">
-    <a href="/spardha/spardha2017">Spardha 2017</a>
-  </button>
-  <button
-    class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
-    type="button">
-    <a href="/spardha/spardha2016">Spardha 2016</a>
-  </button>
-  <button
-    class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
-    type="button">
-    <a href="/spardha/spardha2015">Spardha 2015</a>
-  </button>
-  <button
-    class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
-    type="button">
-    <a href="/spardha/spardha2014">Spardha 2014</a>
-  </button>
-</div>
+<% var c=0; %> 
+<%for(let i=0;i<data.length;i++){%>
+  <% if(data[i].Status === "Running"){ %>
+    <% c++; %> 
+  <% } %>
+<% } %> 
 
-
-
-<div class="flex flex-col">
-    <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-6">
-      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-        <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-800">
-              <tr>
-                <th scope="col" class="px-6 py-3 text-sm font-medium tracking-wider text-center text-gray-200 uppercase">
-                  Club Name
-                </th>
-                <th scope="col" class="px-6 py-3 text-sm font-medium tracking-wider text-center text-gray-200 uppercase">
-                  Description
-                </th>
-                <th scope="col" class="px-6 py-3 text-sm font-medium tracking-wider text-center text-gray-200 uppercase">
-                  Date / Time
-                </th>
-                <th scope="col" class="px-6 py-3 text-sm font-medium tracking-wider text-center text-gray-200 uppercase">
-                  ScoreCard
-                </th>
-              </tr>
-            </thead>
-            <!-- -->
-            <tbody class="bg-white divide-y divide-gray-200">   
-              <%for(let i=0;i<data.length;i++){%>
-                <% if(data[i].Status === "Running"){ %>
-              <tr >
-                <td class="px-6 py-4 text-sm font-medium text-center text-gray-800 whitespace-nowrap">
-                  <%=data[i].Clubname%> 
-                </td>
-                <td class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
-                  <%=data[i].Description%>
-                </td>
-                <td class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
-                  <%=data[i].DateTime%>
-                </td>
-                <td class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
-                  <div>
-                    <a href=<%=data[i].Scorecard%>> <i class="fas fa-arrow-right fa-sm"></i></a>
-                 </div>
-                </td>
-              </tr>
-              <% } %> 
-          <%}%>
-            </tbody>
-            <!---->
-        </table>
+<!--No Running Event-->
+<% if(c===0) {%>
+  <div class="mt-10 mb-12 ml-20 what-we-do">
+    <div class="grid grid-cols-2 gap-8"> 
+      <div class="col-span-1 mb-2 about-header">
+        Photos
       </div>
     </div>
   </div>
-</div>
-
-<div class="mt-24 mb-12 ml-20 what-we-do">
-  <div class="grid grid-cols-2 gap-8"> 
-    <div class="col-span-1 mb-2 about-header">
-      Photos
-    </div>
-  </div>
-</div>
-<div class="grid grid-cols-3 gap-4 pb-32 ml-8 mr-8">
-  <%for(let i=0;i<data.length;i++){%>
-    <% if(data[i].Status === "Running"){ %> 
-      <%for(let j=0;j<data[i].Images.length;j++){%>
-      <div class="mb-2 overflow-hidden rounded-md shadow-md">
-        <img src="<%=data[i].Images[j]%>" style="width: 419px; height: 250px" alt="">
-      </div>
+  <div class="grid grid-cols-3 gap-4 pb-32 ml-8 mr-8">
+    <%for(let i=0;i<data.length;i++){%>
+      <% if(data[i].Status === "Past Event"){ %> 
+        <%for(let j=0;j<data[i].Images.length;j++){%>
+        <div class="mb-2 overflow-hidden rounded-md shadow-md">
+          <img src="<%=data[i].Images[j]%>" style="width: 419px; height: 250px" alt="">
+        </div>
+        <% } %> 
       <% } %> 
-    <% } %> 
-  <%}%>
-</div>
+    <%}%>
+  </div>
+<% } else{%>  
+ 
+  <div class="flex flex-col">
+      <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-6">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+          <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-800">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-sm font-medium tracking-wider text-center text-gray-200 uppercase">
+                    Club Name
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-sm font-medium tracking-wider text-center text-gray-200 uppercase">
+                    Description
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-sm font-medium tracking-wider text-center text-gray-200 uppercase">
+                    Date / Time
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-sm font-medium tracking-wider text-center text-gray-200 uppercase">
+                    ScoreCard
+                  </th>
+                </tr>
+              </thead>
+              <!-- -->
+              <tbody class="bg-white divide-y divide-gray-200">   
+                <%for(let i=0;i<data.length;i++){%>
+                  <% if(data[i].Status === "Running"){ %>
+                    <tr >
+                      <td class="px-6 py-4 text-sm font-medium text-center text-gray-800 whitespace-nowrap">
+                        <%=data[i].Clubname%> 
+                      </td>
+                      <td class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                        <%=data[i].Description%>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                        <%=data[i].DateTime%>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                        <div>
+                          <a href=<%=data[i].Scorecard%>> <i class="fas fa-arrow-right fa-sm"></i></a>
+                      </div>
+                      </td>
+                    </tr>
+                    <% } %> 
+                <%}%>
+              </tbody>
+              <!---->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-24 mb-12 ml-20 what-we-do">
+    <div class="grid grid-cols-2 gap-8"> 
+      <div class="col-span-1 mb-2 about-header">
+        Photos
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-3 gap-4 pb-32 ml-8 mr-8">
+    <%for(let i=0;i<data.length;i++){%>
+      <% if(data[i].Status === "Running"){ %> 
+        <%for(let j=0;j<data[i].Images.length;j++){%>
+        <div class="mb-2 overflow-hidden rounded-md shadow-md">
+          <img src="<%=data[i].Images[j]%>" style="width: 419px; height: 250px" alt="">
+        </div>
+        <% } %> 
+      <% } %> 
+    <%}%>
+  </div>
+<% } %> 

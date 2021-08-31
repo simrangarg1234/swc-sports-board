@@ -32,22 +32,22 @@
                 <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="Images" type="file"
                     name="images" multiple >
             </div>
-            <% if(spardha.Status === "Running"){ %>
-                <div class="mt-5">
-                    <label class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" for="pdf">Score card</label>
-                    <%if(spardha.Scorecard){%>
-                        <div class="mb-5">
-                            Present Score card:
-                            <a class="px-4 py-1 text-black font-light tracking-wider bg-blue-400 rounded" href="http://localhost:3000/<%=spardha.Scorecard%>">
-                            Score card</a>
-                        </div>
-                    <%}%>
-                    <label class="block text-sm text-gray-600" for="pdf"> You can add Score card</label>
-                    
-                    <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="scoreCard" type="file"
-                        name="pdf" >
-                </div>
-            <% } %> 
+
+            <div class="mt-5">
+                <label class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" for="pdf">Score card</label>
+                <%if(spardha.Scorecard){%>
+                    <div class="mb-5">
+                        Present Score card:
+                        <a class="px-4 py-1 text-black font-light tracking-wider bg-blue-400 rounded" href="http://localhost:3000/<%=spardha.Scorecard%>">
+                        Score card</a>
+                    </div>
+                <%}%>
+                <label class="block text-sm text-gray-600" for="pdf"> You can add Score card</label>
+                
+                <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="scoreCard" type="file"
+                    name="pdf" >
+            </div>
+
             
             <button type="submit" class="mt-5 px-4 py-1 font-light tracking-wider text-white bg-blue-900 rounded">Update</button>
         </form>

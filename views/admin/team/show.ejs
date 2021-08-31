@@ -1,25 +1,21 @@
-<% layout('layouts/boilerplate')%>
-
-<div class="row">
-    <a href="/team">Back to Team</a>
-    <div class="col-6">
-        <div class="card mb-3">
-            <img src="<%= team.image%>" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><%= team.name%></h5>
-                <p class="card-text"><%= team.position%></p>
-                <br>
-                <p class="card-text">Hostel: <%= team.hostel %> </p>
-                <p class="card-text">Contact No.: <%= team.contact1 %> </p>
-                <p class="card-text">Email Id: <%= team.email %> </p>
-            </div>
-            
-            <div class="card-body">
-                <a class="card-link btn btn-info" href="/team/<%=team._id%>/edit">Edit</a>
-                <form class="d-inline" action="/team/<%=team._id%>?_method=DELETE" method="POST">
-                    <button class="btn btn-danger">Delete</button>
-                </form>
-            </div>      
-        </div>
+<%- include("../partials/header.ejs") %> 
+<main class="px-4 py-4">
+  
+    <div class="imgwrap shadow-sm">
+        <img src="<%=team.image%>" style="width: 400px; height: 350px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
     </div>
-</div>
+    Name
+    <div class="w-full px-5 m-2 py-4 text-gray-700 bg-gray-200 rounded"><h1><%=team.name%></h1></div>
+    Email ID
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=team.email%></div>
+    Position
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=team.position%></div>
+    Hostel
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=team.hostel%></div>
+    Contact No. 
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=team.contact1%></div>
+    Contact No. (optional)
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=team.contact2%></div>
+
+</main>
+<%- include("../partials/footer.ejs") %> 
