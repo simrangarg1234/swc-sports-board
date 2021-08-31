@@ -85,20 +85,30 @@
       <%}%>
     </div>
 
-    <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class=" col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
-      <div class="shadow-md rounded-md overflow-hidden">
-        <img src="https://source.unsplash.com/random/1280x720" style="width: 350px; height: 350px" alt="">
-        <div class="p-4 event-text" style="width: 350px">
-          <div class="grid grid-cols-3">
-            <div class="col-span-2 text-left text-2xl">Tony Stark</div>
-            <div class="col-span-1 text-right font-normal text-sm">Secretary</div>
-          </div>
-          <p class="mb-4 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sequi tenetur, voluptatibus</p>
-        </div>
-      </div>
-    </div>
+    <%if(club.heads){
+      for(let i=0;i<club.heads.length;i++){%>
 
-    <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class=" col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
+        <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class=" col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
+          <div class="shadow-md rounded-md overflow-hidden">
+            <img src="http://localhost:3000/<%=club.heads[i].image%>" style="width: 350px; height: 350px" alt="">
+            <div class="p-4 event-text" style="width: 350px">
+              <div class="grid grid-cols-3">
+                <div class="col-span-2 text-left text-2xl"><%=club.heads[i].name%></div>
+                <div class="col-span-1 text-right font-normal text-sm"><%=club.heads[i].position%></div>
+              </div>
+              <p class="mb-4 text-sm">
+                Contact:<%=club.heads[i].contact%>
+                WebMail:<%=club.heads[i].email%>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      <%}
+    }%>
+    
+
+    <!-- <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class=" col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
       <div class="shadow-md rounded-md overflow-hidden">
         <img src="https://source.unsplash.com/random/1280x720" style="width: 350px; height: 350px" alt="">
         <div class="p-4 event-text" style="width: 350px">
@@ -110,7 +120,7 @@
           <p class="mb-4 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sequi tenetur, voluptatibus</p>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="col-span-1 about-header mb-2">
       Photos

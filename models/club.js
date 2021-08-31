@@ -1,6 +1,27 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const headSchema= new Schema({
+    name:{
+        type:String,
+        required:true
+    },
+    position:{
+        type:String,
+        required:true
+    },
+    image:{
+        type:String,
+        required:true
+    },
+    contact:{
+        type:String
+    },
+    email:{
+        type:String
+    }
+})
+
 const clubSchema = new Schema({
     title: { 
         type: String, 
@@ -13,6 +34,10 @@ const clubSchema = new Schema({
     //Aboutus
     about:{
         type:String
+    },
+    //Heads
+    heads:{
+        type:[headSchema]
     },
     //Achievements
     achievements: { 

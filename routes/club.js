@@ -5,7 +5,8 @@ const catchAsync = require('../utils/catchAsync');
 const Club = require('../models/club');
 const { isAdmin } = require("../middlewares/index");
 const {upload}= require('../middlewares/index')
-var uploadval= upload.fields([{name:'images',maxCount:10},{name:'pdf',maxCount:1}])
+var uploadval= upload.fields([{name:'images',maxCount:10},{name:'pdf',maxCount:1}]);
+var uploadhead=upload.fields([{name:'images',maxcount:1}]);
 
 //Main page
 router.get('/', async (req, res) => {
@@ -42,6 +43,71 @@ router.get('/view/:id',(req,res)=>{
         res.render('admin/club/view',{data})
     })
 })
+
+//View:Add heads->Get Request
+router.get('/:clubid/add/head',(req,res)=>{
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        res.render('admin/club/add_heads',{data,idx:-1})
+    })
+})
+
+//View:Add Heads Edit/First time adding->POST Request
+router.post('/add/head',uploadhead,(req,res)=>{
+    console.log("req.body/ head",req.body)
+    var head={
+        name:req.body.name,
+        position:req.body.position,
+        contact:req.body.contact,
+        email:req.body.email
+    }
+    if(req.files['images']){
+        head.image=req.files['images'][0].path
+    }
+    Club.findOne({_id:req.body.clubid},(err,data)=>{
+        if(req.body.idx!='-1')
+        {   
+            // console.log('number',Number(req.body.idx))
+            //data.heads[Number(req.body.idx)]=req.body.head;
+
+            data.heads.splice(req.body.idx,1,head);
+            
+            console.log("data.heads",data.heads)
+            
+        }
+        else{
+            
+            data.heads.push(head);
+        } 
+        data.save().then((record)=>{
+            console.log("record",record)
+            req.flash('success', 'head Addedd successfully!');
+            res.redirect(`/admin/club/view/${data._id}`);
+        }).catch(err=>{
+            console.log(err)
+            res.redirect(`/admin/club/view/${data._id}`);
+        })
+    })
+})
+//View :Add Achievements ->edit->GET request
+router.get('/:clubid/edit/head/:idx',(req,res)=>{
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        res.render('admin/club/add_heads',{data,idx:req.params.idx})
+    })
+})
+//View :Add Achievement ->delete->GET request
+router.get('/:clubid/delete/head/:idx',(req,res)=>{
+    //console.log('req.params',req.params)
+    Club.findOne({_id:req.params.clubid},(err,data)=>{
+        data.heads.splice(req.params.idx,1);
+        data.save().then(()=>{
+            res.redirect(`/admin/club/view/${req.params.clubid}`)
+        })
+    })
+})
+
+
+
+
 
 //View:Add Achievements->GET Request
 router.get('/:clubid/add/achievement',(req,res)=>{
