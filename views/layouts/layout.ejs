@@ -9,9 +9,37 @@
   <!--tailwind and fontawesome-->
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+ <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
 
+    body{
+      max-width: 1440px;
+      margin: 0px auto;
+    }
+
+    /* Image gallery */
+    .row {
+      display: -ms-flexbox; /* IE10 */
+      display: flex;
+      -ms-flex-wrap: wrap; /* IE10 */
+      flex-wrap: wrap;
+      height: 683px;
+}
+
+/* Create four equal columns that sits next to each other */
+     .column {
+      -ms-flex: 25%; /* IE10 */
+      flex: 25%;
+      max-width: 25%;
+     }
+    
+    .column img {
+      vertical-align: middle;
+      width: 100%;
+    }
     /* navbar */
     .navbar {
       font-family: Basier Circle;
@@ -32,6 +60,11 @@
       letter-spacing: 0.0038em;
     }
 
+    .about-container{
+      margin-top: 5%;
+      padding-left: 8.86%;
+      margin-bottom: 8%;
+    }
     .about {
       width: 850px;
       margin-right: 6rem;
@@ -54,9 +87,6 @@
       letter-spacing: 0.0075em;
       color: #1E2532;
     }
-    .bg-event {
-      background: #1E2532;
-    }
 
     .header {
       font-family: Basier Circle;
@@ -72,8 +102,8 @@
 
     .content {
       position: static;
-      width: 200px;
-      height: 19px;
+      width: 14%;
+      height: 3%;
       left: 0px;
       font-family: Red Hat Display;
       font-style: normal;
@@ -85,17 +115,40 @@
       flex: none;
       order: 1;
       flex-grow: 0;
+      padding-top: 3.75%;
     }
 
+    .vl {
+  border-left: 1px solid #9FABB7;
+  height: 1.5rem;
+}
+
+    .event-box{
+      height: 962px;
+      background: #1E2532;
+      padding-left: 8.86%;
+    }
     .event-header {
-      width: 850px;
-      margin-right: 6rem;
+     
+     width: 68%;
+     padding-top: 8.63%;
+     margin-right: 12.65%;
+    }
+
+    .event-footer{
+      margin-top: 7%;
+      height: 9.14%;
+      margin-bottom: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
     }
 
     .event-text {
       background: #2170E8;
       border-radius: 0px 0px 5px 5px;
       color: #ffffff;
+      height: 31%;
     }
 
     .sub-event-header{
@@ -143,6 +196,20 @@
       letter-spacing: 0.0322em;
       color: #FFFFFF;
     }
+
+      .swiper-button-prev{
+        color: #ffffff;
+      }
+      .swiper-button-next{
+        color: #ffffff;
+      }
+
+      @media only screen and (max-width: 700px) {
+  body {
+    
+  }
+
+}
   </style>
 </head>
 
@@ -153,6 +220,36 @@
   </main>
   <!--<%- include('../partials/footer')%>-->
   <script src='/javascripts/validateForms.js'></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        
+        // spaceBetween: 30,
+
+        breakpoints: {
+        // when window width is <= 499px
+        700: {
+            slidesPerView: 1.55,
+            // spaceBetweenSlides: 50
+        },
+        400:{
+          slidesPerView: 1.05,
+        },
+        },
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          // clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+
 </body>
 
 </html>

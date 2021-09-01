@@ -18,7 +18,6 @@
                     <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Email</th>
                     <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">isAdmin</th>
                     <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Action</th>
-                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Action</th>
                     <!-- <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th> -->
                 </tr>
             </thead>
@@ -30,12 +29,17 @@
                     <td class="w-1/3 text-left py-3 px-4"><%= user.name %></td>
                     <td class="w-1/3 text-left py-3 px-4"><a href="" target="_blank"> <%= user.email %></a></td>
                     <td class="w-1/3 text-left py-3 px-4"><a href=""><%= user.isAdmin %></a></td>
+
+                    <% if(user.isAdmin){ %>
+                        <td class="w-1/3 text-left py-3 px-4"><form action= "/admin/users/<%= user.outlookId %>?_method=put"
+                            method="POST"> <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                            type="submit">remove admin</button> </form></td>
+                        
+                   <% } else { %>
                     <td class="w-1/3 text-left py-3 px-4"><form action= "/admin/users/<%= user.outlookId %>?_method=put"
-                       method="POST"> <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-                        type="submit">make admin</button> </form></td>
-                    <td class="w-1/3 text-left py-3 px-4"><form action= "/admin/users/<%= user.outlookId %>?_method=put"
-                        method="POST"> <button class="bg-red-600 text-gray-100 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-                        type="submit">remove admin</button> </form></td>
+                        method="POST"> <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                         type="submit">make admin</button> </form></td>
+                    <%}%>
                 </tr>
                 <% }%>
             </tbody>
