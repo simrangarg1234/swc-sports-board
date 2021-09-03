@@ -1,15 +1,40 @@
 <%- include("../partials/header.ejs") %> 
 <main class="px-4 py-4">
   
-    Club Name
-    <div class="w-full px-5 m-2 py-4 text-gray-700 bg-gray-200 rounded"><h1><%=spardha.Clubname%></h1></div>
-    Description
-    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=spardha.Description%></div>
-    Date / Time
-    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=spardha.DateTime%></div>
+    Year
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=spardha.Year%></div>
     Status
     <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=spardha.Status%></div>
 
+    <div class="mt-6">
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/spardha/<%=spardha._id%>/add/event">Add Event Details</a>
+    </div>
+    <div class="w-auto mt-6 mb-10 overflow-auto">
+        <div class="bg-white">
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Clubname</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Description</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Date / Time</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Edit</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700" id="myMenu">
+                    <%for(let i=0;i<spardha.details.length;i++){%>
+                        <tr>
+                            <td class="text-left py-3 px-4"><%=spardha.details[i].Clubname%></td>
+                            <td class="text-left py-3 px-4"><%=spardha.details[i].Description%></td>
+                            <td class="text-left py-3 px-4"><%=spardha.details[i].DateTime%></td>
+                            <td class="w-1/3 text-left py-3 px-4"><a href="/admin/spardha/<%=spardha._id%>/edit/event/<%=i%>">Edit</a></td>
+                            <td class="w-1/3 text-left py-3 px-4"><a href="/admin/spardha/<%=spardha._id%>/delete/event/<%=i%>">Delete</a></td>
+                        </tr>
+                    <%}%>    
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <!-- Uploading images and pdf  -->
     <div class="leading-loose">

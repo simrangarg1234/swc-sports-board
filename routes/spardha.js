@@ -8,7 +8,7 @@ var uploadval= upload.fields([{name:'images',maxCount:10},{name:'pdf',maxCount:1
 
 //Events List
 router.get('/', async (req, res) => {
-    const spardhas = await Spardha.find({});
+    const spardhas = await Spardha.find({}).sort({Year: -1});
     res.render('admin/spardha/index', {spardhas});
 });
 
@@ -17,10 +17,8 @@ router.post('/', async (req, res) => {
     const data = req.body;
     const spardha = await new Spardha({
         
-        Clubname: data.Clubname,
-        Description: data.Description,
-        DateTime: data.DateTime,
-        Status: data.Status,
+        Year: data.Year,
+        Status: data.Status
     });
     await spardha.save();
     //req.flash('success', 'New member added successfully!');
@@ -58,9 +56,7 @@ router.put('/:id', catchAsync(async (req, res) => {
     const data = req.body;
     let spardha = await Spardha.findByIdAndUpdate(id, {
         
-        Clubname: data.Clubname,
-        Description: data.Description,
-        DateTime: data.DateTime,
+        Year: data.Year,
         Status: data.Status,
     }, {new: true});
     if(!spardha) return res.status(404).send('Clubname with the given id not found');
@@ -104,6 +100,51 @@ router.get('/:id/delimg/:idx/',(req,res)=>{
             res.redirect(`/admin/spardha/${req.params.id}`);
         })
     })
+});
+//View:Add details->Get Request
+router.get('/:id/add/event',(req,res)=>{
+    Spardha.findOne({_id:req.params.id},(err,data)=>{
+        res.render('admin/spardha/add_event',{data,idx:-1})
+    })
 })
 
+//View:Add Details Edit/First time adding->POST Request
+router.post('/add/event', (req,res)=>{
+    var detail={
+        Clubname:req.body.Clubname,
+        Description:req.body.Description,
+        DateTime:req.body.DateTime,
+    }
+    Spardha.findOne({_id:req.body.id},(err,data)=>{
+        if(req.body.idx!='-1') {   
+            data.details.splice(req.body.idx,1,detail);            
+        } else{
+            data.details.push(detail);
+        } 
+
+        data.save().then((record)=>{
+            req.flash('success', 'Event Addedd successfully!');
+            res.redirect(`/admin/spardha/${data._id}`);
+        }).catch(err=>{
+            console.log(err)
+            res.redirect(`/admin/spardha/${data._id}`);
+        })
+    })
+});
+
+//View :Add Details ->edit->GET request
+router.get('/:id/edit/event/:idx',(req,res)=>{
+    Spardha.findOne({_id:req.params.id},(err,data)=>{
+        res.render('admin/spardha/add_event',{data,idx:req.params.idx})
+    })
+})
+//View :Add Details ->delete->GET request
+router.get('/:id/delete/event/:idx',(req,res)=>{
+    Spardha.findOne({_id:req.params.id},(err,data)=>{
+        data.details.splice(req.params.idx,1);
+        data.save().then(()=>{ 
+            res.redirect(`/admin/spardha/${req.params.id}`)
+        })
+    })
+})
 module.exports = router;

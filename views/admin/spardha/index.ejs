@@ -12,8 +12,7 @@
         <table class="min-w-full bg-white">
             <thead class="text-white bg-gray-900">
                 <tr>
-                    <th class="w-1/3 px-4 py-3 text-sm font-semibold text-left uppercase">Club Name</th>
-                    <th class="w-1/3 px-4 py-3 text-sm font-semibold text-left uppercase">Date / Time</th>
+                    <th class="w-1/3 px-4 py-3 text-sm font-semibold text-left uppercase">Year</th>
                     <th class="w-1/3 px-4 py-3 text-sm font-semibold text-left uppercase">Status</th>
                     <th class="w-1/3 px-4 py-3 text-sm font-semibold text-left uppercase">View</th>
                     <th class="w-1/3 px-4 py-3 text-sm font-semibold text-left uppercase">Edit</th>
@@ -23,8 +22,7 @@
             <tbody class="text-gray-700" id="myMenu">
                 <% for (let spardha of spardhas){%> 
                     <tr>
-                        <td class="w-1/3 px-4 py-3 text-left"><%= spardha.Clubname %></td>
-                        <td class="w-1/3 px-4 py-3 text-left"><%= spardha.DateTime %></td>
+                        <td class="w-1/3 px-4 py-3 text-left"><%= spardha.Year %></td>
                         <td class="w-1/3 px-4 py-3 text-left"><%= spardha.Status %></td>
                      
                         <td class="w-1/3 px-4 py-3 text-left"><a href="/admin/spardha/<%=spardha._id%>" target="_blank">View</a></td>
