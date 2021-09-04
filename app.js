@@ -162,10 +162,16 @@ app.get('/teams', (req,res)=>{
   res.render('teams/view');
 });
 
-
-app.get('/facilities', (req, res) => {
-  res.render('facilities/view');
+const facilities = require('./models/facility');
+app.get("/facilities", (req, res) => {
+  facilities.find({}, (err, data) => {
+    res.render("facilities/view", { data });
+  }); 
 });
+
+// app.get('/facilities', (req, res) => {
+//   res.render('facilities/view');
+// });
 
 
 
