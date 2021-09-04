@@ -1,21 +1,25 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const spardhaSchema = new Schema({
-    
-	Clubname: { 
-        type: String, 
-        required: true 
+const detailSchema = new Schema({
+    Clubname: { 
+        type: String
     },
     Description: {
         type: String
     },
     DateTime: { 
-        type: String, 
-        required: true 
+        type: String
+    },
+})
+const spardhaSchema = new Schema({
+    
+    Year: {
+        type: String,
+        
     },
     Status: { 
-        type: String, 
+        type: String
     },
     Scorecard: { 
         type: String,
@@ -23,7 +27,9 @@ const spardhaSchema = new Schema({
     Images: { 
         type: [String] 
     },
-    
+    details: {
+        type: [detailSchema]
+    }
 });
 var Spardha = mongoose.model('Spardha',spardhaSchema);
 
