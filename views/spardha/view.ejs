@@ -1,7 +1,7 @@
 <% layout('layouts/layout') %> 
 <%- include('../partials/carousel')  %> 
 <%- include('../partials/navbar') %>
-<%- include('./spardhaList') %> 
+<%- include('../spardha/spardhaNav') %>
 
 <% var c=0; %> 
 <%for(let i=0;i<data.length;i++){%>
@@ -9,7 +9,6 @@
     <% c++; %> 
   <% } %>
 <% } %> 
-
 <!--No Running Event-->
 <% if(c===0) {%>
   <div class="mt-10 mb-12 ml-20 what-we-do">
@@ -53,19 +52,20 @@
                   </th>
                 </tr>
               </thead>
-              <!-- -->
+
               <tbody class="bg-white divide-y divide-gray-200">   
                 <%for(let i=0;i<data.length;i++){%>
                   <% if(data[i].Status === "Running"){ %>
+                    <% for(let j=0; j<data[i].details.length; j++){ %> 
                     <tr >
                       <td class="px-6 py-4 text-sm font-medium text-center text-gray-800 whitespace-nowrap">
-                        <%=data[i].Clubname%> 
+                        <%=data[i].details[j].Clubname%> 
                       </td>
                       <td class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
-                        <%=data[i].Description%>
+                        <%=data[i].details[j].Description%>
                       </td>
                       <td class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
-                        <%=data[i].DateTime%>
+                        <%=data[i].details[j].DateTime%>
                       </td>
                       <td class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
                         <div>
@@ -73,6 +73,7 @@
                       </div>
                       </td>
                     </tr>
+                    <% } %> 
                     <% } %> 
                 <%}%>
               </tbody>

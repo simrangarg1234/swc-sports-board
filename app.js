@@ -108,6 +108,7 @@ app.get("/clubs", (req, res) => {
   // res.render('clubs/club');
 });
 
+//Spardha
 const Spardha = require('./models/spardha');
 app.get("/spardha", (req, res) => {
   Spardha.find({}, (err, data) => {
@@ -115,12 +116,25 @@ app.get("/spardha", (req, res) => {
   }); 
 });
 
-app.get("/spardha/past", (req, res) => {
-  Spardha.find({}, (err, data) => {
-    res.render("spardha/past", { data });
+app.get("/spardha/:year", (req, res) => {
+  Spardha.findOne({Year: req.params.year}, (err, datas) => {
+    res.render("spardha/past", { data: datas });
   }); 
 });
 
+app.get("/spardha/past/:yr", (req,res)=>{
+  Spardha.find({}, (err, data) => {
+    res.render(`spardha/spardha${req.params.yr}`, {data});
+  });
+});
+
+app.all("/spardha", (req, res) => {
+  Spardha.find({}, (err, data) => {
+    res.render("spardha/spardhaNav", { data });
+  });
+});
+
+//Alumni
 const Alumni = require('./models/alumni');
 app.get("/alumni", (req, res) => {
   Alumni.find({}, (err, data) => {
@@ -129,34 +143,6 @@ app.get("/alumni", (req, res) => {
 });
 
 
-//Past Spardhas
-app.get('/spardha/spardha2020', (req,res)=>{
-   res.render('spardha/spardha2020');
-});
-
- app.get('/spardha/spardha2019', (req,res)=>{
-  res.render('spardha/spardha2019');
-});
-
-app.get('/spardha/spardha2018', (req,res)=>{
-  res.render('spardha/spardha2018');
-});
-
-app.get('/spardha/spardha2017', (req,res)=>{
-  res.render('spardha/spardha2017');
-});
-
-app.get('/spardha/spardha2016', (req,res)=>{
-  res.render('spardha/spardha2016');
-});
-
-app.get('/spardha/spardha2015', (req,res)=>{
-  res.render('spardha/spardha2015');
-});
-
-app.get('/spardha/spardha2014', (req,res)=>{
-  res.render('spardha/spardha2014');
-});
 
 app.get('/teams', (req,res)=>{
   res.render('teams/view');

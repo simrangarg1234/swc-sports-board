@@ -3,20 +3,23 @@ const Schema = mongoose.Schema;
 
 const detailSchema = new Schema({
     Clubname: { 
-        type: String
+        type: String,
+        required: true
     },
     Description: {
-        type: String
+        type: String,
+        required: true
     },
     DateTime: { 
-        type: String
+        type: String,
+        required: true
     },
 })
 const spardhaSchema = new Schema({
     
     Year: {
         type: String,
-        
+        required: true
     },
     Status: { 
         type: String
