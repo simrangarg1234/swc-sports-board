@@ -6,33 +6,26 @@
 <% } %> 
 
 <div class="w-3/4 p-8 m-auto">
-  <% if(c===0){ %> 
-    <button
-        class="px-5 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
-        type="button">
-        <a href="/spardha">Spardha Home</a>
-    </button>
-  <% } else{ %> 
-  <%for(let i=0;i<data.length;i++){%>
-    <% if(data[i].Status === "Running"){ %>
-      <button
-        class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
-        type="button">
-        <a href="/spardha">Spardha <%= data[i].Year %> </a>
-      </button> 
-    <% } %>
-  <% } %> 
+  <% if(c!==0){ %> 
+    <%for(let i=0;i<data.length;i++){%>
+      <% if(data[i].Status === "Running"){ %>
+        <button
+          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
+          type="button">
+          <a href="/spardha">Spardha <%= data[i].Year %> </a>
+        </button> 
+      <% } %>
+    <% } %> 
   <% } %> 
 
-  <%for(let i=data.length-1;i>=0;i--){%>
-    <% if(data[i].Status !== "Running"){ %>
+  <%for(let i=data.length-c-1;i>=0;i--){%> 
 
       <button
         class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
         type="button">
-        <a href="/spardha/<%= data[i].Year %>">Spardha <%= data[i].Year %></a>
+        <a href="/spardha/<%= i+2021 %>">Spardha <%= i+2021 %></a>
       </button>
-    <% } %>
+    
   <% } %> 
   <% for(let i=2020; i>=2014; i--){ %> 
     <button

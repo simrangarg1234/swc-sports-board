@@ -18,12 +18,12 @@
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-3 gap-4 pb-32 ml-8 mr-8">
+  <div class="grid grid-cols-3 gap-6 pb-32 ml-8 mr-8">
     <%for(let i=0;i<data.length;i++){%>
       <% if(data[i].Status === "Past Event"){ %> 
         <%for(let j=0;j<data[i].Images.length;j++){%>
         <div class="mb-2 overflow-hidden rounded-md shadow-md">
-          <img src="<%=data[i].Images[j]%>" style="width: 419px; height: 250px" alt="">
+          <img src="<%=data[i].Images[j]%>" style="aspect-ratio: 2/1.2;" alt="">
         </div>
         <% } %> 
       <% } %> 
@@ -31,9 +31,9 @@
   </div>
 <% } else{%>  
  
-  <div class="flex flex-col">
-      <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-6">
-        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+  <div class="flex flex-col" style="padding: 10px;">
+      <div class="my-2 overflow-x-auto ">
+        <div class="inline-block min-w-full  align-middle ">
           <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-800">
@@ -96,7 +96,7 @@
       <% if(data[i].Status === "Running"){ %> 
         <%for(let j=0;j<data[i].Images.length;j++){%>
         <div class="mb-2 overflow-hidden rounded-md shadow-md">
-          <img src="<%=data[i].Images[j]%>" style="width: 419px; height: 250px" alt="">
+          <img src="<%=data[i].Images[j]%>" style="aspect-ratio: 2/1.2;" alt="">
         </div>
         <% } %> 
       <% } %> 
