@@ -1,13 +1,13 @@
-<%- include("../partials/header.ejs") %> 
+<%- include("../partials/header.ejs") %>
 <main>
-  
+
   Title
   <div class="title w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><h1><%=data.title%></h1></div>
   Description
   <div class="desc w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=data.desc%></div>
 
-<div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/head">Add Heads</a>
+<div class="mt-20">
+    <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/head">Add Heads</a>
 </div>
   <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">
@@ -15,9 +15,9 @@
             <thead class="bg-gray-800 text-white">
                 <tr>
                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
-                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Positon</th>
-                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Edit</th>
-                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
+                    <th class="w-2/3 text-right py-3 px-4 uppercase font-semibold text-sm">Positon</th>
+                    <th class="w-1/3 text-right py-3 px-4 uppercase font-semibold text-sm">Edit</th>
+                    <th class="w-1/3 text-right py-3 px-4 uppercase font-semibold text-sm">Delete</th>
                 </tr>
             </thead>
             <tbody class="text-gray-700" id="myMenu">
@@ -26,27 +26,27 @@
                     <tr>
                         <td class="text-left py-3 px-4"><tbody class="text-gray-700" id="myMenu">
                         <td class="text-left py-3 px-4"><%=data.heads[i].name%></td>
-                        <td class="text-left py-3 px-4"><%=data.heads[i].position%></td>
-                        <td class="w-1/3 text-left py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/head/<%=i%>">Edit</a></td>
-                        <td class="w-1/3 text-left py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/head/<%=i%>">Delete</a></td>
+                        <td class="text-right py-3 px-4"><%=data.heads[i].position%></td>
+                        <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/head/<%=i%>">Edit</a></td>
+                        <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/head/<%=i%>">Delete</a></td>
                     </tr>
-                <%}%>    
+                <%}%>
             </tbody>
         </table>
     </div>
 </div>
 
-<div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/achievement">Add Achievements</a>
+<div class="mt-20">
+    <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/achievement">Add Achievements</a>
 </div>
   <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">
         <table class="min-w-full bg-white">
             <thead class="bg-gray-800 text-white">
                 <tr>
-                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Achievement</th>
-                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Edit</th>
-                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
+                    <th class="w-2/3 text-left py-3 px-4 uppercase font-semibold text-sm">Achievement</th>
+                    <th class="w-1/3 text-right py-3 px-4 uppercase font-semibold text-sm">Edit</th>
+                    <th class="w-1/3 text-right py-3 px-4 uppercase font-semibold text-sm">Delete</th>
                 </tr>
             </thead>
             <tbody class="text-gray-700" id="myMenu">
@@ -54,17 +54,17 @@
 
                     <tr>
                         <td class="text-left py-3 px-4"><tbody class="text-gray-700" id="myMenu">
-                        <td class="text-left py-3 px-4"><%=data.achievements[i]%></td>
-                        <td class="w-1/3 text-left py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/achievement/<%=i%>">Edit</a></td>
-                        <td class="w-1/3 text-left py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/achievement/<%=i%>">Delete</a></td>
+                        <td class="w-1/3 text-left py-3 px-4"><%=data.achievements[i]%></td>
+                        <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/achievement/<%=i%>">Edit</a></td>
+                        <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/achievement/<%=i%>">Delete</a></td>
                     </tr>
-                <%}%>    
+                <%}%>
             </tbody>
         </table>
     </div>
 </div>
-<div class="mt-6">
-  <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/info">Add What we do</a>
+<div class="mt-20">
+  <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/info">Add What we do</a>
 </div>
 <div class="w-auto mt-6 overflow-auto">
   <div class="bg-white">
@@ -72,8 +72,8 @@
           <thead class="bg-gray-800 text-white">
               <tr>
                   <th class="text-left py-3 px-4 uppercase font-semibold text-sm">What we do</th>
-                  <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Edit</th>
-                  <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
+                  <th class="w-1/3 text-right py-3 px-4 uppercase font-semibold text-sm">Edit</th>
+                  <th class="w-1/3 text-right py-3 px-4 uppercase font-semibold text-sm">Delete</th>
               </tr>
           </thead>
           <tbody class="text-gray-700" id="myMenu">
@@ -81,17 +81,17 @@
 
                   <tr>
                       <td class="text-left py-3 px-4"><tbody class="text-gray-700" id="myMenu">
-                      <td class="text-left py-3 px-4"><%=data.info[i]%></td>
-                      <td class="w-1/3 text-left py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/info/<%=i%>">Edit</a></td>
-                      <td class="w-1/3 text-left py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/info/<%=i%>">Delete</a></td>
+                      <td class="w-2/3 text-left py-3 px-4"><%=data.info[i]%></td>
+                      <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/info/<%=i%>">Edit</a></td>
+                      <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/info/<%=i%>">Delete</a></td>
                   </tr>
-              <%}%>    
+              <%}%>
           </tbody>
       </table>
   </div>
 </div>
-<div class="mt-6">
-  <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/pe">Add Your Past Events</a>
+<div class="mt-20">
+  <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/pe">Add Your Past Events</a>
 </div>
 <div class="w-auto mt-6 overflow-auto">
   <div class="bg-white">
@@ -99,8 +99,8 @@
           <thead class="bg-gray-800 text-white">
               <tr>
                   <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Past Events</th>
-                  <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Edit</th>
-                  <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
+                  <th class="w-1/3 text-right py-3 px-4 uppercase font-semibold text-sm">Edit</th>
+                  <th class="w-1/3 text-right py-3 px-4 uppercase font-semibold text-sm">Delete</th>
               </tr>
           </thead>
           <tbody class="text-gray-700" id="myMenu">
@@ -108,11 +108,11 @@
 
                   <tr>
                       <td class="text-left py-3 px-4"><tbody class="text-gray-700" id="myMenu">
-                      <td class="text-left py-3 px-4"><%=data.pe[i]%></td>
-                      <td class="w-1/3 text-left py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/pe/<%=i%>">Edit</a></td>
-                      <td class="w-1/3 text-left py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/pe/<%=i%>">Delete</a></td>
+                      <td class="w-2/3 text-left py-3 px-4"><%=data.pe[i]%></td>
+                      <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/pe/<%=i%>">Edit</a></td>
+                      <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/pe/<%=i%>">Delete</a></td>
                   </tr>
-              <%}%>    
+              <%}%>
           </tbody>
       </table>
   </div>
@@ -151,11 +151,11 @@
                       <img src="http://localhost:3000/<%=data.gallery[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
                       <a href="/admin/club/<%=data._id%>/delimg/<%=i%>/">X</a>
                   </div>
-               
+
               <%}%>
 
             <%}%>
-              
+
           </div>
           You can add new images
           <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="gallery" type="file"
@@ -167,14 +167,14 @@
           Present Score card:
           <div class="btn btn-primary bg-blue-400  rounded"><a class="w-auto" style="width:60px"href="http://localhost:3000/<%=data.score%>">
             Score card</a></div>
-          
+
         <%}%>
         <label class="block text-sm text-gray-600" for="pdf"> You can add Score card</label>
-        
+
         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="scoreCard" type="file"
             name="pdf" >
       </div>
-      
+
       <button type="submit" class="btn btn-primary bg-blue-400 rounded">Update</button>
   </form>
 </div>
@@ -182,4 +182,4 @@
 
 
 </main>
-<%- include("../partials/footer.ejs") %> 
+<%- include("../partials/footer.ejs") %>

@@ -9,11 +9,11 @@
       onclick="location.href='http://localhost:3000/clubs/<%=data[i]._id%>/home'"
          style="cursor: pointer;" class=" col-span-1 flex flex-wrap pb-10 pt-4">
         <div class="shadow-md rounded-md overflow-hidden">
-          <img src="http://localhost:3000/<%=data[i].gallery[0]%>" style="width: 563.41px; height: 418.41px" alt="">
-          <div class="p-4 event-text" style="width: 563.41px">
+          <img src="http://localhost:3000/<%=data[i].gallery[0]%>" style="w-563.41px; height:418.41px" alt="">
+          <div class="p-4 event-text" style="width:563.41px">
             <div class="grid grid-cols-3">
               <div class="col-span-2 text-left text-2xl"><%=data[i].title%></div>
-              <div class="col-span-1 text-right font-normal text-sm">Club</div>
+              <!-- <div class="col-span-1 text-right font-normal text-sm">Club</div> -->
             </div>
             <!-- <p class="mb-4 text-sm"><%=data[i].desc%></p> -->
           </div>
@@ -21,7 +21,7 @@
       </div>
 
     <%}%>
-<!--      
+<!--
       <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class=" col-span-1 flex flex-wrap pb-10 pt-4">
         <div class="shadow-md rounded-md overflow-hidden">
           <img src="https://source.unsplash.com/random/1280x720" style="width: 563.41px; height: 418.41px" alt="">

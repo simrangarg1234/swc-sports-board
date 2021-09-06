@@ -2,41 +2,36 @@
 <%- include('../partials/carousel')  %>
 <%- include('../partials/navbar') %>
 
+        <div class="facility  ml-20 mb-12 mr-20 grid grid-cols-12  ">
 
-<div class="facility  ml-20 mb-12 mr-20 grid grid-cols-12  ">
+        <div class="col-span-10">
 
-<div class="col-span-10">
-
-        <div class="facilities mt-20">
-          <div class="text-4xl font-bold bold mb-12">
-            <h1>Facilities</h1>
-          </div>
-      <div class="sm:grid-col-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 gap-12">
-
-        <%for(let facility of data){%>
-
-          <div class="col-span-1 mb-8 border-b-2 border-black-600">
-
-     
-            <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class=" col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
-              <div class="shadow-md overflow-hidden">
-                <img src="http://localhost:3000/<%=facility.image[0]%>" style="width: 100%; height: 100%" alt="">
-            </div>
-            </div>
-        <div class= "text-xl font-bold">
-            <%=facility.name%></div>
-            <%=facility.info%>
-  
-            <br><br>
-            <!-- <div class="col-span-1 font-semibold text-right"> Read more <button class="bg-black text-white font-bold py-1 px-2 rounded-md">-></button></div>
-            <br>
-            <br> -->
-          </div>
-
-        <%}%>
+                <div class="facilities mt-20">
+                  <div class="text-4xl font-bold bold mb-12">
+                    <h1>Facilities</h1>
+                  </div>
 
 
-        
+              <div class="sm:grid sm:grid-col-1 lg:gap-6 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 lg:gap-12">
+
+                <%for(let facility of data){%>
+                  <div class="col-span-1 mb-8 border-b-2 border-black-600">
+
+                    <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class="col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
+                      <div class="shadow-md overflow-hidden">
+                        <img src="http://localhost:3000/<%=facility.image[0]%>" style="width: 100%; height: 100%" alt="">
+                    </div>
+                    </div>
+                <div class= "text-xl font-bold">
+                  <%=facility.name%></div>
+                   <%=facility.info%>
+                    <br><br>
+                  </div>
+                  <%}%>
+
+
+
+
 
         <!-- <div class="col-span-1 mb-8 border-b-2 border-black-600">
           <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class=" col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
@@ -115,7 +110,7 @@
 </div>
 </div>
 
-<div class=" col-span-2 mt-20 ml-20 ">
+<div class="content lg:col-span-2 lg:mt-20 lg:ml-20  ">
   <div>
     <p class="text-gray-400">CONTENTS</p></div>
   <a href="#"><p class="text-gray-400">Events</p></a>
