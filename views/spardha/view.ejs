@@ -12,13 +12,13 @@
 <!--No Running Event-->
 <% if(c===0) {%>
   <div class="mt-10 mb-12 ml-20 what-we-do">
-    <div class="grid grid-cols-2 gap-8"> 
+    <div class="grid-cols-2 gap-8 md:grid"> 
       <div class="col-span-1 mb-2 about-header">
         Photos
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-3 gap-6 pb-32 ml-8 mr-8">
+  <div class="grid-cols-3 gap-6 pb-32 ml-8 mr-8 md:grid">
     <%for(let i=0;i<data.length;i++){%>
       <% if(data[i].Status === "Past Event"){ %> 
         <%for(let j=0;j<data[i].Images.length;j++){%>
@@ -33,7 +33,7 @@
  
   <div class="flex flex-col" style="padding: 10px;">
       <div class="my-2 overflow-x-auto ">
-        <div class="inline-block min-w-full  align-middle ">
+        <div class="inline-block min-w-full align-middle ">
           <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-800">
@@ -85,13 +85,13 @@
   </div>
 
   <div class="mt-24 mb-12 ml-20 what-we-do">
-    <div class="grid grid-cols-2 gap-8"> 
+    <div class="grid-cols-2 gap-8 md:grid"> 
       <div class="col-span-1 mb-2 about-header">
         Photos
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-3 gap-4 pb-32 ml-8 mr-8">
+  <div class="grid-cols-3 gap-4 pb-32 ml-8 mr-8 md:grid">
     <%for(let i=0;i<data.length;i++){%>
       <% if(data[i].Status === "Running"){ %> 
         <%for(let j=0;j<data[i].Images.length;j++){%>
