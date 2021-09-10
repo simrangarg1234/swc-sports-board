@@ -10,7 +10,7 @@
     <%for(let i=0;i<data.length;i++){%>
       <% if(data[i].Status === "Running"){ %>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
+          class="px-6 py-2 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
           type="button">
           <a href="/spardha">Spardha <%= data[i].Year %> </a>
         </button> 
@@ -21,15 +21,15 @@
   <%for(let i=data.length-c-1;i>=0;i--){%> 
 
       <button
-        class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
+        class="px-6 py-2 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
         type="button">
         <a href="/spardha/<%= i+2021 %>">Spardha <%= i+2021 %></a>
       </button>
     
   <% } %> 
   <% for(let i=2020; i>=2014; i--){ %> 
-    <button
-      class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
+    <button 
+      class="px-6 py-2 mb-1 mr-1 text-sm font-bold text-gray-800 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none"
       type="button">
       <a href="/spardha/past/<%= i %> ">Spardha <%= i %>  </a>
     </button>
