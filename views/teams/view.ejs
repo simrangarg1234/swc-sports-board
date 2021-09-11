@@ -21,12 +21,12 @@
 <% for(let member of teams) { %>
 <div
         style=" height: 450px " 
-        class="md:w-1/2 lg:w-1/4 hidden md:block overflow-hidden bg-blue-600 rounded-md mb-24 mx-4 cursor-pointer"
+        class="md:w-1/2 lg:w-1/4 hidden md:block overflow-hidden bg-blue-600 rounded-md mb-24 mx-4"
       >
         <div class="bg-gray-200 rounded-md ">
           <img
             style="height: 300px"
-            src="https://source.unsplash.com/random/1280x720"
+            src=<%= member.image %>
             alt="ProfilePic"
             class="w-full object-contain "
           />

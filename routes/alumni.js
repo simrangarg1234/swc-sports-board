@@ -51,7 +51,6 @@ router.put('/:id', uploadval, catchAsync(async (req, res) => {
 
     const id = req.params.id;
     const data = req.body;
-    console.log(req.body);
     const name =  data.name;
     const email =  data.email;
     const contact = data.contact;
