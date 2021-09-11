@@ -10,6 +10,7 @@ var express = require("express"),
   (multer = require("multer"));
 (util = require("util")),
   (User = require("./models/users")),
+  (Team) = require("./models/team"),
   (ejs = require("ejs")),
   (ejsMate = require("ejs-mate")),
   (flash = require("connect-flash")),
@@ -145,7 +146,10 @@ app.get("/alumni", (req, res) => {
 
 
 app.get('/teams', (req,res)=>{
-  res.render('teams/view');
+  Team.find({}).sort( { priority: 1 } )
+  .then((teams) => {
+    res.render('teams/view',{ teams });
+  });
 });
 
 const facilities = require('./models/facility');
