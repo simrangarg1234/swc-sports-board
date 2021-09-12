@@ -1,18 +1,18 @@
-<% layout('layouts/layout') %> 
-<%- include('../partials/carousel')  %> 
+<% layout('layouts/layout') %>
+<%- include('../partials/gallery')  %> 
 <%- include('../partials/navbar') %>
 <%- include('../spardha/spardhaNav') %>
 
-<% var c=0; %> 
+<% var c=0; %>
 <%for(let i=0;i<data.length;i++){%>
   <% if(data[i].Status === "Running"){ %>
-    <% c++; %> 
+    <% c++; %>
   <% } %>
-<% } %> 
+<% } %>
 <!--No Running Event-->
 <% if(c===0) {%>
   <div class="mt-10 mb-12 ml-20 what-we-do">
-    <div class="grid-cols-2 gap-8 md:grid"> 
+    <div class="grid-cols-2 gap-8 md:grid">
       <div class="col-span-1 mb-2 spardha-header">
         Photos
       </div>
@@ -20,17 +20,17 @@
   </div>
   <div class="grid-cols-3 gap-6 pb-32 ml-8 mr-8 md:grid">
     <%for(let i=0;i<data.length;i++){%>
-      <% if(data[i].Status === "Past Event"){ %> 
+      <% if(data[i].Status === "Past Event"){ %>
         <%for(let j=0;j<data[i].Images.length;j++){%>
         <div class="mb-2 overflow-hidden rounded-md shadow-md">
           <img src="<%=data[i].Images[j]%>" style="aspect-ratio: 2/1.2;" alt="">
         </div>
-        <% } %> 
-      <% } %> 
+        <% } %>
+      <% } %>
     <%}%>
   </div>
-<% } else{%>  
- 
+<% } else{%>
+
   <div class="flex flex-col" style="padding: 10px;">
       <div class="my-2 overflow-x-auto ">
         <div class="inline-block min-w-full align-middle ">
@@ -53,13 +53,13 @@
                 </tr>
               </thead>
 
-              <tbody class="bg-white divide-y divide-gray-200">   
+              <tbody class="bg-white divide-y divide-gray-200">
                 <%for(let i=0;i<data.length;i++){%>
                   <% if(data[i].Status === "Running"){ %>
-                    <% for(let j=0; j<data[i].details.length; j++){ %> 
+                    <% for(let j=0; j<data[i].details.length; j++){ %>
                     <tr >
                       <td class="px-6 py-4 text-sm font-medium text-center text-gray-800 whitespace-nowrap">
-                        <%=data[i].details[j].Clubname%> 
+                        <%=data[i].details[j].Clubname%>
                       </td>
                       <td class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
                         <%=data[i].details[j].Description%>
@@ -73,8 +73,8 @@
                       </div>
                       </td>
                     </tr>
-                    <% } %> 
-                    <% } %> 
+                    <% } %>
+                    <% } %>
                 <%}%>
               </tbody>
               <!---->
@@ -85,7 +85,7 @@
   </div>
 
   <div class="mt-24 mb-12 ml-20 what-we-do">
-    <div class="grid-cols-2 gap-8 md:grid"> 
+    <div class="grid-cols-2 gap-8 md:grid">
       <div class="col-span-1 mb-2 about-header">
         Photos
       </div>
@@ -93,13 +93,13 @@
   </div>
   <div class="grid-cols-3 gap-4 pb-32 ml-8 mr-8 md:grid">
     <%for(let i=0;i<data.length;i++){%>
-      <% if(data[i].Status === "Running"){ %> 
+      <% if(data[i].Status === "Running"){ %>
         <%for(let j=0;j<data[i].Images.length;j++){%>
         <div class="mb-2 overflow-hidden rounded-md shadow-md">
           <img src="<%=data[i].Images[j]%>" style="aspect-ratio: 2/1.2;" alt="">
         </div>
-        <% } %> 
-      <% } %> 
+        <% } %>
+      <% } %>
     <%}%>
   </div>
-<% } %> 
+<% } %>

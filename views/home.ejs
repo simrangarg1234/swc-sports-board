@@ -1,11 +1,11 @@
 <% layout('layouts/layout') %>
-<%- include('./partials/carousel')  %>
+<%- include('./partials/gallery')  %>
 <%- include('./partials/navbar') %>
 
 
 
 
-<div class="flex flex-wrap about-container">
+<div class="flex flex-wrap about-container" id="about">
 
   <div class="about">
     <div class="about-header">
@@ -24,14 +24,14 @@
 
   <div class="content flex flex-col">
     <div>CONTENTS</div>
-    <a href="#">Events</a>
-    <a href="#">Announcements</a>
+    <a href="#about">About us</a>
+    <a href="#events">Events</a>
 
   </div>
 
 </div>
 
-<div class="event-box">
+<div class="event-box" id="events">
   <div style = "height: 23.28%;" class="flex flex-wrap">
 
     <div class="event-header">
@@ -39,8 +39,8 @@
         <h1>Events at IIT Guwahati</h1>
       </div>
     </div>
-    
-    
+
+
     <!-- <div class="content flex flex-col">
       <div>CONTENTS</div>
       <a href="#">Events</a>
@@ -51,7 +51,7 @@
 
 
 
-  <div class="swiper mySwiper" style="width: 100%; height: 59%;">
+  <div class="swiper mySwiper" style="width: 100%; height: 65%;">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
@@ -59,18 +59,22 @@
         <% for(var i = 0; i<events.length; i++) { %>
           <div class="swiper-slide flex flex-wrap pr-4">
             <div class="shadow-md rounded-md overflow-hidden" alt="event-img">
-              <img class="event-image" src= <%=events[i].image %> style="height:70%; width:100%">
+              <img class="event-image" src= <%=events[i].image %> style="width:100%">
               <div class="event-text p-4  grid grid-cols-5">
                 <div class="col-span-4">
                   <div class="event-dates"> <%=events[i].start%> - <%=events[i].end%></div>
                   <div class="sub-event-header"> <%=events[i].desc%></div>
                 </div>
-                <div>
+
+                <% if(events[i].score.length != 0) { %>
+                  <div>
                     <div class="event-arrow">
                       <a href=<%=events[i].score%>> <i class="fas fa-arrow-right fa-sm"></i></a>
                    </div>
 
                 </div>
+                <% } %>
+
 
               </div>
 
@@ -89,14 +93,14 @@
       <!-- <div class="swiper-scrollbar"></div> -->
     </div>
 
-  <div class="flex flex-wrap event-footer">
-    <div class="text-xl pr-4 footer">
-      IITG Hostal Affairs Board
-    </div>
-    <div class="vl"></div>
-    <div class="pl-4 text-sm pt-1 text-center copy">
-      © 2021 @ students-web-commitee
-    </div>
-  </div>
+</div>
 
+<div class="flex flex-wrap event-footer">
+  <div class="text-xl pr-4 footer">
+    IITG Hostal Affairs Board
+  </div>
+  <div class="vl"></div>
+  <div class="pl-4 text-sm pt-1 text-center copy">
+    © 2021 @ students-web-commitee
+  </div>
 </div>

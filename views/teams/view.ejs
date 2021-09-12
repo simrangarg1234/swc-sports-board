@@ -1,5 +1,5 @@
 <% layout('layouts/layout') %>
-<%- include('../partials/carousel')  %>
+<%- include('../partials/gallery')  %>
 <%- include('../partials/navbar') %>
 
 
@@ -20,7 +20,7 @@
   <div class="md:flex md:flex-wrap justify-center">
 <% for(let member of teams) { %>
 <div
-        style=" height: 450px " 
+        style=" height: 450px "
         class="md:w-1/2 lg:w-1/4 hidden md:block overflow-hidden bg-blue-600 rounded-md mb-24 mx-4"
       >
         <div class="bg-gray-200 rounded-md ">
@@ -57,13 +57,13 @@
           <div class="text-sm text-white"><%= member.contact1 %></div>
         </div>
       </div>
-<% } %>  
+<% } %>
     </div>
-    </div>    
-      
+    </div>
 
 
-<!-- 
+
+<!--
   <div class=" team grid grid-cols-2 mt-4">
       <div class=" col-span-1" >
         <div class=" overflow-hidden" style="aspect-ratio:1/1">
@@ -76,7 +76,7 @@
                                 <div class="col-span-2 text-left text-sm lg:text-2xl">Tony Stark</div>
                                 <p class=" text-white text-sm lg:text-lg mb-2">Dean</p>
                             </div>
-                
+
                             <div class="grid grid-cols-1">
 
                                     <div class="grid grid-cols-3">
@@ -130,7 +130,7 @@
                     </div>
 
                   <div class="grid grid-cols-1">
-                  
+
                   <div class="grid grid-cols-3">
                   <div class="col-span-1 text-left font-normal mt-2 text-xs lg:text-lg">email@iitg.ac.in</div>
                   <div class="col-span-2 text-right font-normal text-xs mt-2 lg:text-lg">+91 1234567890</div>

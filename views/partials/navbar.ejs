@@ -1,29 +1,40 @@
 <div class="bg-white">
-    <nav class="flex flex-col sm:flex-row navbar">
-        <a href="/" class="text-gray-600 py-4 px-10 ml-10 block hover:text-yellow-500 focus:outline-none">
-        Home
-        </a>
+    <nav class="bg-white">
+        <div class="pl-20">
+          <div class="flex justify-between">
 
-        <a href="/clubs" class="text-gray-600 py-4 px-10 block hover:text-yellow-500 focus:outline-none text-yellow-500 border-b-2 font-medium border-yellow-500">
-        Clubs
-        </a>
+            <div class="flex space-x-4">
+              <!-- primary nav -->
+              <div class="hidden md:flex items-center space-x-1">
+                <a  id="home" onclick="myFunction()" href="/" class="block py-7 px-6 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Home</a>
+                <a href="/clubs" class="block py-7 px-6 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Clubs</a>
+                <a href="/teams" class="block py-7 px-6 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Team</a>
+                <a href="/facilities" class="block py-7 px-6 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Facilities</a>
+                <a href="/spardha" class="block py-7 px-6 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Spardha</a>
+                <a href="/alumni" class="block py-7 px-6 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Alumini</a>
+              </div>
+            </div>
 
-        <a href="/teams" class="text-gray-600 py-4 px-10 block hover:text-yellow-500 focus:outline-none">
-        Team
-        </a>
+            <!-- mobile button goes here -->
+            <div class="md:hidden flex items-center">
+              <button class="mobile-menu-button">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
 
-        <a href="/facilities" class="text-gray-600 py-4 px-10 block hover:text-yellow-500 focus:outline-none">
-        Facilities
-        </a>
+          </div>
+        </div>
 
-        <a href="/spardha" class="text-gray-600 py-4 px-10 block hover:text-yellow-500 focus:outline-none">
-        Spardha
-        </a>
-
-        <a href="/alumni" class="text-gray-600 py-4 px-10 block hover:text-yellow-500 focus:outline-none">
-        Alumni
-        </a>
-
-        
-    </nav>
+        <!-- mobile menu -->
+        <div class="mobile-menu hidden md:hidden">
+            <a href="/" class="block py-2 px-4 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Home</a>
+          <a href="/clubs" class="block py-2 px-4 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Clubs</a>
+          <a href="/teams" class="block py-2 px-4 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Team</a>
+          <a href="/facilities" class="block py-2 px-4 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Facilities</a>
+          <a href="/spardha" class="block py-2 px-4 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Spardha</a>
+          <a href="/alumni" class="block py-2 px-4 text-sm hover:text-yellow-500 border-b-2 border-white hover:border-yellow-500">Alumini</a>
+        </div>
+      </nav>
   </div>

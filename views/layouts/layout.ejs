@@ -18,6 +18,20 @@
     body{
       max-width: 1440px;
       margin: 0px auto;
+      height: 100vh;
+    }
+    nav{
+      font-family: Basier Circle;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    hr{
+      height: 1px;
+      background: #D7DDE1;
+      margin-bottom: 1rem;
     }
 
     /* Image gallery */
@@ -26,7 +40,7 @@
       display: flex;
       -ms-flex-wrap: wrap; /* IE10 */
       flex-wrap: wrap;
-      height: 683px;
+      /* height: 683px; */
 }
 
 /* Create four equal columns that sits next to each other */
@@ -39,26 +53,20 @@
     .column img {
       vertical-align: middle;
       width: 100%;
+      padding-right: 28px;
     }
-    /* navbar */
-    .navbar {
-      font-family: Basier Circle;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 20px;
-      color: #1E2532;
+    .last img{
+      padding-right: 0px;
     }
 
     /* about */
     .about-header {
-      /* font-family: Basier Circle; */
+      font-family: Basier Circle;
       font-style: normal;
       font-weight: 600;
       font-size: 34px;
       line-height: 44px;
       letter-spacing: 0.0038em;
-
     }
 
     .about-container{
@@ -69,7 +77,7 @@
     .about {
       width: 850px;
       margin-right: 6rem;
-      /* font-family: Red Hat Display; */
+      font-family: Red Hat Display;
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
@@ -79,14 +87,15 @@
     }
 
     .what-we-do {
-      width: 850px;
-      /* font-family: Red Hat Display; */
+      width: 60%;
+      font-family: Red Hat Display;
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
       line-height: 24px;
       letter-spacing: 0.0075em;
       color: #1E2532;
+
     }
 
     .header {
@@ -106,7 +115,7 @@
       width: 14%;
       height: 3%;
       left: 0px;
-      /* font-family: Red Hat Display; */
+      font-family: Red Hat Display;
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
@@ -125,10 +134,12 @@
 }
 
     .event-box{
-      height: 962px;
-      background: #1E2532;
+      height: 874px;
+      background: #F19976;
       padding-left: 8.86%;
     }
+
+
     .event-header {
 
      width: 68%;
@@ -136,17 +147,22 @@
      margin-right: 12.65%;
     }
 
+    .event-box img{
+      height: 70%;
+    }
+
+
     .event-footer{
-      margin-top: 7%;
-      height: 9.14%;
-      margin-bottom: 0;
-      bottom: 0;
+      background-color: #1E2532;
+      /* padding-top: 7%; */
+      height: 88px;
+      padding-left: 8.86%;
       display: flex;
       align-items: center;
     }
 
     .event-text {
-      background: #2170E8;
+      background: #F97F51;
       border-radius: 0px 0px 5px 5px;
       color: #ffffff;
       height: 31%;
@@ -173,7 +189,7 @@
     .event-arrow{
      margin-left: 80%;
      margin-top: 70%;
-     color: #2170E8;
+     color: #F97F51;
      background-color: #ffffff;
      text-align: center;
      width: 20px;
@@ -181,6 +197,7 @@
      border-radius: 2px;
 
     }
+
     .copy {
       font-family: Red Hat Display;
       font-style: normal;
@@ -218,12 +235,15 @@
         margin-left:8%;
         margin-right:8%;
         margin-bottom: 8%;
-        margin-top: 3%;
+        margin-top: 8%;
 
       }
       .team-text{
         background: #F97F51;
         color:white;
+        height:20% ;
+        font-size:.8rem;
+
       }
 
 
@@ -237,8 +257,6 @@
         margin-left: 5%;
         margin-bottom: 3%;
         margin-top: 5%;
-        font-style: normal;
-        font-size: 2rem;
       }
       .club-text{background: #F97F51;
       color:white;
@@ -254,7 +272,7 @@
         margin-top: 2%;
         padding-top: 2%;
         position:absolute;
-
+        z-index:1;
       }
       .club-header{
         margin-left: 10%;
@@ -269,39 +287,55 @@
       padding: 3%;
       }
 
+
       .bgg{
         background-image: linear-gradient(to bottom,#F97F51 100% ,#F7CFDE 0%);
         opacity: 0.93;
 
       }
-      .alumni-text{
-        background-color: #F97F51;
-      }
-      .head-text{
-        background-color: #F97F51;
-      }
-      .spardha{
-        position: static;
-        width: 400.98px;
-        height: 49.01px;
-        left: 0px;
-        top: 0px;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 34px;
-        line-height: 44px;
 
-        display: flex;
-        align-items: center;
-        letter-spacing: 0.0038em;
-        color: #FFFFFF;
-      }
-      .spardha-header{
-        flex: none;
-        order: 0;
-        flex-grow: 0;
-        margin: 20px 0px;
-      }
+
+
+
+      @media only screen and (max-width: 700px) {
+        .carousel{
+          height: 0;
+          visibility: hidden;
+        }
+        .row {
+          height: 0;
+          visibility: hidden;
+        }
+
+        /* Create four equal columns that sits next to each other */
+        .column {
+           -ms-flex: 50%;
+          flex: 50%;
+          max-width: 50%;
+        }
+
+        .column img {
+          vertical-align: middle;
+          width: 100%;
+        }
+
+        .event-box img{
+          height: 60%;
+        }
+
+        .event-text{
+          height: 40%;
+        }
+
+        .header{
+          font-family: Raleway;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 34px;
+          line-height: 44px;
+          letter-spacing: 0.0038em;
+        }
+}
   </style>
 </head>
 
@@ -312,6 +346,14 @@
   </main>
   <!--<%- include('../partials/footer')%>-->
   <script src='/javascripts/validateForms.js'></script>
+  <script>
+    const btn = document.querySelector("button.mobile-menu-button");
+    const menu = document.querySelector(".mobile-menu");
+   // add event listeners
+   btn.addEventListener("click", () => {
+  menu.classList.toggle("hidden");
+});
+  </script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- Initialize Swiper -->
