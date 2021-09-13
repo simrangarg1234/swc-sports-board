@@ -28,7 +28,10 @@
   <div class="content flex flex-col">
     <div>CONTENTS</div>
     <a href="#about">About us</a>
-    <a href="#events">Events</a>
+    <a href="#whatwedo">What we do</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#events"> Past events</a>
+    <a href="#photos">Photos</a>
 
   </div>
 
@@ -38,7 +41,7 @@
 
   <%if(club.info.length>0){%>
 
-    <div class="about-header mb-4">
+    <div id="whatwedo" class="about-header mb-4">
       <h1>What we do?</h1>
     </div>
 
@@ -59,7 +62,7 @@
 
  <%}%>
 
-    <div class="about-header mb-4">
+    <div id="achievements" class="about-header mb-4">
       <h1>Achievements</h1>
     </div>
 
@@ -136,7 +139,7 @@
       </div>
     </div> -->
 
-    <div class="col-span-1 about-header mb-2">
+    <div id = "photos" class="col-span-1 about-header mb-2">
       Photos
     </div>
 
