@@ -1,12 +1,12 @@
 <% layout('layouts/layout') %>
-<%- include('../partials/carousel')  %>
+<%- include('../partials/gallery')  %>
 <%- include('../partials/navbar') %>
 
 
 
 <div class="flex flex-wrap mt-24 ml-20 mb-24">
 
-  <div class="about">
+  <div id="about" class="about">
     <div class="about-header mb-4">
       <h1>About Us</h1>
     </div>
@@ -27,8 +27,12 @@
 
   <div class="content flex flex-col">
     <div>CONTENTS</div>
-    <a href="#">Events</a>
-    <a href="#">Announcements</a>
+    <a href="#about">About us</a>
+    <a href="#whatwedo">What we do</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#events"> Past events</a>
+    <a href="#photos">Photos</a>
+
   </div>
 
 </div>
@@ -37,16 +41,20 @@
 
   <%if(club.info.length>0){%>
 
-    <div class="about-header mb-4">
+    <div id="whatwedo" class="about-header mb-4">
       <h1>What we do?</h1>
     </div>
 
-    <div class="grid grid-cols-2 gap-8">
+    <div class="grid md:grid-cols-2  sm:grid-cols-1 gap-8">
 
       <%for(let i=0;i<club.info.length;i++){%>
 
-        <div class="col-span-1 mb-8">
-          <%=club.info[i]%>
+        <div class="col-span-1 flex flex-col">
+          <div class="pb-8">
+            <%=club.info[i]%>
+          </div>
+          <div><hr></div>
+
         </div>
 
       <%}%>
@@ -54,32 +62,39 @@
 
  <%}%>
 
-
-    <div class="about-header mb-4">
+    <div id="achievements" class="about-header mb-4">
       <h1>Achievements</h1>
     </div>
 
-    <div class="grid grid-cols-2 gap-8">
+    <div class="grid md:grid-cols-2  sm:grid-cols-1 gap-8">
 
       <%for(let i=0;i<club.achievements.length;i++){%>
 
-        <div class="col-span-1 mb-8">
-          <%=club.achievements[i]%>
+        <div class="col-span-1 flex flex-col">
+          <div class="pb-8">
+            <%=club.achievements[i]%>
+          </div>
+          <div><hr></div>
+
         </div>
 
       <%}%>
     </div>
 
-    <div class="about-header mb-4">
+    <div id="events" class="about-header mb-4">
       <h1>Past Events</h1>
     </div>
 
-    <div class="grid grid-cols-2 gap-8">
+    <div class="grid md:grid-cols-2  sm:grid-cols-1 gap-8">
 
       <%for(let i=0;i<club.pe.length;i++){%>
 
-        <div class="col-span-1 mb-8">
-          <%=club.pe[i]%>
+        <div class="col-span-1 flex flex-col">
+          <div class="pb-8">
+            <%=club.pe[i]%>
+          </div>
+          <div><hr></div>
+
         </div>
 
       <%}%>
@@ -124,14 +139,14 @@
       </div>
     </div> -->
 
-    <div class="col-span-1 about-header mb-2">
+    <div id = "photos" class="col-span-1 about-header mb-2">
       Photos
     </div>
 
   </div>
 </div>
 
-<div class="grid grid-cols-3 gap-4 ml-8 mr-8 pb-32">
+<div class="grid md:grid-cols-3  sm:grid-cols-2 gap-4 ml-8 mr-8 pb-32">
   <%for(let i=0;i<club.gallery.length;i++){%>
 
     <div class="shadow-md rounded-md overflow-hidden mb-2">

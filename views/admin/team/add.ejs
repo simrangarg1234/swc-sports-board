@@ -15,7 +15,7 @@
                 <p>You need to add either file or link</p>
             </div>
             <div class="leading-loose">
-                <form class="p-10 bg-white rounded shadow-xl" action="/admin/team" method="POST">
+                <form class="p-10 bg-white rounded shadow-xl" action="/admin/team" method="POST" enctype="multipart/form-data">
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="priority">Priority</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="priority" type="text"
@@ -32,9 +32,9 @@
                             name="position" placeholder="Position" required>
                     </div>
                     <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="image">Image Url</label>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="image" type="text"
-                            name="image" placeholder="Image Url" required>
+                        <label class="block text-sm text-gray-600" for="image">Image</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="image" type="file"
+                            name="images"  >
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="hostel">Hostel</label>

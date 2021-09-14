@@ -1,9 +1,9 @@
 <% layout('layouts/layout') %>
-<%- include('../partials/carousel')  %>
+<%- include('../partials/gallery')  %>
 <%- include('../partials/navbar') %>
 
 
-  <div class=" team-struc mx-auto pt-16 pb-40 pl-12 pr-2 items-stretch " style="height: 30%; width:100%" >
+<div class=" team-struc mx-auto pt-16 pb-40 pl-12 pr-2 items-stretch " style="height: 30%; width:100%" >
 
       <h1 class="team-header text-white text-2xl bold text-normal">Team Structure</h1>
 <!-- <div class=" team-buttons sm:justify-center sm:ml-2 sm:pl-12 sm:m-2 sm:gap-4 lg:flex lg:justify-start  lg:pl-12 lg:gap-2">
@@ -26,7 +26,7 @@
         <div class="bg-gray-200 rounded-md ">
           <img
             style="height: 300px"
-            src="https://source.unsplash.com/random/1280x720"
+            src=<%= member.image %>
             alt="ProfilePic"
             class="w-full object-contain "
           />
@@ -57,13 +57,13 @@
           <div class="text-sm text-white"><%= member.contact1 %></div>
         </div>
       </div>
-<% } %>  
+<% } %>
     </div>
-    </div>    
-      
+    </div>
 
 
-<!-- 
+
+<!--
   <div class=" team grid grid-cols-2 mt-4">
       <div class=" col-span-1" >
         <div class=" overflow-hidden" style="aspect-ratio:1/1">
@@ -76,7 +76,7 @@
                                 <div class="col-span-2 text-left text-sm lg:text-2xl">Tony Stark</div>
                                 <p class=" text-white text-sm lg:text-lg mb-2">Dean</p>
                             </div>
-                
+
                             <div class="grid grid-cols-1">
 
                                     <div class="grid grid-cols-3">
@@ -130,7 +130,7 @@
                     </div>
 
                   <div class="grid grid-cols-1">
-                  
+
                   <div class="grid grid-cols-3">
                   <div class="col-span-1 text-left font-normal mt-2 text-xs lg:text-lg">email@iitg.ac.in</div>
                   <div class="col-span-2 text-right font-normal text-xs mt-2 lg:text-lg">+91 1234567890</div>
