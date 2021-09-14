@@ -1,5 +1,5 @@
 <% layout('layouts/layout') %>
-<%- include('../partials/gallery')  %>
+<%- include('../partials/carousel')  %>
 <%- include('../partials/navbar') %>
 
 <div style="z-index: -1; position: absolute; width: 100%; aspect-ratio: 3.5 / 1;
@@ -9,7 +9,7 @@
 <div class="flex flex-wrap mt-20 ml-20">
 
     <div class="about">
-      <div class="about-header  font-Raleway " style="color: white;">
+      <div class="about-header  font-Raleway ">
         <h1>Alumni</h1>
       </div>
     </div>
@@ -23,7 +23,7 @@
         <div onclick="toggleModal('description-modal-<%= data[i]._id %>')" style="cursor: pointer;" class=" col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
             <div class="shadow-md rounded-md overflow-hidden">
                 <img src=<%= data[i].image %> style="width: 100%; height:64.9%" alt="">
-                <div class="p-2 alumni-text" style="width:100%; height:35%">
+                <div class="p-2 alumni-text" style="width:100%; height:35%; background-color: #F97F51;">
                     <!-- <div class="grid grid-cols-3"> -->
                     <div class="grid grid-cols-1">
                       <div class="col-span-1 border-b-2 border-white">
@@ -34,30 +34,23 @@
                     <div class="grid grid-cols-1">
                         <!-- <div class="grid grid-cols-1 divide-y divide-white"><br> -->
                             <div class="grid grid-cols-3">
-
-                                <div class="col-span-1 text-left font-normal mt-2  text-xs md:text-lg lg:text-lg"><%= data[i].email %></div>
-                                <div class="col-span-2 text-right font-normal mt-2 text-xs md:text-lg lg:text-lg">+91 <%=data[i].contact%></div>
-
+                                <div class="col-span-1 text-left font-normal mt-2  text-xs md:text-md lg:text-lg"><%= data[i].email %></div>
+                                <div class="col-span-2 text-right font-normal mt-2 text-xs md:text-md lg:text-lg">+91 <%=data[i].contact%></div>
                             </div>
-
                     </div>
-
                     <!-- <p class="sm:mb-6 text-xs md:mb-2 md:text-lg lg:mb-2 lg:text-lg"><%= data[i].experience %></p> -->
                 </div>
             </div>
         </div>
-
-
-
         <!--Modal-->
         <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center"
             id="description-modal-<%= data[i]._id %>">
-            <div class="relative w-auto my-6 mx-auto max-w-6xl">
+            <div class="relative w-auto my-6 mx-auto max-w-5xl" style="padding: 2%;">
                 <!--content-->
-                <div class=" border-0 rounded-lg shadow-lg relative flex flex-wrap w-full bg-white outline-none focus:outline-none">
+                <div class="grid grid-cols-2 border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                     <!--image-->
                     <div class="p-10 overflow-hidden">
-                        <img src=<%= data[i].image %>  style="height: 350px; width: 300px"  alt="">
+                        <img src=<%= data[i].image %>  style="widht: auto; aspect-ratio: 1.5/1"  alt="">
                         <div class="p-4" >
                             <div class="grid grid-cols-3">
                                 <div class="col-span-2 text-left text-2xl"><%= data[i].name %>  </div>
@@ -65,7 +58,7 @@
                             </div>
                             <div class="grid grid-cols-1">
                                 <div class="grid grid-cols-1 divide-y divide-black"><br>
-                                    <div class="grid grid-cols-3">
+                                    <div class="sm:grid sm:grid-cols-1 md:grid md:grid-cols-3">
                                         <div class="col-span-1 text-left font-normal text-md"><%= data[i].email %> </div>
                                         <div class="col-span-2 text-right font-normal text-md">+91 <%= data[i].contact %> </div>
                                     </div>
@@ -81,13 +74,13 @@
                                 <span > <i class="fas fa-times"></i> </span>
                             </button>
                         </div>
-                        <h1 class="my-4 text-gray-700 text-xl font-semibold">Experience</h1>
-                        <p class="my-4 text-gray-500 text-md ">
+                        <h1 class="my-4 text-gray-700 sm:text-lg md:text-xl lg:text-2xl font-semibold">Experience</h1>
+                        <p class="my-4 text-gray-500 sm:text-sm md:text-md lg:text-lg ">
                             <%= data[i].experience %>
                         </p>
-                        <h1 class="my-4 mt-10 text-gray-700 text-xl font-semibold">Achievements</h1>
+                        <h1 class="my-4 mt-10 text-gray-700 sm:text-lg md:text-xl lg:text-2xl font-semibold">Achievements</h1>
                         <% for(let j=0; j<data[i].achievements.length; j++){ %>
-                        <p class="my-4 text-gray-500 text-md ">
+                        <p class="my-4 text-gray-500 sm:text-sm md:text-md lg:text-lg ">
                             <%= j+1 %>. <%= data[i].achievements[j] %> <br>
                         </p>
                         <% } %>
