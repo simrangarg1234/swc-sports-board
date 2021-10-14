@@ -11,7 +11,7 @@
     <label class="block text-sm text-gray-600" for="pdf">Score card</label>
     <%if(data.score){%>
       Present Score card:
-      <div class="btn btn-primary bg-blue-400  rounded"><a class="w-auto" style="width:60px"href="http://localhost:3000/<%=data.score%>">
+      <div class="btn btn-primary bg-blue-400  rounded"><a class="w-auto" style="width:60px"href="http://localhost:3000/stud/gymkhana/sports/<%=data.score%>">
         Score card</a></div>
       
     <%}%>
@@ -23,7 +23,7 @@
         <%if(data.image){%>
           
               <div class="imgwrap shadow-sm">
-                  <img src="http://localhost:3000/<%=data.image%>"  height="auto" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                  <img src="http://localhost:3000/stud/gymkhana/sports/<%=data.image%>"  height="auto" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
               </div>
            
           

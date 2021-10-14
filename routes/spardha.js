@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     });
     await spardha.save();
     //req.flash('success', 'New member added successfully!');
-    res.redirect('/admin/spardha');
+    res.redirect('/stud/gymkhana/sports/admin/spardha');
 });
 
 //Add Event - get
@@ -35,7 +35,7 @@ router.get('/:id', catchAsync(async (req, res,) => {
     const spardha = await Spardha.findById(req.params.id);
     if (!spardha) {
         req.flash('error', 'Cannot find this club!');
-        return res.redirect('/admin/spardha');
+        return res.redirect('/stud/gymkhana/sports/admin/spardha');
     }
     res.render('admin/spardha/show', { spardha });
 }));
@@ -45,7 +45,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
     const spardha = await Spardha.findById(req.params.id)
     if (!spardha) {
         req.flash('error', 'Cannot find this club!');
-        return res.redirect('/admin/spardha');
+        return res.redirect('/stud/gymkhana/sports/admin/spardha');
     }
     res.render('admin/spardha/edit', { spardha });
 }));
@@ -61,7 +61,7 @@ router.put('/:id', catchAsync(async (req, res) => {
     }, {new: true});
     if(!spardha) return res.status(404).send('Clubname with the given id not found');
     req.flash('success', 'Event details updated!');
-    res.redirect(`/admin/spardha`);
+    res.redirect(`/stud/gymkhana/sports/admin/spardha`);
 }));
    
 //Event delete
@@ -69,7 +69,7 @@ router.delete('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     await Spardha.findByIdAndDelete(id);
     req.flash('success', 'Club no longer exists!')
-    res.redirect('/admin/spardha');
+    res.redirect('/stud/gymkhana/sports/admin/spardha');
 }));
 
 //Save updated images and pdf/Score Card
@@ -87,7 +87,7 @@ router.post('/imgpdf',uploadval,(req,res)=>{
         }
         data.save().then(()=>{
             req.flash('success', 'Event Updated successfully!');
-            res.redirect('/admin/spardha');
+            res.redirect('/stud/gymkhana/sports/admin/spardha');
         })
     });
 });
@@ -97,7 +97,7 @@ router.get('/:id/delimg/:idx/',(req,res)=>{
     Spardha.findOne({_id:req.params.id}).then(data=>{
         data.Images.splice(req.params.idx,1);
         data.save().then(()=>{
-            res.redirect(`/admin/spardha/${req.params.id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/spardha/${req.params.id}`);
         })
     })
 });
@@ -124,10 +124,10 @@ router.post('/add/event', (req,res)=>{
 
         data.save().then((record)=>{
             req.flash('success', 'Event Addedd successfully!');
-            res.redirect(`/admin/spardha/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/spardha/${data._id}`);
         }).catch(err=>{
             console.log(err)
-            res.redirect(`/admin/spardha/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/spardha/${data._id}`);
         })
     })
 });
@@ -143,7 +143,7 @@ router.get('/:id/delete/event/:idx',(req,res)=>{
     Spardha.findOne({_id:req.params.id},(err,data)=>{
         data.details.splice(req.params.idx,1);
         data.save().then(()=>{ 
-            res.redirect(`/admin/spardha/${req.params.id}`)
+            res.redirect(`/stud/gymkhana/sports/admin/spardha/${req.params.id}`)
         })
     })
 })

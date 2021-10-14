@@ -12,7 +12,7 @@ module.exports = (passport) => {
       {
         clientID: OUTLOOK_CLIENT_ID,
         clientSecret: OUTLOOK_CLIENT_SECRET,
-        callbackURL: "http://localhost:3000/auth/outlook/callback",
+        callbackURL: "http://localhost:3000/stud/gymkhana/sports/auth/outlook/callback",
       },
       function (accessToken, refreshToken, profile, done) {
         var user = {

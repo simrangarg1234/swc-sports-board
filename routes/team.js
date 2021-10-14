@@ -25,7 +25,7 @@ router.post('/', uploadval, async (req, res) => {
     team.image = req.files["images"][0].path;
     await team.save();
     //req.flash('success', 'New member added successfully!');
-    res.redirect('/admin/team');
+    res.redirect('/stud/gymkhana/sports/admin/team');
 });
 
 router.get('/add', (req, res) => {
@@ -36,7 +36,7 @@ router.get('/:id', catchAsync(async (req, res,) => {
     const team = await Team.findById(req.params.id);
     if (!team) {
         req.flash('error', 'Cannot find this member!');
-        return res.redirect('/admin/team');
+        return res.redirect('/stud/gymkhana/sports/admin/team');
     }
     res.render('admin/team/show', { team });
 }));
@@ -45,7 +45,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
     const team = await Team.findById(req.params.id)
     if (!team) {
         req.flash('error', 'Cannot find this member!');
-        return res.redirect('/admin/team');
+        return res.redirect('/stud/gymkhana/sports/admin/team');
     }
     res.render('admin/team/edit', { team });
 }));
@@ -66,14 +66,14 @@ router.put('/:id', uploadval, catchAsync(async (req, res) => {
     }
     if(!team) return res.status(404).send('Member with the given id not found');
     req.flash('success', 'Member details updated!');
-    res.redirect(`/admin/team`);
+    res.redirect(`/stud/gymkhana/sports/admin/team`);
 }));
     
 router.get('/:id/delimg/',(req,res)=>{
     Team.findOne({_id:req.params.id}).then(data=>{
         data.image = null;
         data.save().then(()=>{
-            res.redirect(`/admin/team/${req.params.id}/edit`);
+            res.redirect(`/stud/gymkhana/sports/admin/team/${req.params.id}/edit`);
         })
     })
 });
@@ -82,7 +82,7 @@ router.delete('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     await Team.findByIdAndDelete(id);
     req.flash('success', 'Member no longer exists!')
-    res.redirect('/admin/team');
+    res.redirect('/stud/gymkhana/sports/admin/team');
 }));
 
 module.exports = router;

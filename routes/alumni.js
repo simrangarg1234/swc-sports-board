@@ -24,7 +24,7 @@ router.post('/', uploadval, async (req, res) => {
 
     await alumni.save();
     //req.flash('success', 'New member added successfully!');
-    res.redirect('/admin/alumni');
+    res.redirect('/stud/gymkhana/sports/admin/alumni');
 });
 
 router.get('/add', (req, res) => {
@@ -70,21 +70,21 @@ router.put('/:id', uploadval, catchAsync(async (req, res) => {
         alumni.image = req.files["images"][0].path;
     }
     req.flash('success', 'Member details updated!');
-    res.redirect(`/admin/alumni`);
+    res.redirect(`/stud/gymkhana/sports/admin/alumni`);
 }));
     
 router.delete('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     await Alumni.findByIdAndDelete(id);
     req.flash('success', 'Member no longer exists!')
-    res.redirect('/admin/alumni');
+    res.redirect('/stud/gymkhana/sports/admin/alumni');
 }));
 
 router.get('/:id/delimg/',(req,res)=>{
     Alumni.findOne({_id:req.params.id}).then(data=>{
         data.image = null;
         data.save().then(()=>{
-            res.redirect(`/admin/alumni/${req.params.id}/edit`);
+            res.redirect(`/stud/gymkhana/sports/admin/alumni/${req.params.id}/edit`);
         })
     })
 });
@@ -112,10 +112,10 @@ router.post('/add/achievement',(req,res)=>{
             console.log("data.achievements2",data.achievements)
             console.log("record",record)
             req.flash('success', 'Achievement Addedd successfully!');
-            res.redirect(`/admin/alumni/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/alumni/${data._id}`);
         }).catch(err=>{
             console.log(err)
-            res.redirect(`/admin/alumni/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/alumni/${data._id}`);
         })
     })
 })
@@ -131,7 +131,7 @@ router.get('/:id/delete/achievement/:idx',(req,res)=>{
     Alumni.findOne({_id:req.params.id},(err,data)=>{
         data.achievements.splice(req.params.idx,1);
         data.save().then(()=>{
-            res.redirect(`/admin/alumni/${req.params.id}`)
+            res.redirect(`/stud/gymkhana/sports/admin/alumni/${req.params.id}`)
         })
     })
 })

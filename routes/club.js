@@ -27,7 +27,7 @@ router.post('/create',async(req,res)=>{
         desc:data.desc
     })
     await club.save();
-    res.redirect('/admin/club/')
+    res.redirect('/stud/gymkhana/sports/admin/club/')
 })
 
 
@@ -81,10 +81,10 @@ router.post('/add/head',uploadhead,(req,res)=>{
         data.save().then((record)=>{
             console.log("record",record)
             req.flash('success', 'head Addedd successfully!');
-            res.redirect(`/admin/club/view/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${data._id}`);
         }).catch(err=>{
             console.log(err)
-            res.redirect(`/admin/club/view/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${data._id}`);
         })
     })
 })
@@ -100,7 +100,7 @@ router.get('/:clubid/delete/head/:idx',(req,res)=>{
     Club.findOne({_id:req.params.clubid},(err,data)=>{
         data.heads.splice(req.params.idx,1);
         data.save().then(()=>{
-            res.redirect(`/admin/club/view/${req.params.clubid}`)
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${req.params.clubid}`)
         })
     })
 })
@@ -136,10 +136,10 @@ router.post('/add/achievement',(req,res)=>{
             console.log("data.achievements2",data.achievements)
             console.log("record",record)
             req.flash('success', 'Achievement Addedd successfully!');
-            res.redirect(`/admin/club/view/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${data._id}`);
         }).catch(err=>{
             console.log(err)
-            res.redirect(`/admin/club/view/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${data._id}`);
         })
     })
 })
@@ -155,7 +155,7 @@ router.get('/:clubid/delete/achievement/:idx',(req,res)=>{
     Club.findOne({_id:req.params.clubid},(err,data)=>{
         data.achievements.splice(req.params.idx,1);
         data.save().then(()=>{
-            res.redirect(`/admin/club/view/${req.params.clubid}`)
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${req.params.clubid}`)
         })
     })
 })
@@ -184,10 +184,10 @@ router.post('/add/info',(req,res)=>{
             console.log("info",data.info)
             console.log("record",record)
             req.flash('success', 'Achievement Addedd successfully!');
-            res.redirect(`/admin/club/view/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${data._id}`);
         }).catch(err=>{
             console.log(err)
-            res.redirect(`/admin/club/view/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${data._id}`);
         })
     })
 })
@@ -203,7 +203,7 @@ router.get('/:clubid/delete/info/:idx',(req,res)=>{
     Club.findOne({_id:req.params.clubid},(err,data)=>{
         data.info.splice(req.params.idx,1);
         data.save().then(()=>{
-            res.redirect(`/admin/club/view/${req.params.clubid}`)
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${req.params.clubid}`)
         })
     })
 })
@@ -231,10 +231,10 @@ router.post('/add/pe',(req,res)=>{
             console.log("pe",data.pe)
             console.log("record",record)
             req.flash('success', 'Achievement Addedd successfully!');
-            res.redirect(`/admin/club/view/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${data._id}`);
         }).catch(err=>{
             console.log(err)
-            res.redirect(`/admin/club/view/${data._id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${data._id}`);
         })
     })
 })
@@ -250,7 +250,7 @@ router.get('/:clubid/delete/pe/:idx',(req,res)=>{
     Club.findOne({_id:req.params.clubid},(err,data)=>{
         data.pe.splice(req.params.idx,1);
         data.save().then(()=>{
-            res.redirect(`/admin/club/view/${req.params.clubid}`)
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${req.params.clubid}`)
         })
     })
 })
@@ -272,7 +272,7 @@ router.post('/imgpdf',uploadval,(req,res)=>{
         
         data.save().then(()=>{
             req.flash('success', 'Club Updated successfully!');
-            res.redirect('/admin/club');
+            res.redirect('/stud/gymkhana/sports/admin/club');
         })
     });
 })
@@ -282,7 +282,7 @@ router.get('/:id/delimg/:idx/',(req,res)=>{
     Club.findOne({_id:req.params.id}).then(data=>{
         data.gallery.splice(req.params.idx,1);
         data.save().then(()=>{
-            res.redirect(`/admin/club/view/${req.params.id}`);
+            res.redirect(`/stud/gymkhana/sports/admin/club/view/${req.params.id}`);
         })
     })
 })
@@ -295,7 +295,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
     const club = await Club.findById(req.params.id)
     if (!club) {
         req.flash('error', 'Cannot find this member!');
-        return res.redirect('/admin/club');
+        return res.redirect('/stud/gymkhana/sports/admin/club');
     }
     res.render('admin/club/edit', { club });
 }));
@@ -305,7 +305,7 @@ router.post('/edit',(req,res)=>{
         data.title=req.body.title;
         data.desc= req.body.desc;
         data.save().then(()=>{
-            res.redirect(`/admin/club`);
+            res.redirect(`/stud/gymkhana/sports/admin/club`);
         })
     })
 })
@@ -315,7 +315,7 @@ router.get('/:id/delete/', catchAsync(async (req, res) => {
     const { id } = req.params;
     await Club.findByIdAndDelete(id);
     req.flash('success', 'Member no longer exists!')
-    res.redirect('/admin/club');
+    res.redirect('/stud/gymkhana/sports/admin/club');
 }));
 
 //Not using this. This is previously used for creating and updating data of club
@@ -342,7 +342,7 @@ router.post('/',uploadval, async (req, res) => {
     console.log("club",club)
     await club.save();
     req.flash('success', 'New Club added successfully!');
-    res.redirect('/admin/club/');
+    res.redirect('/stud/gymkhana/sports/admin/club/');
 });
 
 

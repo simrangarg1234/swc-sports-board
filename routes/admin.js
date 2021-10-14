@@ -4,7 +4,7 @@ const { isAdmin, isLoggedIn } = require("../middlewares/index");
 
 adminRouter.get("/", isAdmin, function (req, res) {
   try {
-    return res.redirect("/admin/club/");
+    return res.redirect("/stud/gymkhana/sports/admin/club/");
   } catch (e) {
     console.log(e.message);
   }
@@ -29,7 +29,7 @@ adminRouter.put("/users/:id", async function (req, res) {
     data = !user.isAdmin;
 
     await User.findOneAndUpdate({ outlookId: id }, { isAdmin: data });
-    return res.redirect("/admin/users");
+    return res.redirect("/stud/gymkhana/sports/admin/users");
   } catch (err) {
     console.log(err);
     return res

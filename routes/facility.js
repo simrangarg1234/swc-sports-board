@@ -33,7 +33,7 @@ facilityRouter.post("/add", uploadval, async (req, res) => {
 
   await facility.save();
   req.flash("success", "New Info added successfully!");
-  res.redirect("/admin/facility");
+  res.redirect("/stud/gymkhana/sports/admin/facility");
 });
 
 facilityRouter.get("/add", (req, res) => {
@@ -46,7 +46,7 @@ facilityRouter.get(
     const facility = await Facility.findById(req.params.id);
     if (!facility) {
       req.flash("error", "Cannot find this facility!");
-      return res.redirect("/admin/facility");
+      return res.redirect("/stud/gymkhana/sports/admin/facility");
     }
     res.render("admin/Facility/edit", { facility });
   })
@@ -69,7 +69,7 @@ facilityRouter.put(
     if (!facility)
       return res.status(404).send("Info with the given id not found");
     req.flash("success", "Info details updated!");
-    res.redirect(`/admin/facility`);
+    res.redirect(`/stud/gymkhana/sports/admin/facility`);
   })
 );
 
@@ -79,7 +79,7 @@ facilityRouter.delete(
     const { id } = req.params;
     await Facility.findByIdAndDelete(id);
     req.flash("success", "Member no longer exists!");
-    res.redirect("/admin/facility");
+    res.redirect("/stud/gymkhana/sports/admin/facility");
   })
 );
 

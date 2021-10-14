@@ -25,13 +25,13 @@ userRouter.get(
   "/auth/outlook/callback",
   passport.authenticate("windowslive", { failureRedirect: "/login" }),
   function (req, res) {
-    res.redirect("/admin");
+    res.redirect("/stud/gymkhana/sports/admin");
   }
 );
 
 userRouter.get("/logout", function (req, res) {
   req.logout();
-  res.redirect("/");
+  res.redirect("/stud/gymkhana/sports/");
 });
 
 userRouter.get("/", async(req, res)=> {

@@ -10,12 +10,11 @@
 
 <div class="grid grid-cols-2 club ">
     <%for(let i=0;i<data.length;i++){%>
-      <!-- onclick="myFunc(i)" -->
       <div
-      onclick="location.href='http://localhost:3000/clubs/<%=data[i]._id%>/home'"
-         style="width:100%; height:84%;" class="flex flex-wrap col-span-1 club-card ">
+      onclick="location.href='http://localhost:3000/stud/gymkhana/sports/clubs/<%=data[i]._id%>/home'"
+         style="width:100%; height:84%;" class="flex flex-wrap col-span-1 club-card">
         <div class="overflow-hidden rounded-sm shadow-md">
-          <img src="http://localhost:3000/<%=data[i].gallery[0]%>" style="" alt="">
+          <img src="http://localhost:3000/stud/gymkhana/sports/<%=data[i].gallery[0]%>">
           <div class="p-4 club-text" style="height:35%" >
             <div class="grid grid-cols-3">
               <div class="col-span-3 text-2xl text-left"><%=data[i].title%></div>
@@ -119,6 +118,6 @@
 <script>
   function myFunc(i){
     console.log(1);
-    location.href=`https://localhost:3000/clubs/data[${i}]._id/home`;
+    location.href=`https://localhost:3000/stud/gymkhana/sports/clubs/data[${i}]._id/home`;
   }
 </script>

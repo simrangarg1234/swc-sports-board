@@ -5,7 +5,7 @@
 
 <h1 class="pb-6 text-3xl text-black">Spardha</h1>
 <div class="mt-6">
-    <a class="px-4 py-1 font-light tracking-wider text-white bg-gray-900 rounded" href="/admin/spardha/add">Add Spardha Event</a>
+    <a class="px-4 py-1 font-light tracking-wider text-white bg-gray-900 rounded" href="/stud/gymkhana/sports/admin/spardha/add">Add Spardha Event</a>
 </div>
 <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">
@@ -25,9 +25,9 @@
                         <td class="w-1/3 px-4 py-3 text-left"><%= spardha.Year %></td>
                         <td class="w-1/3 px-4 py-3 text-left"><%= spardha.Status %></td>
                      
-                        <td class="w-1/3 px-4 py-3 text-left"><a href="/admin/spardha/<%=spardha._id%>" target="_blank">View</a></td>
-                        <td class="w-1/3 px-4 py-3 text-left"><a href="/admin/spardha/<%=spardha._id%>/edit">Edit</a></td>
-                        <td class="w-1/3 text-left py-3 px-4"><form action="/admin/spardha/<%=spardha._id%>?_method=DELETE" method="POST"> <button type="submit">Delete</button> </form></td>
+                        <td class="w-1/3 px-4 py-3 text-left"><a href="/stud/gymkhana/sports/admin/spardha/<%=spardha._id%>" target="_blank">View</a></td>
+                        <td class="w-1/3 px-4 py-3 text-left"><a href="/stud/gymkhana/sports/admin/spardha/<%=spardha._id%>/edit">Edit</a></td>
+                        <td class="w-1/3 text-left py-3 px-4"><form action="/stud/gymkhana/sports/admin/spardha/<%=spardha._id%>?_method=DELETE" method="POST"> <button type="submit">Delete</button> </form></td>
                     </tr> 
                 <% }%>
             </tbody>

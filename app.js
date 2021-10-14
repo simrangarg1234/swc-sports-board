@@ -82,26 +82,27 @@ app.use(passport.session());
 // app.get('/',(req,res)=>{
 //   res.render('admin/club/index')
 // })
+app.get("/", (req, res) => res.redirect("/stud/gymkhana/sports"));
 
-app.use("/admin/events", eventsRouter);
-app.use("/admin/team", teamRouter);
-app.use("/admin/club", clubRouter);
-app.use("/admin", adminRouter);
-app.use("/admin/team", teamRouter);
-app.use("/admin/alumni", alumniRouter);
-app.use("/admin/facility", facilityRouter);
-app.use("/admin/spardha", spardhaRouter);
+app.use("/stud/gymkhana/sports/admin/events", eventsRouter);
+app.use("/stud/gymkhana/sports/admin/team", teamRouter);
+app.use("/stud/gymkhana/sports/admin/club", clubRouter);
+app.use("/stud/gymkhana/sports/admin/team", teamRouter);
+app.use("/stud/gymkhana/sports/admin/alumni", alumniRouter);
+app.use("/stud/gymkhana/sports/admin/facility", facilityRouter);
+app.use("/stud/gymkhana/sports/admin/spardha", spardhaRouter);
+app.use("/stud/gymkhana/sports/admin", adminRouter);
 
 //Mini Club Pages
 const Club = require("./models/club");
-app.get("/clubs/:clubid/home", (req, res) => {
+app.get("/stud/gymkhana/sports/clubs/:clubid/home", (req, res) => {
   Club.findOne({ _id: req.params.clubid }, (err, data) => {
     console.log("Club data", data);
     res.render("clubs/home", { club: data });
   });
 });
 //Home page for clubs
-app.get("/clubs", (req, res) => {
+app.get("/stud/gymkhana/sports/clubs", (req, res) => {
   Club.find({}, (err, data) => {
     console.log("Club data", data);
     res.render("clubs/club", { data });
@@ -111,25 +112,25 @@ app.get("/clubs", (req, res) => {
 
 //Spardha
 const Spardha = require('./models/spardha');
-app.get("/spardha", (req, res) => {
+app.get("/stud/gymkhana/sports/spardha", (req, res) => {
   Spardha.find({}, (err, data) => {
     res.render("spardha/view", { data });
   }); 
 });
 
-app.get("/spardha/:year", (req, res) => {
+app.get("/stud/gymkhana/sports/spardha/:year", (req, res) => {
   Spardha.findOne({Year: req.params.year}, (err, datas) => {
     res.render("spardha/past", { data: datas });
   }); 
 });
 
-app.get("/spardha/past/:yr", (req,res)=>{
+app.get("/stud/gymkhana/sports/spardha/past/:yr", (req,res)=>{
   Spardha.find({}, (err, data) => {
     res.render(`spardha/spardha${req.params.yr}`, {data});
   });
 });
 
-app.all("/spardha", (req, res) => {
+app.all("/stud/gymkhana/sports/spardha", (req, res) => {
   Spardha.find({}, (err, data) => {
     res.render("spardha/spardhaNav", { data });
   });
@@ -137,7 +138,7 @@ app.all("/spardha", (req, res) => {
 
 //Alumni
 const Alumni = require('./models/alumni');
-app.get("/alumni", (req, res) => {
+app.get("/stud/gymkhana/sports/alumni", (req, res) => {
   Alumni.find({}, (err, data) => {
     res.render("alumni/view", { data });
   });
@@ -145,7 +146,7 @@ app.get("/alumni", (req, res) => {
 
 
 
-app.get('/teams', (req,res)=>{
+app.get('/stud/gymkhana/sports/teams', (req,res)=>{
   Team.find({}).sort( { priority: 1 } )
   .then((teams) => {
     res.render('teams/view',{ teams });
@@ -153,7 +154,7 @@ app.get('/teams', (req,res)=>{
 });
 
 const facilities = require('./models/facility');
-app.get("/facilities", (req, res) => {
+app.get("/stud/gymkhana/sports/facilities", (req, res) => {
   facilities.find({}, (err, data) => {
     res.render("facilities/view", { data });
   }); 
@@ -165,7 +166,7 @@ app.get("/facilities", (req, res) => {
 
 
 
-app.use("/", userRouter);
+app.use("/stud/gymkhana/sports/", userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

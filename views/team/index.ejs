@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %> 
     <h1>Team</h1>
     <div>
-        <a href="/team/add">Add Member</a>
+        <a href="/stud/gymkhana/sports/team/add">Add Member</a>
     </div>
     <% for (let team of teams){%>
         
@@ -15,7 +15,7 @@
                         <h5 class="card-title"><%= team.name %> </h5>
                         <p class="card-text"><%= team.position %></p>
 
-                        <a class="btn btn-primary" href="/team/<%=team._id%>">View <%=team.title%></a>
+                        <a class="btn btn-primary" href="/stud/gymkhana/sports/team/<%=team._id%>">View <%=team.title%></a>
                     </div>
                 </div>
             </div>

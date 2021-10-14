@@ -7,7 +7,7 @@
   <div class="desc w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=data.desc%></div>
 
 <div class="mt-20">
-    <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/head">Add Heads</a>
+    <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/stud/gymkhana/sports/admin/club/<%=data._id%>/add/head">Add Heads</a>
 </div>
   <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">
@@ -27,8 +27,8 @@
                         <td class="text-left py-3 px-4"><tbody class="text-gray-700" id="myMenu">
                         <td class="text-left py-3 px-4"><%=data.heads[i].name%></td>
                         <td class="text-right py-3 px-4"><%=data.heads[i].position%></td>
-                        <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/head/<%=i%>">Edit</a></td>
-                        <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/head/<%=i%>">Delete</a></td>
+                        <td class="w-1/3 text-right py-3 px-4"><a href="/stud/gymkhana/sports/admin/club/<%=data._id%>/edit/head/<%=i%>">Edit</a></td>
+                        <td class="w-1/3 text-right py-3 px-4"><a href="/stud/gymkhana/sports/admin/club/<%=data._id%>/delete/head/<%=i%>">Delete</a></td>
                     </tr>
                 <%}%>
             </tbody>
@@ -37,7 +37,7 @@
 </div>
 
 <div class="mt-20">
-    <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/achievement">Add Achievements</a>
+    <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/stud/gymkhana/sports/admin/club/<%=data._id%>/add/achievement">Add Achievements</a>
 </div>
   <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">
@@ -55,8 +55,8 @@
                     <tr>
                         <td class="text-left py-3 px-4"><tbody class="text-gray-700" id="myMenu">
                         <td class="w-1/3 text-left py-3 px-4"><%=data.achievements[i]%></td>
-                        <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/achievement/<%=i%>">Edit</a></td>
-                        <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/achievement/<%=i%>">Delete</a></td>
+                        <td class="w-1/3 text-right py-3 px-4"><a href="/stud/gymkhana/sports/admin/club/<%=data._id%>/edit/achievement/<%=i%>">Edit</a></td>
+                        <td class="w-1/3 text-right py-3 px-4"><a href="/stud/gymkhana/sports/admin/club/<%=data._id%>/delete/achievement/<%=i%>">Delete</a></td>
                     </tr>
                 <%}%>
             </tbody>
@@ -64,7 +64,7 @@
     </div>
 </div>
 <div class="mt-20">
-  <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/info">Add What we do</a>
+  <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/stud/gymkhana/sports/admin/club/<%=data._id%>/add/info">Add What we do</a>
 </div>
 <div class="w-auto mt-6 overflow-auto">
   <div class="bg-white">
@@ -82,8 +82,8 @@
                   <tr>
                       <td class="text-left py-3 px-4"><tbody class="text-gray-700" id="myMenu">
                       <td class="w-2/3 text-left py-3 px-4"><%=data.info[i]%></td>
-                      <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/info/<%=i%>">Edit</a></td>
-                      <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/info/<%=i%>">Delete</a></td>
+                      <td class="w-1/3 text-right py-3 px-4"><a href="/stud/gymkhana/sports/admin/club/<%=data._id%>/edit/info/<%=i%>">Edit</a></td>
+                      <td class="w-1/3 text-right py-3 px-4"><a href="/stud/gymkhana/sports/admin/club/<%=data._id%>/delete/info/<%=i%>">Delete</a></td>
                   </tr>
               <%}%>
           </tbody>
@@ -91,7 +91,7 @@
   </div>
 </div>
 <div class="mt-20">
-  <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/admin/club/<%=data._id%>/add/pe">Add Your Past Events</a>
+  <a class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" href="/stud/gymkhana/sports/admin/club/<%=data._id%>/add/pe">Add Your Past Events</a>
 </div>
 <div class="w-auto mt-6 overflow-auto">
   <div class="bg-white">
@@ -109,8 +109,8 @@
                   <tr>
                       <td class="text-left py-3 px-4"><tbody class="text-gray-700" id="myMenu">
                       <td class="w-2/3 text-left py-3 px-4"><%=data.pe[i]%></td>
-                      <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/edit/pe/<%=i%>">Edit</a></td>
-                      <td class="w-1/3 text-right py-3 px-4"><a href="/admin/club/<%=data._id%>/delete/pe/<%=i%>">Delete</a></td>
+                      <td class="w-1/3 text-right py-3 px-4"><a href="/stud/gymkhana/sports/admin/club/<%=data._id%>/edit/pe/<%=i%>">Edit</a></td>
+                      <td class="w-1/3 text-right py-3 px-4"><a href="/stud/gymkhana/sports/admin/club/<%=data._id%>/delete/pe/<%=i%>">Delete</a></td>
                   </tr>
               <%}%>
           </tbody>
@@ -137,7 +137,7 @@
 
 <!-- Uploading images and pdf  -->
 <div class="leading-loose">
-  <form class="p-10 bg-white rounded shadow-xl" action="/admin/club/imgpdf" method="POST"
+  <form class="p-10 bg-white rounded shadow-xl" action="/stud/gymkhana/sports/admin/club/imgpdf" method="POST"
       enctype="multipart/form-data">
       <input type="hidden" name="clubid" value="<%=data._id%>">
       <div class="mt-2">
@@ -148,8 +148,8 @@
               Present Gallery
               <%for(let i=0;i<data.gallery.length;i++){%>
                   <div class="imgwrap shadow-sm">
-                      <img src="http://localhost:3000/<%=data.gallery[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
-                      <a href="/admin/club/<%=data._id%>/delimg/<%=i%>/">X</a>
+                      <img src="http://localhost:3000/stud/gymkhana/sports/<%=data.gallery[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                      <a href="/stud/gymkhana/sports/admin/club/<%=data._id%>/delimg/<%=i%>/">X</a>
                   </div>
 
               <%}%>
@@ -165,7 +165,7 @@
         <label class="block text-sm text-gray-600" for="pdf">Score card</label>
         <%if(data.score){%>
           Present Score card:
-          <div class="btn btn-primary bg-blue-400  rounded"><a class="w-auto" style="width:60px"href="http://localhost:3000/<%=data.score%>">
+          <div class="btn btn-primary bg-blue-400  rounded"><a class="w-auto" style="width:60px"href="http://localhost:3000/stud/gymkhana/sports/<%=data.score%>">
             Score card</a></div>
 
         <%}%>

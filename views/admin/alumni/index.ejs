@@ -5,7 +5,7 @@
 
 <h1 class="pb-6 text-3xl text-black">Alumni Members</h1>
 <div class="mt-6">
-    <a class="px-4 py-1 font-light tracking-wider text-white bg-gray-900 rounded" href="/admin/alumni/add">Add Member</a>
+    <a class="px-4 py-1 font-light tracking-wider text-white bg-gray-900 rounded" href="/stud/gymkhana/sports/admin/alumni/add">Add Member</a>
 </div>
 <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">
@@ -27,9 +27,9 @@
                         <td class="w-1/3 px-4 py-3 text-left"><%= alumni.email %></td>
                         <td class="w-1/3 px-4 py-3 text-left"><%= alumni.experience %></td>
                      
-                        <td class="w-1/3 px-4 py-3 text-left"><a href="/admin/alumni/<%=alumni._id%>" target="_blank">View</a></td>
-                        <td class="w-1/3 px-4 py-3 text-left"><a href="/admin/alumni/<%=alumni._id%>/edit">Edit</a></td>
-                        <td class="w-1/3 px-4 py-3 text-left"><form action="/admin/alumni/<%=alumni._id%>?_method=DELETE" method="POST"> <button type="submit">Delete</button> </form></td>
+                        <td class="w-1/3 px-4 py-3 text-left"><a href="/stud/gymkhana/sports/admin/alumni/<%=alumni._id%>" target="_blank">View</a></td>
+                        <td class="w-1/3 px-4 py-3 text-left"><a href="/stud/gymkhana/sports/admin/alumni/<%=alumni._id%>/edit">Edit</a></td>
+                        <td class="w-1/3 px-4 py-3 text-left"><form action="/stud/gymkhana/sports/admin/alumni/<%=alumni._id%>?_method=DELETE" method="POST"> <button type="submit">Delete</button> </form></td>
                     </tr> 
                 <% }%>
             </tbody>

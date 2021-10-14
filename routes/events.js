@@ -30,7 +30,7 @@ eventsRouter.post("/add", uploadval, async (req, res) => {
   
     await event.save();
     req.flash("success", "New Info added successfully!");
-    res.redirect("/admin/events");
+    res.redirect("/stud/gymkhana/sports/admin/events");
   });
 
 
@@ -47,7 +47,7 @@ eventsRouter.get(
       const event = await Event.findById(req.params.id);
       if (!event) {
         req.flash("error", "Cannot find this Event!");
-        return res.redirect("/admin/events");
+        return res.redirect("/stud/gymkhana/sports/admin/events");
       }
       res.render("admin/event/edit", { event });
 });
@@ -79,7 +79,7 @@ eventsRouter.post("/:id", uploadval, async (req, res) => {
     await event.save();
 
     req.flash("success", "Info details updated!");
-    res.redirect(`/admin/events`);
+    res.redirect(`/stud/gymkhana/sports/admin/events`);
 });
 
 
@@ -87,7 +87,7 @@ eventsRouter.get('/:id/delimg/',(req,res)=>{
     Event.findOne({_id:req.params.id}).then(data=>{
         data.image = null;
         data.save().then(()=>{
-            res.redirect(`/admin/events/${req.params.id}/edit/`);
+            res.redirect(`/stud/gymkhana/sports/admin/events/${req.params.id}/edit/`);
         })
     })
   })
@@ -99,7 +99,7 @@ eventsRouter.delete(
       const { id } = req.params;
       await Event.findByIdAndDelete(id);
       req.flash("success", "Member no longer exists!");
-      res.redirect("/admin/events");
+      res.redirect("/stud/gymkhana/sports/admin/events");
 });
 eventsRouter.get("/", async(req,res)=>{
     const events = await Event.find({});
