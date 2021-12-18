@@ -14,7 +14,7 @@
       onclick="location.href='http://localhost:3000/stud/gymkhana/sports/clubs/<%=data[i]._id%>/home'"
          style="width:100%; height:84%;" class="flex flex-wrap col-span-1 club-card">
         <div class="overflow-hidden rounded-sm shadow-md">
-          <img src="http://localhost:3000/stud/gymkhana/sports/<%=data[i].gallery[0]%>">
+          <img src="/<%=data[i].gallery[0]%>">
           <div class="p-4 club-text" style="height:35%" >
             <div class="grid grid-cols-3">
               <div class="col-span-3 text-2xl text-left"><%=data[i].title%></div>
