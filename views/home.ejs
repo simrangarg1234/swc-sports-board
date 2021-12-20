@@ -59,7 +59,7 @@
         <% for(var i = 0; i<events.length; i++) { %>
           <div class="swiper-slide flex flex-wrap pr-4">
             <div class="shadow-md rounded-md overflow-hidden" alt="event-img">
-              <img class="event-image" src= /<%=events[i].image %> style="width:100%">
+              <img class="event-image" src= /<%=events[i].image %> style="aspect-ratio: 2/1; ">
               <div class="event-text p-4  grid grid-cols-5">
                 <div class="col-span-4">
                   <div class="event-dates"> <%=events[i].start%> - <%=events[i].end%></div>
