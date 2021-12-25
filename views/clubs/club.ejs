@@ -12,105 +12,21 @@
     <%for(let i=0;i<data.length;i++){%>
       <div
       onclick="location.href='http://localhost:3000/stud/gymkhana/sports/clubs/<%=data[i]._id%>/home'"
-         style="width:100%; height:84%;" class="flex flex-wrap col-span-1 club-card">
-        <div class="overflow-hidden rounded-sm shadow-md">
+         style=" aspect-ratio: 2/1; padding: 3%;" class="flex flex-wrap col-span-1 pt-4 pb-10 ">
+        <div class="overflow-hidden rounded-md shadow-md" style="cursor: pointer;">
           <img src="/<%=data[i].gallery[0]%>">
-          <div class="p-4 club-text" style="height:35%" >
+          <div class="p-4 event-text" style="height:35%" >
             <div class="grid grid-cols-3">
-              <div class="col-span-3 text-2xl text-left"><%=data[i].title%></div>
-              <!-- <div class="col-span-1 text-sm font-normal text-right">Club</div> -->
+              <div class="col-span-2 text-2xl text-left"><%=data[i].title%></div>
+              <div class="col-span-1 text-right"><i class="fas fa-arrow-right fa-sm"></i></div>
             </div>
-            <!-- <p class="mb-4 text-sm"><%=data[i].desc%></p> -->
+            
           </div>
         </div>
       </div>
 
     <%}%>
-<!--
-      <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class="flex flex-wrap col-span-1 pt-4 pb-10 ">
-        <div class="overflow-hidden rounded-md shadow-md">
-          <img src="https://source.unsplash.com/random/1280x720" style="width: 563.41px; height: 418.41px" alt="">
-          <div class="p-4 event-text" style="width: 563.41px">
-            <div class="grid grid-cols-3">
-              <div class="col-span-2 text-2xl text-left">Alladin</div>
-              <div class="col-span-1 text-sm font-normal text-right">King</div>
-            </div>
-            <p class="mb-4 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sequi tenetur, voluptatibus</p>
-          </div>
-        </div>
-      </div>
-      <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class="flex flex-wrap col-span-1 pt-4 pb-10 ">
-        <div class="overflow-hidden rounded-md shadow-md">
-          <img src="https://source.unsplash.com/random/1280x720" style="width: 563.41px; height: 418.41px" alt="">
-          <div class="p-4 event-text" style="width: 563.41px">
-            <div class="grid grid-cols-3">
-              <div class="col-span-2 text-2xl text-left">Alladin</div>
-              <div class="col-span-1 text-sm font-normal text-right">King</div>
-            </div>
-            <p class="mb-4 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sequi tenetur, voluptatibus</p>
-          </div>
-        </div>
-      </div>
-      <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class="flex flex-wrap col-span-1 pt-4 pb-10 ">
-        <div class="overflow-hidden rounded-md shadow-md">
-          <img src="https://source.unsplash.com/random/1280x720" style="width: 563.41px; height: 418.41px" alt="">
-          <div class="p-4 event-text" style="width: 563.41px">
-            <div class="grid grid-cols-3">
-              <div class="col-span-2 text-2xl text-left">Alladin</div>
-              <div class="col-span-1 text-sm font-normal text-right">King</div>
-            </div>
-            <p class="mb-4 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sequi tenetur, voluptatibus</p>
-          </div>
-        </div>
-      </div>
-      <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class="flex flex-wrap col-span-1 pt-4 pb-10 ">
-        <div class="overflow-hidden rounded-md shadow-md">
-          <img src="https://source.unsplash.com/random/1280x720" style="width: 563.41px; height: 418.41px" alt="">
-          <div class="p-4 event-text" style="width: 563.41px">
-            <div class="grid grid-cols-3">
-              <div class="col-span-2 text-2xl text-left">Alladin</div>
-              <div class="col-span-1 text-sm font-normal text-right">King</div>
-            </div>
-            <p class="mb-4 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sequi tenetur, voluptatibus</p>
-          </div>
-        </div>
-      </div>
-      <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class="flex flex-wrap col-span-1 pt-4 pb-10 ">
-        <div class="overflow-hidden rounded-md shadow-md">
-          <img src="https://source.unsplash.com/random/1280x720" style="width: 563.41px; height: 418.41px" alt="">
-          <div class="p-4 event-text" style="width: 563.41px">
-            <div class="grid grid-cols-3">
-              <div class="col-span-2 text-2xl text-left">Alladin</div>
-              <div class="col-span-1 text-sm font-normal text-right">King</div>
-            </div>
-            <p class="mb-4 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sequi tenetur, voluptatibus</p>
-          </div>
-        </div>
-      </div>
-      <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class="flex flex-wrap col-span-1 pt-4 pb-10 ">
-        <div class="overflow-hidden rounded-md shadow-md">
-          <img src="https://source.unsplash.com/random/1280x720" style="width: 563.41px; height: 418.41px" alt="">
-          <div class="p-4 event-text" style="width: 563.41px">
-            <div class="grid grid-cols-3">
-              <div class="col-span-2 text-2xl text-left">Alladin</div>
-              <div class="col-span-1 text-sm font-normal text-right">King</div>
-            </div>
-            <p class="mb-4 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sequi tenetur, voluptatibus</p>
-          </div>
-        </div>
-      </div>
-      <div onclick="location.href='https://www.youtube.com/';" style="cursor: pointer;" class="flex flex-wrap col-span-1 pt-4 pb-10 ">
-        <div class="overflow-hidden rounded-md shadow-md">
-          <img src="https://source.unsplash.com/random/1280x720" style="width: 563.41px; height: 418.41px" alt="">
-          <div class="p-4 event-text" style="width: 563.41px">
-            <div class="grid grid-cols-3">
-              <div class="col-span-2 text-2xl text-left">Alladin</div>
-              <div class="col-span-1 text-sm font-normal text-right">King</div>
-            </div>
-            <p class="mb-4 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sequi tenetur, voluptatibus</p>
-          </div>
-        </div>
-      </div> -->
+
 </div>
 </div>
 </div>
