@@ -7,7 +7,7 @@
     <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=spardha.Status%></div>
 
     <div class="mt-6">
-        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/stud/gymkhana/sports/admin/spardha/<%=spardha._id%>/add/event">Add Event Details</a>
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="<%= process.env.BaseUrl %>/admin/spardha/<%=spardha._id%>/add/event">Add Event Details</a>
     </div>
     <div class="w-auto mt-6 mb-10 overflow-auto">
         <div class="bg-white">
@@ -27,8 +27,8 @@
                             <td class="text-left py-3 px-4"><%=spardha.details[i].Clubname%></td>
                             <td class="text-left py-3 px-4"><%=spardha.details[i].Description%></td>
                             <td class="text-left py-3 px-4"><%=spardha.details[i].DateTime%></td>
-                            <td class="w-1/3 text-left py-3 px-4"><a href="/stud/gymkhana/sports/admin/spardha/<%=spardha._id%>/edit/event/<%=i%>">Edit</a></td>
-                            <td class="w-1/3 text-left py-3 px-4"><a href="/stud/gymkhana/sports/admin/spardha/<%=spardha._id%>/delete/event/<%=i%>">Delete</a></td>
+                            <td class="w-1/3 text-left py-3 px-4"><a href="<%= process.env.BaseUrl %>/admin/spardha/<%=spardha._id%>/edit/event/<%=i%>">Edit</a></td>
+                            <td class="w-1/3 text-left py-3 px-4"><a href="<%= process.env.BaseUrl %>/admin/spardha/<%=spardha._id%>/delete/event/<%=i%>">Delete</a></td>
                         </tr>
                     <%}%>    
                 </tbody>
@@ -38,7 +38,7 @@
 
     <!-- Uploading images and pdf  -->
     <div class="leading-loose">
-        <form class="p-10 bg-white rounded shadow-xl" action="/stud/gymkhana/sports/admin/spardha/imgpdf" method="POST" enctype="multipart/form-data">
+        <form class="p-10 bg-white rounded shadow-xl" action="<%= process.env.BaseUrl %>/admin/spardha/imgpdf" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<%=spardha._id%>">
             <div class="mt-2">
                 <label class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" for="image">Gallery</label>
@@ -47,8 +47,8 @@
                         Present Gallery
                         <%for(let i=0;i<spardha.Images.length;i++){%>
                             <div class="mb-5 imgwrap shadow-sm">
-                                <img src="http://localhost:3000/stud/gymkhana/sports/<%=spardha.Images[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
-                                <a href="/stud/gymkhana/sports/admin/spardha/<%=spardha._id%>/delimg/<%=i%>/">X</a>
+                                <img src="<%= process.env.BaseUrl %>/<%=spardha.Images[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                <a href="<%= process.env.BaseUrl %>/admin/spardha/<%=spardha._id%>/delimg/<%=i%>/">X</a>
                             </div>
                         <%}%>
                     <%}%>    
@@ -63,7 +63,7 @@
                 <%if(spardha.Scorecard){%>
                     <div class="mb-5">
                         Present Score card:
-                        <a class="px-4 py-1 text-black font-light tracking-wider bg-blue-400 rounded" href="http://localhost:3000/stud/gymkhana/sports/<%=spardha.Scorecard%>">
+                        <a class="px-4 py-1 text-black font-light tracking-wider bg-blue-400 rounded" href="<%= process.env.BaseUrl %>/pdf/<%=spardha.Scorecard%>" target="_blank">
                         Score card</a>
                     </div>
                 <%}%>
@@ -74,7 +74,7 @@
             </div>
 
             
-            <button type="submit" class="mt-5 px-4 py-1 font-light tracking-wider text-white bg-blue-900 rounded">Update</button>
+            <button type="submit" class="mt-5 px-4 py-1 font-light tracking-wider text-white bg-gray-900 rounded">Update</button>
         </form>
     </div>
 </main>

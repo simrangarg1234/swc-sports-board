@@ -1,22 +1,24 @@
 const adminRouter = require("express").Router({ mergeParams: true });
 const User = require("../models/users");
 const { isAdmin, isLoggedIn } = require("../middlewares/index");
+require("dotenv").config();
+const baseUrl = process.env.BaseUrl;
 
-adminRouter.get("/", isAdmin, function (req, res) {
+adminRouter.get("/", isLoggedIn,isAdmin, function (req, res) {
   try {
-    return res.redirect("/stud/gymkhana/sports/admin/club/");
+    return res.redirect(baseUrl + "/admin/club/");
   } catch (e) {
     console.log(e.message);
   }
 });
 
-adminRouter.get("/users", async (req, res) => {
+adminRouter.get("/users",isLoggedIn,isAdmin, async (req, res) => {
   const usersList = await User.find({});
   // console.log(usersList);
   res.render("admin/usersList", { usersList });
 });
 
-adminRouter.put("/users/:id", async function (req, res) {
+adminRouter.put("/users/:id",isLoggedIn,isAdmin, async function (req, res) {
   try {
     const id = req.params.id;
     console.log(id);
@@ -29,7 +31,7 @@ adminRouter.put("/users/:id", async function (req, res) {
     data = !user.isAdmin;
 
     await User.findOneAndUpdate({ outlookId: id }, { isAdmin: data });
-    return res.redirect("/stud/gymkhana/sports/admin/users");
+    return res.redirect(baseUrl + "/admin/users");
   } catch (err) {
     console.log(err);
     return res

@@ -2,11 +2,14 @@ var express = require("express"),
   passport = require("passport"),
   userRouter = express.Router();
   Event = require('../models/events');
+  require("dotenv").config();
+const baseUrl = process.env.BaseUrl;
+
 
 require("../config/passportsetup")(passport);
 
 userRouter.get("/login", function (req, res) {
-  res.render("login");
+  res.redirect(baseUrl + "/auth/outlook");
 });
 
 userRouter.get(
@@ -25,19 +28,19 @@ userRouter.get(
   "/auth/outlook/callback",
   passport.authenticate("windowslive", { failureRedirect: "/login" }),
   function (req, res) {
-    res.redirect("/stud/gymkhana/sports/admin");
+    res.redirect(baseUrl + "/admin/club");
   }
 );
 
 userRouter.get("/logout", function (req, res) {
   req.logout();
-  res.redirect("/stud/gymkhana/sports/");
+  res.redirect(baseUrl);
 });
 
 userRouter.get("/", async(req, res)=> {
   id = req.params.id;
   const events = await Event.find({});
-  console.log(events);
+  // console.log(events);
   res.render("home", {events});
 });
 

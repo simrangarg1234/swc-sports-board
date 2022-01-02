@@ -1,4 +1,5 @@
 <%- include("../partials/header.ejs") %>
+<main class="w-full flex-grow p-6">
     <h1 class="text-3xl text-black pb-6">Add Club</h1>
 
     <div class="flex flex-wrap justify-center">
@@ -14,48 +15,26 @@
                 <p>You can add new Club</p>
             </div>
             <div class="leading-loose">
-                <form class="p-10 bg-white rounded shadow-xl" action="/stud/gymkhana/sports/admin/club/create" method="POST"
+                <form class="p-10 bg-white rounded shadow-xl" action="<%= process.env.BaseUrl %>/admin/club/add" method="POST"
                     >
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="name">Title</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="title" placeholder="Name">
+                            name="title" placeholder="Name" required> </input>
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="name">Description</label>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="desc" placeholder="Name">
+                        <textarea class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" rows="4"
+                            name="desc" placeholder="Description" required> </textarea>
                     </div>
-                    <!-- <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="achievements" name="works">Achievements</label>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="achievements" placeholder="Name">
-                    </div> -->
-                    <!-- <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="name">What we do</label>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="info" placeholder="Name">
-                    </div> -->
-                    <!-- <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="name">Gallery</label>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="file"
-                            name="images" placeholder="Name" multiple>
+                    <div class="mt-6">
+                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                            type="submit">Submit</button>
                     </div>
-                    <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="name">Score card</label>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="file"
-                            name="pdf" placeholder="Name">
-                    </div> -->
-                    <!-- <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="name">FAQs</label>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="qstn" placeholder="Type your question">
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
-                            name="ans" placeholder="Type your answer">
-                    </div> -->
-                    <button type="submit" class="btn btn-primary bg-blue-400 rounded text-white-800 ">Submit</button>
+                    
                 </form>
             </div>
         </div>
     </div>
-    <%- include("../partials/footer.ejs") %>
+    </main>
+<%- include("../partials/footer.ejs") %>

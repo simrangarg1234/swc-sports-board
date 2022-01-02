@@ -27,7 +27,7 @@
                                 <div class="grid-cols-3 md:grid">
                                     <div class="col-span-2 text-sm text-left"><%=data.details[i].Description%></div>
                                     <div class="col-span-1 mr-5 text-lg font-normal text-right">
-                                        <a href="http://localhost:3000/stud/gymkhana/sports/<%=data.Scorecard%>"><i class="fas fa-arrow-right fa-sm"></i></a>
+                                        <a href="<%= process.env.BaseUrl %>/<%=data.Scorecard%>"><i class="fas fa-arrow-right fa-sm"></i></a>
                                     </div>
                                 </div>
                             </div>

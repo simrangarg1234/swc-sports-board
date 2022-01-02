@@ -1,9 +1,13 @@
-<%- include("../partials/header.ejs") %>
-<main>
-  <div class="gallery">
-  <h1><%=data.name%></h1>
-  <br>
-    <p><%=data.info%></p>
-  </div>
+<%- include("../partials/header.ejs") %> 
+<main class="px-4 py-4">
+  
+    <div class="imgwrap shadow-sm">
+        <img src="/<%=data.image%>" style="width: 400px; height: 350px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+    </div>
+    Name
+    <div class="w-full px-5 m-2 py-4 text-gray-700 bg-gray-200 rounded"><h1><%=data.name%></h1></div>
+    Description
+    <div class="w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=data.info%></div>
+    
 </main>
-<%- include("../partials/footer.ejs") %>
+<%- include("../partials/footer.ejs") %> 

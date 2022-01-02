@@ -1,38 +1,25 @@
 <%- include("../partials/header.ejs") %>
-<main>
-
-    <div class="text-center">
-
-        <div class="text-2xl font-bold"><%=data.name%></div>
-
+<main class="w-full flex-grow p-6">
+  <div class="imgwrap shadow-sm">
+        <img src="/<%=data.image%>" style="width: 400px; height: 350px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
     </div>
-
-   <div class="mb-8">
-    <label class="block text-sm text-gray-600" for="pdf">Score card</label>
-    <%if(data.score){%>
-      Present Score card:
-      <div class="btn btn-primary bg-blue-400  rounded"><a class="w-auto" style="width:60px"href="http://localhost:3000/stud/gymkhana/sports/<%=data.score%>">
-        Score card</a></div>
-      
-    <%}%>
-
-   </div>
-
-  <div class="grid grid-cols-2 gap-12 ml-8 mr-8">
-    <div class="gallery">
-        <%if(data.image){%>
-          
-              <div class="imgwrap shadow-sm">
-                  <img src="http://localhost:3000/stud/gymkhana/sports/<%=data.image%>"  height="auto" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
-              </div>
-           
-          
-    
-        <%}%>
-    </div>
-    <div class=""><%=data.desc%></div>
+  <div class="mt-20">
+    <div class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" style="display: inline-block;">Name</div>
   </div>
+  <div class="title w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><h1><%=data.name%></h1></div>
+  <div class="mt-20">
+    <div class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" style="display: inline-block;">Description</div>
+  </div>
+  <div class="desc w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=data.desc%></div>
 
+  <div class="mt-5">
+    <label class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" for="pdf">Score card</label>
+    <%if(data.score){%>
+        <div class="mb-5">
+            <a class="px-4 py-1 text-black font-light tracking-wider bg-blue-400 rounded" href="<%= process.env.BaseUrl %>/pdf/<%=data.score%>" target="_blank">
+            Score card</a>
+        </div>
+    <%}%>
+  </div>
 </main>
-
 <%- include("../partials/footer.ejs") %>

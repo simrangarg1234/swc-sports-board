@@ -5,10 +5,7 @@ const isLoggedIn = (req, res, next) => {
     return next();
   } else {
     // render this
-    return res.status(401).json({
-      status: "Not authenticated",
-      msg: "You are not authenticated !",
-    });
+    return res.redirect("/stud/gymkhana/sports/login")
   }
 };
 
@@ -20,7 +17,7 @@ const isAdmin = (req, res, next) => {
   if (req.user.isAdmin) {
     return next();
   } else {
-    return res.redirect("/login");
+    return res.redirect("/");
   }
 };
 

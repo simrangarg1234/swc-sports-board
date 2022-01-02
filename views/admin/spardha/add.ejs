@@ -15,7 +15,7 @@
                 <p>You can add new spardha event</p>
             </div>
             <div class="leading-loose">
-                <form class="p-10 bg-white rounded shadow-xl" action="/stud/gymkhana/sports/admin/spardha" method="POST">
+                <form class="p-10 bg-white rounded shadow-xl" action="<%= process.env.BaseUrl %>/admin/spardha" method="POST">
                     <!--
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="Clubname">Club Name</label>
@@ -48,7 +48,7 @@
                     </div>
                     
                     <div class="mt-3">
-                        <button class="px-4 py-1 font-light tracking-wider text-white bg-blue-900 rounded" type="submit">Add Event</button>
+                        <button class="px-4 py-1 font-light tracking-wider text-white bg-gray-900 rounded" type="submit">Add Event</button>
                     </div>
                 </form>
             </div>

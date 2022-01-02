@@ -7,6 +7,13 @@
 
 <div class="flex flex-wrap about-container" id="about">
 
+  <div class="content flex flex-col hidden lg:block">
+    <div>CONTENTS</div>
+    <div><a href="#about">About us</a></div>
+    <div><a href="#events">Events</a></div>
+
+  </div>
+
   <div class="about">
     <div class="about-header">
       <h1>About Us</h1>
@@ -22,12 +29,7 @@
     </p>
   </div>
 
-  <div class="content flex flex-col">
-    <div>CONTENTS</div>
-    <a href="#about">About us</a>
-    <a href="#events">Events</a>
-
-  </div>
+  
 
 </div>
 
@@ -39,13 +41,6 @@
         <h1>Events at IIT Guwahati</h1>
       </div>
     </div>
-
-
-    <!-- <div class="content flex flex-col">
-      <div>CONTENTS</div>
-      <a href="#">Events</a>
-      <a href="#">Announcements</a>
-    </div> -->
 
   </div>
 
@@ -69,13 +64,10 @@
                 <% if(events[i].score.length != 0) { %>
                   <div>
                     <div class="event-arrow">
-                      <a href=<%=events[i].score%>> <i class="fas fa-arrow-right fa-sm"></i></a>
-                   </div>
-
-                </div>
+                      <a href=pdf/<%=events[i].score%>> <i class="fas fa-arrow-right fa-sm"></i></a>
+                    </div>
+                  </div>
                 <% } %>
-
-
               </div>
 
             </div>

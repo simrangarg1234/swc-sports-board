@@ -4,7 +4,7 @@
 
 <h1 class="text-3xl text-black pb-6">Clubs</h1>
 <div class="mt-6">
-    <a class="px-4 py-2 text-white font-light tracking-wider bg-gray-900 rounded" href="/stud/gymkhana/sports/admin/club/add">Add Club</a>
+    <a class="px-4 py-2 text-white font-light tracking-wider bg-gray-900 rounded" href="<%= process.env.BaseUrl %>/admin/club/add">Add Club</a>
 </div>
 <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">
@@ -23,11 +23,13 @@
                     <tr>
                         <td class="text-left py-3 px-4"><tbody class="text-gray-700" id="myMenu">
                         <td class="w-2/3 text-left py-3 px-4"><%=clubs[i].title%></td>
-                        <td class="w-1/3 text-right py-3 px-4"><a href="/stud/gymkhana/sports/admin/club/view/<%=clubs[i]._id%>" target="_blank">View</a></td>
-                        <td class="w-1/3 text-right py-3 px-4"><a href="/stud/gymkhana/sports/admin/club/<%=clubs[i]._id%>/edit/">Edit</a></td>
-                        <td class="w-1/3 text-right py-3 px-4"><a href="/stud/gymkhana/sports/admin/club/<%=clubs[i]._id%>/delete/">Delete</a></td>
-                        <!-- <td class="w-1/3 text-left py-3 px-4">
-                        <form action="" method="POST"> <button type="submit">DELETE</button> </form></td> -->
+
+                        <td class="w-1/3 text-right py-3 px-4"><a href="<%= process.env.BaseUrl %>/admin/club/view/<%=clubs[i]._id%>" >View</a></td>
+
+                        <td class="w-1/3 text-right py-3 px-4"><a href="<%= process.env.BaseUrl %>/admin/club/<%=clubs[i]._id%>/edit/">Edit</a></td>
+
+                        <td class="w-1/3 text-right py-3 px-4"><a href="<%= process.env.BaseUrl %>/admin/club/<%=clubs[i]._id%>/delete/">Delete</a></td>
+
                         </tr>
                 <%}%>
 

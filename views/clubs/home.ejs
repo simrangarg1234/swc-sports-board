@@ -23,13 +23,13 @@
     </p>
   </div>
 
-  <div class="content flex flex-col">
+  <div class="content flex flex-col hidden lg:block">
     <div>CONTENTS</div>
-    <a href="#about">About us</a>
-    <a href="#whatwedo">What we do</a>
-    <a href="#achievements">Achievements</a>
-    <a href="#events"> Past events</a>
-    <a href="#photos">Photos</a>
+    <div><a href="#about">About us</a></div>
+    <div><a href="#whatwedo">What we do</a></div>
+    <div><a href="#achievements">Achievements</a></div>
+    <div><a href="#events"> Past events</a></div>
+    <div><a href="#photos">Photos</a></div>
 
   </div>
 
@@ -38,43 +38,40 @@
 <div class="what-we-do mt-24 ml-20 mb-12">
 
   <%if(club.info.length>0){%>
-    <div id="whatwedo" class="about-header mb-4">
+    <div id="whatwedo" class="about-header mb-8 mt-16">
       <h1>What we do?</h1>
     </div>
     <div class="grid md:grid-cols-2  sm:grid-cols-1 gap-8">
       <%for(let i=0;i<club.info.length;i++){%>
-        <div class="col-span-1 flex flex-col">
+        <div class="col-span-1 flex flex-col" style="border-bottom: 1px solid rgb(217, 217, 217);">
           <div class="pb-8">
             <%=club.info[i]%>
           </div>
-          <div><hr></div>
         </div>
       <%}%>
     </div>
  <%}%>
-    <div id="achievements" class="about-header mb-4">
+    <div id="achievements" class="about-header mb-8 mt-16">
       <h1>Achievements</h1>
     </div>
     <div class="grid md:grid-cols-2  sm:grid-cols-1 gap-8">
       <%for(let i=0;i<club.achievements.length;i++){%>
-        <div class="col-span-1 flex flex-col">
+        <div class="col-span-1 flex flex-col" style="border-bottom: 1px solid rgb(217, 217, 217);">
           <div class="pb-8">
             <%=club.achievements[i]%>
           </div>
-          <div><hr></div>
         </div>
       <%}%>
     </div>
-    <div id="events" class="about-header mb-4">
+    <div id="events" class="about-header mb-8 mt-16">
       <h1>Past Events</h1>
     </div>
     <div class="grid md:grid-cols-2  sm:grid-cols-1 gap-8">
       <%for(let i=0;i<club.pe.length;i++){%>
-        <div class="col-span-1 flex flex-col">
+        <div class="col-span-1 flex flex-col" style="border-bottom: 1px solid rgb(217, 217, 217);">
           <div class="pb-8">
             <%=club.pe[i]%>
           </div>
-          <div><hr></div>
         </div>
       <%}%>
     </div>
@@ -83,12 +80,12 @@
         <div style="cursor: pointer;" class=" col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
           <div class="shadow-md rounded-md overflow-hidden">
             <img src="/<%=club.heads[i].image%>" style="width: 350px; height: 350px" alt="">
-            <div class="p-4 head-text" style="width: 350px">
+            <div class="p-4 head-text text-white" style="width: 350px; background: #F97F51;">
               <div class="grid grid-cols-3">
                 <div class="col-span-2 text-left text-2xl"><%=club.heads[i].name%></div>
-                <div class="col-span-1 text-right font-normal text-sm"><%=club.heads[i].position%></div>
+                <div class="col-span-1 text-right font-normal text-sm mt-2"><%=club.heads[i].position%></div>
               </div>
-              <p class="mb-4 text-sm">
+              <p class="mb-3 text-sm mt-2 pt-2" style="border-top: 1px solid white;">
                 Contact:<%=club.heads[i].contact%>
                 WebMail:<%=club.heads[i].email%>
               </p>
