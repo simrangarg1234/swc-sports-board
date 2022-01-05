@@ -3,20 +3,9 @@
 <%- include('../partials/navbar') %>
 
 
-<div class="mx-auto pt-16 pb-40 pr-2 items-stretch " style="height: 30%; width:100%" >
+<div  class="mt-4 bg-bottom bg-left bg-no-repeat bg-cover bgimage h-96 " style=" background-image: url('/uploads/background-img.png');">
 
-      <div style="z-index: -1; position: absolute; width: 100%; aspect-ratio: 3.5 / 1;
-  background-image: url('/uploads/background-img.png');">
-</div>
-
-<div class="flex flex-wrap mt-20 ml-20">
-
-    <div class="about">
-      <div class="about-header text-white font-Raleway ">
-        <h1>Team Structure</h1>
-      </div>
-    </div>
-</div>
+<div class="club-header ">Team Structure</div>
 <!-- <div class=" team-buttons sm:justify-center sm:ml-2 sm:pl-12 sm:m-2 sm:gap-4 lg:flex lg:justify-start  lg:pl-12 lg:gap-2">
       <button class="bg-white mt-2 mr-2 hover:bg-blue-900 hover:text-white py-2 px-2 rounded-md">Chairman</<button >
         <button class="bg-white mt-2 mr-2 hover:bg-blue-900 hover:text-white py-2  px-2 rounded-md" >Gymkhana Office</<button >
@@ -25,19 +14,15 @@
               <button class="bg-white mt-2 mr-2 hover:bg-blue-900 hover:text-white py-2 px-2 rounded-md" >New Sac Building</button >
                 <button class="bg-white mt-2 mr-2 hover:bg-blue-900 hover:text-white py-2 px-2 rounded-md">Hostels</<button >
 </div> -->
-</div>
 
-<div class="relative md:-top-20 lg:-top-32">
-  <div class="flex flex-wrap justify-center">
+<div class="mt-20 sm:mx-10 md:mx-20 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 ">
+  
 <% for(let member of teams) { %>
-<div
-        style=" height: 450px; background-color: #F97F51; "
-        class="md:w-1/2 lg:w-1/4 md:block overflow-hidden rounded-md mb-24 mx-4 cursor-pointer"
-      >
+  <div style=" height: 450px; background-color: #F97F51;" class=" md:block overflow-hidden rounded-md mb-24 mx-4 cursor-pointer">
         <div class="bg-gray-200 rounded-md ">
           <img
-            style="height: 300px"
-            src=<%= member.image %>
+            style="height: 300px;"
+            src=/<%= member.image %>
             alt="ProfilePic"
             class="w-full object-contain "
           />
@@ -70,85 +55,5 @@
       </div>
 <% } %>
     </div>
-    </div>
-
-
-
-<!--
-  <div class=" team grid grid-cols-2 mt-4">
-      <div class=" col-span-1" >
-        <div class=" overflow-hidden" style="aspect-ratio:1/1">
-          <img src="https://source.unsplash.com/random/1280x720" style="width:87.4%; height:67%" alt="">
-          <div class="p-2 team-text " style="width:87.4%; height:33%"> -->
-
-            <!-- <div class="grid grid-cols-3">
-
-                <div class="col-span-3 border-b-2 border-black-600" >
-                                <div class="col-span-2 text-left text-sm lg:text-2xl">Tony Stark</div>
-                                <p class=" text-white text-sm lg:text-lg mb-2">Dean</p>
-                            </div>
-
-                            <div class="grid grid-cols-1">
-
-                                    <div class="grid grid-cols-3">
-                                        <div class="col-span-1 text-left font-normal text-xs lg:text-lg mt-2">email@iitg.ac.in</div>
-                                        <div class=" text-right col-span-2 font-normal text-xs lg:text-lg mt-2">+91 1234567890</div>
-                                    </div>
-
-                            </div>
-                          </div>
-                          </div>
-                          </div>
 </div>
 
-
-
-
-  <div class="team-2 grid grid-cols-2 gap-4 ">
-
-    <div class=" col-span-1 ">
-      <div class="overflow-hidden" style="aspect-ratio:1/1">
-        <img class="team-image" src="https://source.unsplash.com/random/1280x720" style="width: 98%; height: 67%" alt="">
-        <div class="team-text p-2 " style="width:98%;">
-
-          <div class="grid grid-cols-3">
-             <div class="col-span-3 border-b-2 border-black-600" >
-                  <div class="col-span-2 text-left  text-xs lg:text-2xl" >Tony Stark</div>
-                <p class=" text-white text-xs md:text-md mb-2 lg:text-lg ">Dean</p>
-                </div>
-                  </div>
-              <div class="grid grid-cols-1">
-                      <div class="grid grid-cols-3">
-                          <div class="col-span-1 text-left font-normal mt-2 text-xs lg:text-lg">email@iitg.ac.in</div>
-                            <div class="col-span-2 text-right font-normal text-xs lg:text-lg mt-2">+91 1234567890</div>
-                                  </div>
-
-                          </div>
-                        </div>
-                        </div>
-                        </div>
-
-  <div class=" col-span-1 ">
-      <div class=" overflow-hidden" style="aspect-ratio:1/1">
-          <img src="https://source.unsplash.com/random/1280x720" style="width:98%; height:67%" alt="">
-              <div class="p-2 team-text" style="width:98% ; height:33%">
-
-                <div class="grid grid-cols-3">
-                   <div class="col-span-3 border-b-2 border-white" >
-                  <div class="col-span-2 text-left text-xs md:text-md lg:text-2xl ">Tony Stark</div>
-                      <p class=" text-white text-xs md:text-sm lg:text-lg mb-2">Dean</p>
-                        </div>
-                    </div>
-
-                  <div class="grid grid-cols-1">
-
-                  <div class="grid grid-cols-3">
-                  <div class="col-span-1 text-left font-normal mt-2 text-xs lg:text-lg">email@iitg.ac.in</div>
-                  <div class="col-span-2 text-right font-normal text-xs mt-2 lg:text-lg">+91 1234567890</div>
-                  </div>
-
-                                              </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                          </div> -->

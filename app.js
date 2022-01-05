@@ -1,33 +1,34 @@
 var express = require("express"),
   mongoose = require("mongoose"),
   cors = require("cors");
-(path = require("path")),
-  (session = require("express-session")),
-  (cookieParser = require("cookie-parser")),
-  (bodyParser = require("body-parser")),
-  (methodOverride = require("method-override")),
-  (passport = require("passport")),
-  (multer = require("multer"));
-(util = require("util")),
-  (User = require("./models/users")),
-  (Team) = require("./models/team"),
-  (ejs = require("ejs")),
-  (ejsMate = require("ejs-mate")),
-  (flash = require("connect-flash")),
-  (teamRouter = require("./routes/team")),
-  (alumniRouter = require("./routes/alumni"));
-clubRouter = require("./routes/club");
-(userRouter = require("./routes/user")),
-  (adminRouter = require("./routes/admin"));
-eventsRouter = require("./routes/events");
-facilityRouter = require("./routes/facility");
-spardhaRouter = require("./routes/spardha");
-require("dotenv").config();
-const fs = require("fs");
-//  const  {upload}= require('./middlewares/index')
+  path = require("path"),
+  session = require("express-session"),
+  cookieParser = require("cookie-parser"),
+  bodyParser = require("body-parser"),
+  methodOverride = require("method-override"),
+  passport = require("passport"),
+  multer = require("multer"),
+  util = require("util"),
+  ejs = require("ejs"),
+  ejsMate = require("ejs-mate"),
+  flash = require("connect-flash");
+
+const teamRouter = require("./routes/team"),
+  alumniRouter = require("./routes/alumni"),
+  clubRouter = require("./routes/club"),
+  userRouter = require("./routes/user"),
+  adminRouter = require("./routes/admin"),
+  eventsRouter = require("./routes/events"),
+  facilityRouter = require("./routes/facility"),
+  spardhaRouter = require("./routes/spardha");
+
+
 const url = "mongodb+srv://sports:board@data.tii7o.mongodb.net/sportsBoard";
 //const url = process.env.MONGO_URI;
+
+require("dotenv").config();
 const baseUrl = process.env.BaseUrl;
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -92,87 +93,6 @@ app.use(baseUrl + "/admin/alumni", alumniRouter);
 app.use(baseUrl + "/admin/facility", facilityRouter);
 app.use(baseUrl + "/admin/spardha", spardhaRouter);
 app.use(baseUrl + "/admin", adminRouter);
-
-//Mini Club Pages
-const Club = require("./models/club");
-app.get(baseUrl + "/clubs/:clubid/home", (req, res) => {
-  Club.findOne({ _id: req.params.clubid }, (err, data) => {
-    console.log("Club data", data);
-    res.render("clubs/home", { club: data });
-  });
-});
-//Home page for clubs
-app.get(baseUrl + "/clubs", (req, res) => {
-  Club.find({}, (err, data) => {
-    console.log("Club data", data);
-    res.render("clubs/club", { data });
-  });
-  // res.render('clubs/club');
-});
-
-//Spardha
-const Spardha = require('./models/spardha');
-app.get(baseUrl + "/spardha", (req, res) => {
-  Spardha.find({}, (err, data) => {
-    res.render("spardha/view", { data });
-  }); 
-});
-
-app.get(baseUrl + "/spardha/:year", (req, res) => {
-  Spardha.findOne({Year: req.params.year}, (err, datas) => {
-    res.render("spardha/past", { data: datas });
-  }); 
-});
-
-app.get(baseUrl + "/spardha/past/:yr", (req,res)=>{
-  Spardha.find({}, (err, data) => {
-    res.render(`spardha/spardha${req.params.yr}`, {data});
-  });
-});
-
-app.all(baseUrl + "/spardha", (req, res) => {
-  Spardha.find({}, (err, data) => {
-    res.render("spardha/spardhaNav", { data });
-  });
-});
-
-//Alumni
-const Alumni = require('./models/alumni');
-app.get(baseUrl + "/alumni", (req, res) => {
-  Alumni.find({}, (err, data) => {
-    res.render("alumni/view", { data });
-  });
-});
-
-app.get(baseUrl + "/pdf/uploads/:id", (req, res) => {
-  const id = req.params.id;
-  const filePath = "uploads/" + id;
-  console.log(filePath);
-  fs.readFile(filePath, (err, data) => {
-    res.contentType("application/pdf");
-    return res.send(data);
-  });
-});
-
-
-
-app.get(baseUrl + '/teams', (req,res)=>{
-  Team.find({}).sort( { priority: 1 } )
-  .then((teams) => {
-    res.render('teams/view',{ teams });
-  });
-});
-
-const facilities = require('./models/facility');
-app.get(baseUrl + "/facilities", (req, res) => {
-  facilities.find({}, (err, data) => {
-    res.render("facilities/view", { data });
-  }); 
-});
-
-// app.get('/facilities', (req, res) => {
-//   res.render('facilities/view');
-// });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

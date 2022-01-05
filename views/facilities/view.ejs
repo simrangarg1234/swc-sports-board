@@ -2,7 +2,7 @@
 <%- include('../partials/gallery')  %>
 <%- include('../partials/navbar') %>
 
-<div class="facility  ml-20 mb-12 mr-20 grid grid-cols-12  ">
+<div class="  ml-20 mb-12 mr-20 grid grid-cols-12  ">
   <div class="col-span-12">
 
     <div class="facilities mt-20">
@@ -15,17 +15,14 @@
       <div class="sm:grid sm:grid-col-1 lg:gap-6 md:grid md:grid-cols-2 md:gap-8 lg:grid lg:grid-cols-3 lg:gap-12">
 
         <%for(let facility of data){%>
-          <div class="col-span-1 mb-8 border-b-2 border-black-600">
+          <div class="col-span-1 mb-8 border-b-2" style="background-color: #F97F51;">
 
-            <div style="cursor: pointer; aspect-ratio:1/1;" class="col-span-1 mb-4 flex flex-wrap pb-10 pt-4">
-              <div class="shadow-md overflow-hidden">
+            <div style="cursor: pointer; height: 300px; object-fit:cover;" class="col-span-1">
                 <img src="/<%=facility.image[0]%>" style="width: 100%; height: 100%" alt="">
-              </div>
             </div>
-            <div class= "text-xl font-normal font-bold"> <%=facility.name%></div>
-            <%=facility.info%>
-            <%=facility.image[0]%>
-            <br><br>
+            <div class= "text-xl font-normal font-bold text-white pl-4 pt-5" style="background-color: #F97F51;"> <%=facility.name%></div>
+            <div class= "font-normal text-white pl-4 pt-2 pb-6" style="background-color: #F97F51;"> <%=facility.info%> </div>
+            
           </div>
         <%}%>
       </div>

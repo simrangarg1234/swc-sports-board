@@ -3,21 +3,22 @@ var router = express.Router();
 const mongoose = require('mongoose');
 const catchAsync = require('../utils/catchAsync');
 const Club = require('../models/club');
+const Gallery = require('../models/photogallery');
 const { isAdmin,isLoggedIn } = require("../middlewares/index");
 const {upload}= require('../middlewares/index')
 var uploadval= upload.fields([{name:'images',maxCount:10},{name:'pdf',maxCount:1}]);
 require("dotenv").config();
+const fs = require('fs');
 var uploadhead=upload.fields([{name:'images',maxcount:1}]);
 
 const baseUrl = process.env.BaseUrl;
 
 //Main page
 router.get('/', isLoggedIn,isAdmin, async (req, res) => {
-    Club.find({},(err,data)=>{
-        // console.log("data",data)
-        res.render('admin/club/index',{clubs:data});
-    })
-    
+    const data = await Club.find({});
+    const gal = await Gallery.find({} , { clubGallery: 1});
+    const gallery = gal[0].clubGallery;
+    res.render('admin/club/index', {clubs:data,gallery});
 });
 
 //Add club :GET Request
@@ -72,6 +73,53 @@ router.get('/view/:id',isLoggedIn,isAdmin,(req,res)=>{
         res.render('admin/club/view',{data})
     })
 })
+
+router.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res) => {
+
+    if(req.files){
+        const gallery = await Gallery.find({});
+        if(gallery.length == 0) {
+            var data = await new Gallery({});
+            data.clubGallery.push(req.files["images"][0].path);
+            data.save().then((record)=>{
+                console.log("record",record);
+                res.redirect(baseUrl+'/admin/club/');
+            }).catch(err=>{
+                console.log(err)
+                res.redirect(baseUrl+'/admin/club/');
+            });
+        } else {
+            Gallery.find({}, (err, data) => {
+                data[0].clubGallery.push(req.files["images"][0].path);
+                data[0].save().then((record)=>{
+                    console.log("record",record);
+                    res.redirect(baseUrl+'/admin/club/');
+                }).catch(err=>{
+                    console.log(err)
+                    res.redirect(baseUrl+'/admin/club/');
+                });
+            })
+        }
+    } else {
+        res.redirect(baseUrl+'/admin/club/');
+    }
+});
+
+router.get("/gallery/:idx", isLoggedIn, isAdmin, async (req, res) => {
+    Gallery.find({}, {clubGallery: 1},(err,data)=>{
+        if (data[0].clubGallery!=null) {
+            fs.unlink(`${data[0].clubGallery[req.params.idx]}`, (err) => {
+              if (err) {
+                console.error(err);
+                return res.send(err);
+              }});
+        }
+        data[0].clubGallery.splice(req.params.idx,1);
+        data[0].save().then(()=>{
+            res.redirect(baseUrl+`/admin/club`);
+        })
+    })
+});
 
 //View:Add heads->Get Request
 router.get('/:clubid/add/head',isLoggedIn,isAdmin,(req,res)=>{
@@ -300,6 +348,13 @@ router.post('/imgpdf',isLoggedIn,isAdmin,uploadval,(req,res)=>{
 //Delete images by clicking on X :Sub part of View->images
 router.get('/:id/delimg/:idx/',isLoggedIn,isAdmin,(req,res)=>{
     Club.findOne({_id:req.params.id}).then(data=>{
+        if (data.gallery!=null) {
+            fs.unlink(`${data.gallery[req.params.idx]}`, (err) => {
+              if (err) {
+                console.error(err);
+                return res.send(err);
+              }});
+        }
         data.gallery.splice(req.params.idx,1);
         data.save().then(()=>{
             res.redirect(baseUrl+`/admin/club/view/${req.params.id}`);
@@ -315,7 +370,7 @@ router.get('/:id/delimg/:idx/',isLoggedIn,isAdmin,(req,res)=>{
 
 
 //Not using this. This is previously used for creating and updating data of club
-router.post('/',uploadval,isLoggedIn,isAdmin, async (req, res) => {
+router.post('/',isLoggedIn,isAdmin,uploadval, async (req, res) => {
     const data = req.body;
     console.log('Req.body',req.body,"\n");
     // console.log('req.files',req.files,'\n')

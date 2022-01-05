@@ -21,7 +21,7 @@ module.exports = (passport) => {
           outlookId: profile.id,
         };
 
-        User.find({}, function (err, results) {
+        User.find({isAdmin: true}, function (err, results) {
           if (err) {
             console.log(err);
           }

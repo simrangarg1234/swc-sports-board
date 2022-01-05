@@ -17,6 +17,7 @@
                         <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Clubname</th>
                         <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Description</th>
                         <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Date / Time</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Scorecard</th>
                         <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Edit</th>
                         <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
                     </tr>
@@ -27,6 +28,7 @@
                             <td class="text-left py-3 px-4"><%=spardha.details[i].Clubname%></td>
                             <td class="text-left py-3 px-4"><%=spardha.details[i].Description%></td>
                             <td class="text-left py-3 px-4"><%=spardha.details[i].DateTime%></td>
+                            <td class="text-left py-3 px-4"><a href="<%= process.env.BaseUrl %>/pdf/<%=spardha.details[i].Scorecard%>">View</a></td>
                             <td class="w-1/3 text-left py-3 px-4"><a href="<%= process.env.BaseUrl %>/admin/spardha/<%=spardha._id%>/edit/event/<%=i%>">Edit</a></td>
                             <td class="w-1/3 text-left py-3 px-4"><a href="<%= process.env.BaseUrl %>/admin/spardha/<%=spardha._id%>/delete/event/<%=i%>">Delete</a></td>
                         </tr>
@@ -47,7 +49,7 @@
                         Present Gallery
                         <%for(let i=0;i<spardha.Images.length;i++){%>
                             <div class="mb-5 imgwrap shadow-sm">
-                                <img src="<%= process.env.BaseUrl %>/<%=spardha.Images[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                <img src="/<%=spardha.Images[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
                                 <a href="<%= process.env.BaseUrl %>/admin/spardha/<%=spardha._id%>/delimg/<%=i%>/">X</a>
                             </div>
                         <%}%>
@@ -58,7 +60,7 @@
                     name="images" multiple >
             </div>
 
-            <div class="mt-5">
+            <!-- <div class="mt-5">
                 <label class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" for="pdf">Score card</label>
                 <%if(spardha.Scorecard){%>
                     <div class="mb-5">
@@ -71,7 +73,7 @@
                 
                 <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="scoreCard" type="file"
                     name="pdf" >
-            </div>
+            </div> -->
 
             
             <button type="submit" class="mt-5 px-4 py-1 font-light tracking-wider text-white bg-gray-900 rounded">Update</button>

@@ -14,6 +14,12 @@ const detailSchema = new Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+    },
+    Scorecard: { 
+        type: String,
+    }
 })
 const spardhaSchema = new Schema({
     
@@ -23,9 +29,6 @@ const spardhaSchema = new Schema({
     },
     Status: { 
         type: String
-    },
-    Scorecard: { 
-        type: String,
     },
     Images: { 
         type: [String] 

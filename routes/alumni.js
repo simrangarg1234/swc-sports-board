@@ -7,6 +7,7 @@ const { isLoggedIn,isAdmin } = require("../middlewares/index");
 const { upload } = require("../middlewares/index");
 var uploadval = upload.fields([{ name: "images", maxCount: 5 }]);
 require("dotenv").config();
+const fs = require('fs');
 const baseUrl = process.env.BaseUrl;
 
 router.get('/', isLoggedIn,isAdmin, async (req, res) => {
@@ -53,30 +54,45 @@ router.put('/:id',isLoggedIn,isAdmin, uploadval, catchAsync(async (req, res) => 
 
     const id = req.params.id;
     const data = req.body;
-    const name =  data.name;
-    const email =  data.email;
-    const contact = data.contact;
-    const experience =  data.experience;
+    const alumni = await Alumni.findById(req.params.id);
+
+    if (!alumni){
+      return res.status(404).send("Alumni with the given id not found");
+    }
     
-     
-    let alumni = await Alumni.findByIdAndUpdate(id, {
-        
-        $set: {
-            name,
-            email,
-            contact,
-            experience,
+    alumni.name = data.name;
+    alumni.email = data.email;
+    alumni.contact = data.contact;
+    alumni.experience = data.experience;
+    if(req.files['images']){
+        if (alumni.image!=null && alumni.image.indexOf("https://") == -1) {
+            console.log(`${alumni.image}`);
+            fs.unlink(`${alumni.image}`, (err) => {
+              if (err) {
+                console.error(err);
+                return res.send(err);
+              }});
         }
-    }, {new: true})
-    if(req.files){
         alumni.image = req.files["images"][0].path;
     }
+
+    await alumni.save();
+
     req.flash('success', 'Member details updated!');
     res.redirect(baseUrl + '/admin/alumni');
 }));
     
 router.delete('/:id',isLoggedIn,isAdmin, catchAsync(async (req, res) => {
     const { id } = req.params;
+    const data = await Alumni.findById(id);
+    if (data.image.indexOf("https://") == -1) {
+        console.log(`${data.image}`);
+        fs.unlink(`${data.image}`, (err) => {
+          if (err) {
+            console.error(err);
+            return res.redirect(baseUrl+"/admin/events");
+          }});
+    }
     await Alumni.findByIdAndDelete(id);
     req.flash('success', 'Member no longer exists!')
     res.redirect(baseUrl+'/admin/alumni');
@@ -84,6 +100,14 @@ router.delete('/:id',isLoggedIn,isAdmin, catchAsync(async (req, res) => {
 
 router.get('/:id/delimg/',isLoggedIn,isAdmin,(req,res)=>{
     Alumni.findOne({_id:req.params.id}).then(data=>{
+        if (data.image.indexOf("https://") == -1) {
+            console.log(`${data.image}`);
+            fs.unlink(`${data.image}`, (err) => {
+              if (err) {
+                console.error(err);
+                return res.redirect(baseUrl+"/admin/events");
+              }});
+        }
         data.image = null;
         data.save().then(()=>{
             res.redirect(baseUrl+`/admin/alumni/${req.params.id}/edit`);

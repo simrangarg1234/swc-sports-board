@@ -1,5 +1,5 @@
 <% layout('layouts/layout') %>
-<%- include('../partials/carousel')  %>
+<%- include('../partials/gallery')  %>
 <%- include('../partials/navbar') %>
 
   <!-- <div class="bg-gradient-to-b from-red-600 via-green-600 to-blue-800"> -->
@@ -12,7 +12,7 @@
     <%for(let i=0;i<data.length;i++){%>
      
 
-      <div class="rounded overflow-hidden shadow-lg m-4" onclick="location.href='<%= process.env.BaseUrl %>/clubs/<%=data[i]._id%>/home'">
+      <div class="rounded overflow-hidden shadow-lg m-6" onclick="location.href='<%= process.env.BaseUrl %>/clubs/<%=data[i]._id%>/home'">
         <div class="flex-col" style="height: 100%">
           <div style="overfow: hidden; display: flex; height: 100%; object-fit:cover;">
             <img class="w-full" src="/<%=data[i].gallery[0]%>" style="object-fit:cover;">

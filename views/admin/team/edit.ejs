@@ -15,7 +15,7 @@
                 <p>You need to edit </p>
             </div>
             <div class="leading-loose">
-                <form class="p-10 bg-white rounded shadow-xl" action="<%= process.env.BaseUrl %>/admin/team/<%=team._id%>?_method=PUT" method="POST">
+                <form class="p-10 bg-white rounded shadow-xl" action="<%= process.env.BaseUrl %>/admin/team/<%=team._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="priority">Priority</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="priority" type="text"
@@ -34,7 +34,7 @@
                     <%if(team.image){%>
                         Present Image
                             <div class="imgwrap shadow-sm">
-                                <img src="<%=team.image%>" width="100px" height="100px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                <img src="/<%=team.image%>" width="100px" height="100px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
                                 <a href="<%= process.env.BaseUrl %>/admin/team/<%=team._id%>/delimg/">X</a>
                             </div>
                     <%}%>
