@@ -1,7 +1,7 @@
 {
   "name": "hab2.0",
   "version": "1.0.0",
-  "description": "Upgraded version of HAB Portal",
+  "description": "Sports Board Website",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,14 +9,10 @@
     "dev": "nodemon app.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rahul130500/HAB2.0.git"
+    "type": "git"
   },
   "author": "SWC",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/rahul130500/HAB2.0/issues"
-  },
   "homepage": "https://github.com/rahul130500/HAB2.0#readme",
   "dependencies": {
     "body-parser": "^1.19.0",

@@ -82,7 +82,7 @@ app.set("trust proxy", 1);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => res.redirect(baseUrl));
+// app.get("/", (req, res) => res.redirect(baseUrl));
 
 app.use(baseUrl, userRouter);
 app.use(baseUrl + "/admin/events", eventsRouter);
