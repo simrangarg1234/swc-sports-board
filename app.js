@@ -1,18 +1,24 @@
-var express = require("express"),
-  mongoose = require("mongoose"),
-  cors = require("cors");
-  path = require("path"),
-  session = require("express-session"),
-  cookieParser = require("cookie-parser"),
-  bodyParser = require("body-parser"),
-  methodOverride = require("method-override"),
-  passport = require("passport"),
-  multer = require("multer"),
-  util = require("util"),
-  ejs = require("ejs"),
-  ejsMate = require("ejs-mate"),
-  flash = require("connect-flash");
+const express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config();
 
+const methodOverride = require("method-override");
+const passport = require("passport");
+const session = require("express-session");
+const mongoSanitize = require("express-mongo-sanitize");
+const MongoStore = require("connect-mongo")(session);
+const flash = require("connect-flash");
+const cookieSession = require("cookie-session");
+const helmet = require("helmet");
+require("dotenv").config();
+
+const url = "mongodb+srv://sports:board@data.tii7o.mongodb.net/sportsBoard";
+//const url = process.env.MONGO_URI;
+// const url = "mongodb://localhost:27017";
+const baseUrl = process.env.baseUrl;
+const PORT = process.env.PORT || 3000;
+
+// Imported Routes
 const teamRouter = require("./routes/team"),
   alumniRouter = require("./routes/alumni"),
   clubRouter = require("./routes/club"),
@@ -22,68 +28,66 @@ const teamRouter = require("./routes/team"),
   facilityRouter = require("./routes/facility"),
   spardhaRouter = require("./routes/spardha");
 
-
-const url = "mongodb+srv://sports:board@data.tii7o.mongodb.net/sportsBoard";
-//const url = process.env.MONGO_URI;
-
-require("dotenv").config();
-const baseUrl = process.env.BaseUrl;
-
-
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-mongoose.connect(
-  url,
-  {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  },
-  (err) => {
-    if (err) console.log(err.message);
-    else console.log("Successfully connected to DB!");
-  }
+const passportSetup = require("./config/passportsetup");
+
+mongoose.connect(url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+});
+//checking whether connected successfully or not
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console.log("connecting...")));
+db.once("open", () => {
+  console.log("database connected");
+});
+
+app.use("/sports/public", express.static(__dirname + "/public"));
+app.use("/sports/uploads", express.static(__dirname + "/uploads"));
+app.use(methodOverride("_method"));
+app.use(mongoSanitize());
+app.use(
+  session({
+    secret: "Once again rusty is the cutest dog",
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 180 * 60 * 1000 },
+  })
 );
 
-app.engine("ejs", ejsMate);
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-
-app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride("_method"));
-app.use(express.static(path.join(__dirname, "public")));
-
-const sessionConfig = {
-  secret: "thisshouldbeabettersecret!",
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    httpOnly: true,
-    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-  },
-};
-app.use(session(sessionConfig));
 app.use(flash());
-
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.info = req.flash("info");
   next();
 });
 
-app.use("/public", express.static("public"));
-app.use("/uploads", express.static("uploads"));
-app.set("trust proxy", 1);
-
 app.use(passport.initialize());
 app.use(passport.session());
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  res.locals.session = req.session;
+  next();
+});
 
-// app.get("/", (req, res) => res.redirect(baseUrl));
+app.use(express.json({ limit: "50mb" }));
+app.use(
+  express.urlencoded({
+    limit: "50mb",
+    extended: true,
+    parameterLimit: 50000,
+  })
+);
 
+app.set("view engine", "ejs");
+
+// Routes Setup
 app.use(baseUrl, userRouter);
 app.use(baseUrl + "/admin/events", eventsRouter);
 app.use(baseUrl + "/admin/team", teamRouter);
