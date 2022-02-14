@@ -2,9 +2,9 @@ var users = require("../models/users");
 
 const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return next();
+     return next();
   } else {
-    // render this
+  //   // render this
     return res.redirect("/stud/gymkhana/sports/login")
   }
 };
@@ -15,7 +15,7 @@ const isAdmin = (req, res, next) => {
 
   // console.log("asd");
   if (req.user.isAdmin) {
-    return next();
+     return next();
   } else {
     return res.redirect("/");
   }

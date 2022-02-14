@@ -23,7 +23,8 @@ const teamRouter = require("./routes/team"),
   spardhaRouter = require("./routes/spardha");
 
 
-const url = "mongodb+srv://sports:board@data.tii7o.mongodb.net/sportsBoard";
+//const url = "mongodb+srv://sports:board@data.tii7o.mongodb.net/sportsBoard";
+const url = "mongodb://localhost:27017/sports1"
 //const url = process.env.MONGO_URI;
 
 require("dotenv").config();

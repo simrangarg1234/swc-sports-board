@@ -15,7 +15,10 @@ var uploadval = upload.fields([{ name: "images", maxCount: 5 }]);
 facilityRouter.get("/", isLoggedIn,isAdmin,async (req, res) => {
   const facilities = await Facility.find({});
   const gal = await Gallery.find({} , { facilityGallery: 1});
-  const gallery = gal[0].facilityGallery;
+  var gallery;
+  if(gal.length != 0) {
+    gallery = gal[0].facilityGallery;
+  }
   res.render("admin/Facility/index", { facilities,gallery });
 });
 
@@ -52,7 +55,9 @@ facilityRouter.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res)
         const gallery = await Gallery.find({});
         if(gallery.length == 0) {
             var data = await new Gallery({});
-            data.facilityGallery.push(req.files["images"][0].path);
+            for(let i=0;i<req.files['images'].length;i++){
+                data.facilityGallery.push(req.files['images'][i].path);
+            }
             data.save().then((record)=>{
                 res.redirect(baseUrl+'/admin/facility/');
             }).catch(err=>{
@@ -61,7 +66,9 @@ facilityRouter.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res)
             });
         } else {
             Gallery.find({}, (err, data) => {
-                data[0].facilityGallery.push(req.files["images"][0].path);
+                for(let i=0;i<req.files['images'].length;i++){
+                    data[0].facilityGallery.push(req.files['images'][i].path);
+                }
                 data[0].save().then((record)=>{
                     res.redirect(baseUrl+'/admin/facility/');
                 }).catch(err=>{
@@ -81,7 +88,6 @@ facilityRouter.get("/gallery/:idx", isLoggedIn, isAdmin, async (req, res) => {
             fs.unlink(`${data[0].facilityGallery[req.params.idx]}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         data[0].facilityGallery.splice(req.params.idx,1);
@@ -121,7 +127,6 @@ facilityRouter.put(
             fs.unlink(`${facility.image}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         facility.image = req.files["images"][0].path;
@@ -144,7 +149,6 @@ facilityRouter.delete(
         fs.unlink(`${facility.image}`, (err) => {
           if (err) {
             console.error(err);
-            return res.send(err);
           }});
     }
     await Facility.findByIdAndDelete(id);

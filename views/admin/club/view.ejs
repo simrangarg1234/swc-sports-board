@@ -149,40 +149,26 @@
   <form class="p-10 bg-white rounded shadow-xl" action="<%= process.env.BaseUrl %>/admin/club/imgpdf" method="POST"
       enctype="multipart/form-data">
       <input type="hidden" name="clubid" value="<%=data._id%>">
+      
+      <div class="gallery shadow-sm">
+
+        <%if(data.gallery.length>0){%>
+          <%for(let i=0;i<data.gallery.length;i++){%>
+              <div class="imgwrap shadow-sm"style = "display: inline-block;">
+                  <img src="/<%=data.gallery[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                  <a href="<%= process.env.BaseUrl %>/admin/club/<%=data._id%>/delimg/<%=i%>/">X</a>
+              </div>
+          <%}%>
+        <%}%>
+
+      </div>
+
       <div class="mt-2">
-          <div class="gallery shadow-sm">
-            <%if(data.gallery.length>0){%>
-
-              
-              <%for(let i=0;i<data.gallery.length;i++){%>
-                  <div class="imgwrap shadow-sm"style = "display: inline-block;">
-                      <img src="/<%=data.gallery[i]%>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
-                      <a href="<%= process.env.BaseUrl %>/admin/club/<%=data._id%>/delimg/<%=i%>/">X</a>
-                  </div>
-
-              <%}%>
-
-            <%}%>
-
-          </div>
           You can add new images
           <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="gallery" type="file"
-              name="images" multiple >
+              name="images" multiple required>
       </div>
-      <!-- <div class="mt-2">
-        <label class="block text-sm text-gray-600" for="pdf">Score card</label>
-        <%if(data.score){%>
-          Present Score card:
-          <div class="btn btn-primary bg-blue-400  rounded"><a class="w-auto" style="width:60px"href="<%= process.env.BaseUrl %>/<%=data.score%>">
-            Score card</a></div>
-
-        <%}%>
-        <label class="block text-sm text-gray-600" for="pdf"> You can add Score card</label>
-
-        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="scoreCard" type="file"
-            name="pdf" >
-      </div> -->
-
+      
       <div class="mt-6">
         <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
             type="submit">Update</button>

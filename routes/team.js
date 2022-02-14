@@ -15,7 +15,10 @@ var uploadval= upload.fields([{name:'images',maxCount:10}]);
 router.get('/',isLoggedIn,isAdmin, async (req, res) => {
     const teams = await Team.find({}).sort({priority: 1});
     const gal = await Gallery.find({} , { teamGallery: 1});
-    const gallery = gal[0].teamGallery;
+    var gallery;
+    if(gal.length != 0) {
+        gallery = gal[0].teamGallery;
+    }
     res.render('admin/team/index', {teams,gallery});
 });
 
@@ -78,7 +81,6 @@ router.put('/:id',isLoggedIn,isAdmin, uploadval, catchAsync(async (req, res) => 
             fs.unlink(`${team.image}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         team.image = req.files["images"][0].path;
@@ -96,7 +98,6 @@ router.get('/:id/delimg/',isLoggedIn,isAdmin,(req,res)=>{
             fs.unlink(`${data.image}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         data.image = null;
@@ -115,7 +116,6 @@ router.delete('/:id', isLoggedIn,isAdmin, catchAsync(async (req, res) => {
         fs.unlink(`${team.image}`, (err) => {
           if (err) {
             console.error(err);
-            return res.send(err);
           }});
     }
     await Team.findByIdAndDelete(id);
@@ -129,7 +129,9 @@ router.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res) => {
         const gallery = await Gallery.find({});
         if(gallery.length == 0) {
             var data = await new Gallery({});
-            data.teamGallery.push(req.files["images"][0].path);
+            for(let i=0;i<req.files['images'].length;i++){
+                data.teamGallery.push(req.files['images'][i].path);
+            }
             data.save().then((record)=>{
                 console.log("record",record);
                 res.redirect(baseUrl+'/admin/team/');
@@ -139,7 +141,9 @@ router.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res) => {
             });
         } else {
             Gallery.find({}, (err, data) => {
-                data[0].teamGallery.push(req.files["images"][0].path);
+                for(let i=0;i<req.files['images'].length;i++){
+                    data[0].teamGallery.push(req.files['images'][i].path);
+                }
                 data[0].save().then((record)=>{
                     console.log("record",record);
                     res.redirect(baseUrl+'/admin/team/');
@@ -160,7 +164,6 @@ router.get("/gallery/:idx", isLoggedIn, isAdmin, async (req, res) => {
             fs.unlink(`${data[0].teamGallery[req.params.idx]}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         data[0].teamGallery.splice(req.params.idx,1);

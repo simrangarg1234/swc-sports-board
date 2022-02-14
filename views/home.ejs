@@ -10,7 +10,7 @@
   <div class="content flex flex-col hidden lg:block">
     <div>CONTENTS</div>
     <div><a href="#about">About us</a></div>
-    <div><a href="#events">Events</a></div>
+    <% if(events && events.length != 0) { %> <div><a href="#events">Events</a></div> <% } %>
 
   </div>
 
@@ -32,7 +32,7 @@
   
 
 </div>
-
+<% if(events && events.length != 0) { %>
 <div class="event-box" id="events">
   <div style = "height: 23.28%;" class="flex flex-wrap">
 
@@ -86,6 +86,7 @@
     </div>
 
 </div>
+<% } %>
 
 <div class="flex flex-wrap event-footer">
   <div class="text-xl pr-4 footer">

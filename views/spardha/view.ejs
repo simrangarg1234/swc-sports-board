@@ -11,16 +11,16 @@
 <% } %>
 <!--No Running Event-->
 <% if(c===0) {%>
-  <div class="mt-10 mb-12 ml-20 what-we-do">
+  <div class="mt-12 mb-12 ml-20 what-we-do">
     <div class="grid-cols-2 gap-8 md:grid">
-      <div class="col-span-1 mb-2 spardha-header">
+      <div class="col-span-1 mb-2 about-header">
         Photos
       </div>
     </div>
   </div>
   <div class="grid-cols-3 gap-6 pb-32 ml-8 mr-8 md:grid">
     <%for(let i=0;i<data.length;i++){%>
-      <% if(data[i].Status === "Past Event"){ %>
+      <% if(data[i].Status == "Past Event"){ %>
         <%for(let j=0;j<data[i].Images.length;j++){%>
         <div class="mb-2 overflow-hidden rounded-md shadow-md">
           <img src="<%=data[i].Images[j]%>" style="aspect-ratio: 2/1.2;" alt="">

@@ -17,7 +17,10 @@ const baseUrl = process.env.BaseUrl;
 router.get('/', isLoggedIn,isAdmin, async (req, res) => {
     const data = await Club.find({});
     const gal = await Gallery.find({} , { clubGallery: 1});
-    const gallery = gal[0].clubGallery;
+    var gallery;
+    if(gal.length != 0) {
+        gallery = gal[0].clubGallery;
+    }
     res.render('admin/club/index', {clubs:data,gallery});
 });
 
@@ -80,7 +83,9 @@ router.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res) => {
         const gallery = await Gallery.find({});
         if(gallery.length == 0) {
             var data = await new Gallery({});
-            data.clubGallery.push(req.files["images"][0].path);
+            for(let i=0;i<req.files['images'].length;i++){
+                data.clubGallery.push(req.files['images'][i].path);
+            }
             data.save().then((record)=>{
                 console.log("record",record);
                 res.redirect(baseUrl+'/admin/club/');
@@ -90,7 +95,9 @@ router.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res) => {
             });
         } else {
             Gallery.find({}, (err, data) => {
-                data[0].clubGallery.push(req.files["images"][0].path);
+                for(let i=0;i<req.files['images'].length;i++){
+                    data[0].clubGallery.push(req.files['images'][i].path);
+                }
                 data[0].save().then((record)=>{
                     console.log("record",record);
                     res.redirect(baseUrl+'/admin/club/');
@@ -100,6 +107,7 @@ router.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res) => {
                 });
             })
         }
+        console.log(gallery);
     } else {
         res.redirect(baseUrl+'/admin/club/');
     }
@@ -111,7 +119,6 @@ router.get("/gallery/:idx", isLoggedIn, isAdmin, async (req, res) => {
             fs.unlink(`${data[0].clubGallery[req.params.idx]}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         data[0].clubGallery.splice(req.params.idx,1);
@@ -328,9 +335,9 @@ router.get('/:clubid/delete/pe/:idx',isLoggedIn,isAdmin,(req,res)=>{
 router.post('/imgpdf',isLoggedIn,isAdmin,uploadval,(req,res)=>{
     Club.findOne({_id:req.body.clubid},(err,data)=>{
         //pdf :Score Card
-        if(req.files['pdf']){
-            data.score=req.files['pdf'][0].path;
-        }  
+        // if(req.files['pdf']){
+        //     data.score=req.files['pdf'][0].path;
+        // }  
         //images: Gallery
         if(req.files['images']){
             for(let i=0;i<req.files['images'].length;i++){
@@ -340,7 +347,7 @@ router.post('/imgpdf',isLoggedIn,isAdmin,uploadval,(req,res)=>{
         
         data.save().then(()=>{
             req.flash('success', 'Club Updated successfully!');
-            res.redirect(baseUrl+'/admin/club');
+            res.redirect(baseUrl+'/admin/club/view/'+req.body.clubid);
         })
     });
 })
@@ -352,7 +359,6 @@ router.get('/:id/delimg/:idx/',isLoggedIn,isAdmin,(req,res)=>{
             fs.unlink(`${data.gallery[req.params.idx]}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         data.gallery.splice(req.params.idx,1);
@@ -361,13 +367,6 @@ router.get('/:id/delimg/:idx/',isLoggedIn,isAdmin,(req,res)=>{
         })
     })
 })
-
-
-
-
-
-
-
 
 //Not using this. This is previously used for creating and updating data of club
 router.post('/',isLoggedIn,isAdmin,uploadval, async (req, res) => {
@@ -395,6 +394,5 @@ router.post('/',isLoggedIn,isAdmin,uploadval, async (req, res) => {
     req.flash('success', 'New Club added successfully!');
     res.redirect('admin/club/');
 });
-
 
 module.exports = router;

@@ -50,7 +50,10 @@ userRouter.get("/", async(req, res)=> {
   id = req.params.id;
   const events = await Event.find({});
   const gal = await Gallery.find({} , {homeGallery: 1});
-  const gallery = gal[0].homeGallery;
+  var gallery;
+  if(gal.length != 0) {
+    gallery = gal[0].homeGallery;
+  }
   res.render("home", {events,gallery});
 });
 
@@ -58,15 +61,19 @@ userRouter.get("/", async(req, res)=> {
 userRouter.get("/clubs", async (req, res) => {
   const data= await Club.find({});
   const gal = await Gallery.find({} , {clubGallery: 1});
-  const gallery = gal[0].clubGallery;
+  var gallery;
+  if(gal.length != 0) {
+    gallery = gal[0].clubGallery;
+  }
   res.render("clubs/club", { data,gallery });
 });
 
 //Mini page of each club
 userRouter.get("/clubs/:clubid/home", (req, res) => {
   Club.findOne({ _id: req.params.clubid }, (err, data) => {
-    console.log("Club data", data);
-    res.render("clubs/home", { club: data });
+    // console.log("Club data", data);
+    const gallery = data.gallery;
+    res.render("clubs/home", { club: data, gallery });
   });
 });
 
@@ -74,7 +81,10 @@ userRouter.get("/clubs/:clubid/home", (req, res) => {
 userRouter.get("/spardha", async (req, res) => {
   const data= await Spardha.find({});
   const gal = await Gallery.find({} , {spardhaGallery: 1});
-  const gallery = gal[0].spardhaGallery;
+  var gallery;
+  if(gal.length != 0) {
+    gallery = gal[0].spardhaGallery;
+  }
   res.render("spardha/view", { data,gallery }); 
 });
 
@@ -97,17 +107,23 @@ userRouter.all("/spardha", (req, res) => {
 });
 
 //Alumni
-userRouter.get("/alumni", (req, res) => {
-  Alumni.find({}, (err, data) => {
-    res.render("alumni/view", { data });
-  });
+userRouter.get("/alumni", async (req, res) => {
+  const data= await Alumni.find({});
+  const gal = await Gallery.find({} , {alumniGallery: 1});
+  var gallery;
+  if(gal.length != 0) {
+    gallery = gal[0].alumniGallery;
+  }
+  res.render("alumni/view", { data,gallery }); 
 });
 
 //Team
 userRouter.get('/teams', async (req,res)=>{
   const gal = await Gallery.find({} , {teamGallery: 1});
-  const gallery = gal[0].teamGallery;
-  
+  var gallery;
+  if(gal.length != 0) {
+    gallery = gal[0].teamGallery;
+  }
   Team.find({}).sort( { priority: 1 } )
   .then((teams) => {
     res.render('teams/view',{ teams,gallery });
@@ -118,7 +134,10 @@ userRouter.get('/teams', async (req,res)=>{
 userRouter.get("/facilities", async (req, res) => {
   const data= await facilities.find({});
   const gal = await Gallery.find({} , {facilityGallery: 1});
-  const gallery = gal[0].facilityGallery;
+  var gallery;
+  if(gal.length != 0) {
+      gallery = gal[0].facilityGallery;
+  }
   res.render("facilities/view", { data,gallery }); 
 });
 

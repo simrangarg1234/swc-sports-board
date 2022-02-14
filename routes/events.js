@@ -65,7 +65,9 @@ eventsRouter.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res) =
         const gallery = await Gallery.find({});
         if(gallery.length == 0) {
             var data = await new Gallery({});
-            data.homeGallery.push(req.files["images"][0].path);
+            for(let i=0;i<req.files['images'].length;i++){
+                data.homeGallery.push(req.files['images'][i].path);
+            }
             data.save().then((record)=>{
                 console.log("record",record);
                 res.redirect(baseUrl+'/admin/events/');
@@ -75,7 +77,9 @@ eventsRouter.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res) =
             });
         } else {
             Gallery.find({}, (err, data) => {
-                data[0].homeGallery.push(req.files["images"][0].path);
+                for(let i=0;i<req.files['images'].length;i++){
+                    data[0].homeGallery.push(req.files['images'][i].path);
+                }
                 data[0].save().then((record)=>{
                     console.log("record",record);
                     res.redirect(baseUrl+'/admin/events/');
@@ -96,7 +100,6 @@ eventsRouter.get("/gallery/:idx", isLoggedIn, isAdmin, async (req, res) => {
             fs.unlink(`${data[0].homeGallery[req.params.idx]}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         data[0].homeGallery.splice(req.params.idx,1);
@@ -124,7 +127,6 @@ eventsRouter.post("/:id",isLoggedIn,isAdmin, uploadval, async (req, res) => {
             fs.unlink(`${event.image}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         event.image = req.files["images"][0].path;
@@ -136,7 +138,6 @@ eventsRouter.post("/:id",isLoggedIn,isAdmin, uploadval, async (req, res) => {
             fs.unlink(`${event.score}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         event.score = req.files['pdf'][0].path;
@@ -158,7 +159,6 @@ eventsRouter.get('/:id/delimg/',isLoggedIn,isAdmin,(req,res)=>{
             fs.unlink(`${data.image}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         data.image = null;
@@ -180,7 +180,6 @@ eventsRouter.delete(
             fs.unlink(`${event.image}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         if (event.score!=null && event.score.indexOf("https://") == -1) {
@@ -188,7 +187,6 @@ eventsRouter.delete(
             fs.unlink(`${event.score}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
       await Event.findByIdAndDelete(id);
@@ -199,7 +197,10 @@ eventsRouter.delete(
 eventsRouter.get("/", isLoggedIn,isAdmin,async(req,res)=>{
     const events = await Event.find({});
     const gal = await Gallery.find({} , { homeGallery: 1});
-    const gallery = gal[0].homeGallery;
+    var gallery;
+    if(gal.length != 0) {
+        gallery = gal[0].homeGallery;
+    }
     res.render('admin/event/index', {events,gallery});
 });
 

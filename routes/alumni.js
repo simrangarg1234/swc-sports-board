@@ -3,6 +3,7 @@ var router = express.Router();
 const mongoose = require('mongoose');
 const catchAsync = require('../utils/catchAsync');
 const Alumni = require('../models/alumni');
+const Gallery = require('../models/photogallery');
 const { isLoggedIn,isAdmin } = require("../middlewares/index");
 const { upload } = require("../middlewares/index");
 var uploadval = upload.fields([{ name: "images", maxCount: 5 }]);
@@ -12,7 +13,12 @@ const baseUrl = process.env.BaseUrl;
 
 router.get('/', isLoggedIn,isAdmin, async (req, res) => {
     const alumnis = await Alumni.find({});
-    res.render('admin/alumni/index', {alumnis});
+    const gal = await Gallery.find({} , { alumniGallery: 1});
+    var gallery;
+    if(gal.length != 0) {
+        gallery = gal[0].alumniGallery;
+    }
+    res.render('admin/alumni/index', {alumnis, gallery});
 });
 
 router.post('/',isLoggedIn,isAdmin, uploadval, async (req, res) => {
@@ -70,7 +76,6 @@ router.put('/:id',isLoggedIn,isAdmin, uploadval, catchAsync(async (req, res) => 
             fs.unlink(`${alumni.image}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         alumni.image = req.files["images"][0].path;
@@ -111,6 +116,56 @@ router.get('/:id/delimg/',isLoggedIn,isAdmin,(req,res)=>{
         data.image = null;
         data.save().then(()=>{
             res.redirect(baseUrl+`/admin/alumni/${req.params.id}/edit`);
+        })
+    })
+});
+
+router.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res) => {
+
+    if(req.files){
+        const gallery = await Gallery.find({});
+        if(gallery.length == 0) {
+            var data = await new Gallery({});
+            for(let i=0;i<req.files['images'].length;i++){
+                data.alumniGallery.push(req.files['images'][i].path);
+            }
+            data.save().then((record)=>{
+                // console.log("record",record);
+                res.redirect(baseUrl+'/admin/alumni/');
+            }).catch(err=>{
+                console.log(err)
+                res.redirect(baseUrl+'/admin/alumni/');
+            });
+        } else {
+            Gallery.find({}, (err, data) => {
+                for(let i=0;i<req.files['images'].length;i++){
+                    data[0].alumniGallery.push(req.files["images"][i].path);
+                }
+                data[0].save().then((record)=>{
+                    console.log("record",record);
+                    res.redirect(baseUrl+'/admin/alumni/');
+                }).catch(err=>{
+                    console.log(err)
+                    res.redirect(baseUrl+'/admin/alumni/');
+                });
+            })
+        }
+    } else {
+        res.redirect(baseUrl+'/admin/alumni/');
+    }
+});
+
+router.get("/gallery/:idx", isLoggedIn, isAdmin, async (req, res) => {
+    Gallery.find({}, {alumniGallery: 1},(err,data)=>{
+        if (data[0].alumniGallery!=null) {
+            fs.unlink(`${data[0].alumniGallery[req.params.idx]}`, (err) => {
+              if (err) {
+                console.error(err);
+              }});
+        }
+        data[0].alumniGallery.splice(req.params.idx,1);
+        data[0].save().then(()=>{
+            res.redirect(baseUrl+`/admin/alumni`);
         })
     })
 });

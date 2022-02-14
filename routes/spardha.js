@@ -16,7 +16,10 @@ var uploadhead=upload.fields([{name:'images',maxcount:1}]);
 router.get('/',isLoggedIn,isAdmin, async (req, res) => {
     const spardhas = await Spardha.find({}).sort({Year: -1});
     const gal = await Gallery.find({} , { spardhaGallery: 1});
-    const gallery = gal[0].spardhaGallery;
+    var gallery;
+    if(gal.length != 0) {
+        gallery = gal[0].spardhaGallery;
+    }
     res.render('admin/spardha/index', {spardhas,gallery});
 });
 
@@ -44,7 +47,9 @@ router.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res) => {
         const gallery = await Gallery.find({});
         if(gallery.length == 0) {
             var data = await new Gallery({});
-            data.spardhaGallery.push(req.files["images"][0].path);
+            for(let i=0;i<req.files['images'].length;i++){
+                data.spardhaGallery.push(req.files['images'][i].path);
+            }
             data.save().then((record)=>{
                 console.log("record",record);
                 res.redirect(baseUrl+'/admin/spardha/');
@@ -54,7 +59,9 @@ router.post("/gallery", isLoggedIn, isAdmin, uploadval, async (req, res) => {
             });
         } else {
             Gallery.find({}, (err, data) => {
-                data[0].spardhaGallery.push(req.files["images"][0].path);
+                for(let i=0;i<req.files['images'].length;i++){
+                    data[0].spardhaGallery.push(req.files["images"][i].path);
+                }
                 data[0].save().then((record)=>{
                     console.log("record",record);
                     res.redirect(baseUrl+'/admin/spardha/');
@@ -75,7 +82,6 @@ router.get("/gallery/:idx", isLoggedIn, isAdmin, async (req, res) => {
             fs.unlink(`${data[0].spardhaGallery[req.params.idx]}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         data[0].spardhaGallery.splice(req.params.idx,1);
@@ -128,7 +134,6 @@ router.delete('/:id',isLoggedIn,isAdmin, catchAsync(async (req, res) => {
                 fs.unlink(`${data.details[i].image}`, (err) => {
                   if (err) {
                     console.error(err);
-                    return res.send(err);
                     }
                 })
             }
@@ -136,7 +141,6 @@ router.delete('/:id',isLoggedIn,isAdmin, catchAsync(async (req, res) => {
                 fs.unlink(`${data.details[i].Scorecard}`, (err) => {
                   if (err) {
                     console.error(err);
-                    return res.send(err);
                     }
                 })
             }
@@ -170,7 +174,6 @@ router.get('/:id/delimg/:idx/',isLoggedIn,isAdmin,(req,res)=>{
             fs.unlink(`${data.Images[req.params.idx]}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         data.Images.splice(req.params.idx,1);
@@ -202,7 +205,6 @@ router.post('/add/event', isLoggedIn,isAdmin,uploadval,(req,res)=>{
                   fs.unlink(`${data.details[req.body.idx].image}`, (err) => {
                   if (err) {
                     console.error(err);
-                    return res.send(err);
                   }});
                 } 
                 detail.image= req.files["images"][0].path;
@@ -216,7 +218,6 @@ router.post('/add/event', isLoggedIn,isAdmin,uploadval,(req,res)=>{
                 fs.unlink(`${data.details[req.body.idx].Scorecard}`, (err) => {
                   if (err) {
                     console.error(err);
-                    return res.send(err);
                   }});
                 } 
                 detail.Scorecard= req.files["pdf"][0].path;
@@ -260,7 +261,6 @@ router.get('/:id/delete/event/:idx',isLoggedIn,isAdmin,(req,res)=>{
             fs.unlink(`${data.details[req.params.idx].image}`, (err) => {
               if (err) {
                 console.error(err);
-                return res.send(err);
               }});
         }
         data.details.splice(req.params.idx,1);

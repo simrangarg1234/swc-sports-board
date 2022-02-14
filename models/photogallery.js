@@ -17,6 +17,9 @@ const photoGallerySchema = new Schema({
     spardhaGallery: {
         type: [String]
     },
+    alumniGallery: {
+        type: [String]
+    },
 });
 
 var PhotoGalleries = mongoose.model('PhotoGallery',photoGallerySchema);

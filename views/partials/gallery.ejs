@@ -1,5 +1,6 @@
 <% layout('layouts/layout') %>
 
+<% if(gallery && gallery.length!=0) {%>
 <div class="row">
     <div class="column">
       <img style="height: 50%; object-fit: cover;" class="pb-7" src="/<%= gallery[0 % gallery.length] %>">
@@ -19,3 +20,4 @@
       <img style="height: 25%; object-fit: cover;" src="/<%= gallery[8 % gallery.length] %>">
     </div>
   </div>
+<% } %>
