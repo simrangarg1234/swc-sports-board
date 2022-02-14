@@ -1,17 +1,17 @@
 var express = require("express"),
   mongoose = require("mongoose"),
   cors = require("cors");
-  path = require("path"),
-  session = require("express-session"),
-  cookieParser = require("cookie-parser"),
-  bodyParser = require("body-parser"),
-  methodOverride = require("method-override"),
-  passport = require("passport"),
-  multer = require("multer"),
-  util = require("util"),
-  ejs = require("ejs"),
-  ejsMate = require("ejs-mate"),
-  flash = require("connect-flash");
+(path = require("path")),
+  (session = require("express-session")),
+  (cookieParser = require("cookie-parser")),
+  (bodyParser = require("body-parser")),
+  (methodOverride = require("method-override")),
+  (passport = require("passport")),
+  (multer = require("multer")),
+  (util = require("util")),
+  (ejs = require("ejs")),
+  (ejsMate = require("ejs-mate")),
+  (flash = require("connect-flash"));
 
 const teamRouter = require("./routes/team"),
   alumniRouter = require("./routes/alumni"),
@@ -22,14 +22,12 @@ const teamRouter = require("./routes/team"),
   facilityRouter = require("./routes/facility"),
   spardhaRouter = require("./routes/spardha");
 
-
 //const url = "mongodb+srv://sports:board@data.tii7o.mongodb.net/sportsBoard";
-const url = "mongodb://localhost:27017/sports1"
+const url = "mongodb://localhost:/sportsDB";
 //const url = process.env.MONGO_URI;
 
 require("dotenv").config();
 const baseUrl = process.env.BaseUrl;
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -76,8 +74,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/public", express.static("public"));
-app.use("/uploads", express.static("uploads"));
+app.use("/stud/gymkhana/sports/public", express.static("public"));
+app.use("/stud/gymkhana/sports/uploads", express.static("uploads"));
 app.set("trust proxy", 1);
 
 app.use(passport.initialize());

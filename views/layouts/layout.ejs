@@ -1,302 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sports Board</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sports Board</title>
+    <!--tailwind and fontawesome-->
+    <link
+      href="/stud/gymkhana/sports/public/css/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    />
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Karla:400,700&display=swap");
 
-  <!--tailwind and fontawesome-->
-  <link href="/public/css/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-  <!-- swiper -->
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
-
-    body{
-      max-width: 1440px;
-      margin: 0px auto;
-      height: 100vh;
-    }
-    nav{
-      font-family: Basier Circle;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 20px;
-    }
-
-    hr{
-      height: 1px;
-      background: #D7DDE1;
-      margin-bottom: 1rem;
-    }
-
-    /* Image gallery */
-    .row {
-      display: -ms-flexbox; /* IE10 */
-      display: flex;
-      -ms-flex-wrap: wrap; /* IE10 */
-      flex-wrap: wrap;
-      /* height: 683px; */
-    }
-
-    /* Create four equal columns that sits next to each other */
-     .column {
-      -ms-flex: 25%; /* IE10 */
-      flex: 25%;
-      max-width: 25%;
-     }
-
-    .column img {
-      vertical-align: middle;
-      width: 100%;
-      padding-right: 28px;
-    }
-    .last img{
-      padding-right: 0px;
-    }
-
-    /* about */
-    .about-header {
-      font-family: Basier Circle;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 34px;
-      line-height: 44px;
-      letter-spacing: 0.0038em;
-    }
-
-    .about-container{
-      margin-top: 5%;
-      padding-left: 8.86%;
-      margin-bottom: 8%;
-    }
-    .about {
-      width: 850px;
-      font-family: Red Hat Display;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 28px;
-      letter-spacing: 0.62px;
-      color: #1E2532;
-    }
-
-    .what-we-do {
-      width: 60%;
-      font-family: Red Hat Display;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: 0.0075em;
-      color: #1E2532;
-
-    }
-
-    .header {
-      font-family: Basier Circle;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 34px;
-      line-height: 44px;
-      display: flex;
-      align-items: center;
-      letter-spacing: 0.0038em;
-      color: #FFFFFF;
-    }
-
-    .content {
-      position: relative;
-      margin:0 auto;
-      height: 3%;
-      left: 0px;
-      font-family: Red Hat Display;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 30px;
-      letter-spacing: 0.08em;
-      color: #9FABB7;
-      flex: none;
-      order: 1;
-      flex-grow: 0;
-      padding-top: 3.75%;
-    }
-
-    .vl {
-      border-left: 1px solid #9FABB7;
-      height: 1.5rem;
-    }
-
-    .event-box{
-      height: 874px;
-      background: #F19976;
-      padding-left: 8.86%;
-    }
-
-
-    .event-header {
-
-     width: 68%;
-     padding-top: 8.63%;
-     margin-right: 12.65%;
-    }
-
-    .event-box img{
-      height: 70%;
-    }
-
-
-    .event-footer{
-      background-color: #1E2532;
-      /* padding-top: 7%; */
-      height: 88px;
-      padding-left: 8.86%;
-      display: flex;
-      align-items: center;
-    }
-
-    .event-text {
-      background: #F97F51;
-      border-radius: 0px 0px 5px 5px;
-      color: #ffffff;
-      height: 31%;
-    }
-
-    .sub-event-header{
-      font-family: Basier Circle;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 30px;
-      letter-spacing: 0.0322em;
-      color: #FFFFFF;
-    }
-    .event-dates{
-      font-family: Red Hat Display;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 12px;
-      line-height: 24px;
-      letter-spacing: 0.0075em;
-      color: #FFFFFF;
-    }
-    .event-arrow{
-     margin-left: 80%;
-     margin-top: 70%;
-     color: #F97F51;
-     background-color: #ffffff;
-     text-align: center;
-     width: 20px;
-     height: 24px;
-     border-radius: 2px;
-
-    }
-
-    .copy {
-      font-family: Red Hat Display;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      letter-spacing: 0.0075em;
-      color: #9FABB7;
-    }
-    .footer {
-      font-family: Basier Circle;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 16px;
-      letter-spacing: 0.0322em;
-      color: #FFFFFF;
-    }
-
-      .swiper-button-prev{
-        color: #ffffff;
+      body {
+        max-width: 1440px;
+        margin: 0px auto;
+        height: 100vh;
       }
-      .swiper-button-next{
+      nav {
+        font-family: Basier Circle;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+      hr {
+        height: 1px;
+        background: #d7dde1;
+        margin-bottom: 1rem;
+      }
+
+      /* Image gallery */
+      .row {
+        display: -ms-flexbox; /* IE10 */
+        display: flex;
+        -ms-flex-wrap: wrap; /* IE10 */
+        flex-wrap: wrap;
+        /* height: 683px; */
+      }
+
+      /* Create four equal columns that sits next to each other */
+      .column {
+        -ms-flex: 25%; /* IE10 */
+        flex: 25%;
+        max-width: 25%;
+      }
+
+      .column img {
+        vertical-align: middle;
+        width: 100%;
+        padding-right: 28px;
+      }
+      .last img {
+        padding-right: 0px;
+      }
+
+      /* about */
+      .about-header {
+        font-family: Basier Circle;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 34px;
+        line-height: 44px;
+        letter-spacing: 0.0038em;
+      }
+
+      .about-container {
+        margin-top: 5%;
+        padding-left: 8.86%;
+        margin-bottom: 8%;
+      }
+      .about {
+        width: 850px;
+        font-family: Red Hat Display;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: 0.62px;
+        color: #1e2532;
+      }
+
+      .what-we-do {
+        width: 60%;
+        font-family: Red Hat Display;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.0075em;
+        color: #1e2532;
+      }
+
+      .header {
+        font-family: Basier Circle;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 34px;
+        line-height: 44px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.0038em;
         color: #ffffff;
       }
 
-
-      .facility{
-        margin-left:8.6%;
-        margin-right:21.2%;
+      .content {
+        position: relative;
+        margin: 0 auto;
+        height: 3%;
+        left: 0px;
+        font-family: Red Hat Display;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 30px;
+        letter-spacing: 0.08em;
+        color: #9fabb7;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        padding-top: 3.75%;
       }
 
-      .team{
-       margin-left:8%;
-         }
-      .team-2{
-        margin-left:8%;
-        margin-right:8%;
+      .vl {
+        border-left: 1px solid #9fabb7;
+        height: 1.5rem;
+      }
+
+      .event-box {
+        height: 874px;
+        background: #f19976;
+        padding-left: 8.86%;
+      }
+
+      .event-header {
+        width: 68%;
+        padding-top: 8.63%;
+        margin-right: 12.65%;
+      }
+
+      .event-box img {
+        height: 70%;
+      }
+
+      .event-footer {
+        background-color: #1e2532;
+        /* padding-top: 7%; */
+        height: 88px;
+        padding-left: 8.86%;
+        display: flex;
+        align-items: center;
+      }
+
+      .event-text {
+        background: #f97f51;
+        border-radius: 0px 0px 5px 5px;
+        color: #ffffff;
+        height: 31%;
+      }
+
+      .sub-event-header {
+        font-family: Basier Circle;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+        letter-spacing: 0.0322em;
+        color: #ffffff;
+      }
+      .event-dates {
+        font-family: Red Hat Display;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 24px;
+        letter-spacing: 0.0075em;
+        color: #ffffff;
+      }
+      .event-arrow {
+        margin-left: 80%;
+        margin-top: 70%;
+        color: #f97f51;
+        background-color: #ffffff;
+        text-align: center;
+        width: 20px;
+        height: 24px;
+        border-radius: 2px;
+      }
+
+      .copy {
+        font-family: Red Hat Display;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        letter-spacing: 0.0075em;
+        color: #9fabb7;
+      }
+      .footer {
+        font-family: Basier Circle;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 0.0322em;
+        color: #ffffff;
+      }
+
+      .swiper-button-prev {
+        color: #ffffff;
+      }
+      .swiper-button-next {
+        color: #ffffff;
+      }
+
+      .facility {
+        margin-left: 8.6%;
+        margin-right: 21.2%;
+      }
+
+      .team {
+        margin-left: 8%;
+      }
+      .team-2 {
+        margin-left: 8%;
+        margin-right: 8%;
         margin-bottom: 8%;
         margin-top: 8%;
-
       }
-      .team-text{
-        color:white;
-        height:20% ;
-        font-size:.8rem;
-
+      .team-text {
+        color: white;
+        height: 20%;
+        font-size: 0.8rem;
       }
 
-
-      .team-buttons{
-        width:90%;
+      .team-buttons {
+        width: 90%;
       }
-      .team-struc{
-        
+      .team-struc {
       }
-      .team-header{
+      .team-header {
         margin-left: 5%;
         margin-bottom: 3%;
         margin-top: 5%;
       }
-      .club-text{background: #F97F51;
-      color:white;
-      font-size:1.2rem;
-      font-weight: 400;
-      padding:2%;
-      letter-spacing:0.0075em;
-
+      .club-text {
+        background: #f97f51;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 400;
+        padding: 2%;
+        letter-spacing: 0.0075em;
       }
-      .club{
-        margin-left:7%;
+      .club {
+        margin-left: 7%;
         margin-right: 7%;
         margin-top: 2%;
         padding-top: 2%;
-        position:absolute;
-        z-index:1;
+        position: absolute;
+        z-index: 1;
       }
-      .club-header{
+      .club-header {
         margin-left: 10%;
         padding-top: 6%;
-        text-align:justify;
+        text-align: justify;
         font-size: 2rem;
         font-weight: bold;
         color: white;
       }
 
-      .club-card{
-      padding: 3%;
+      .club-card {
+        padding: 3%;
       }
 
-
-      .bgg{
-        background-image: linear-gradient(to bottom,#F97F51 100% ,#F7CFDE 0%);
+      .bgg {
+        background-image: linear-gradient(to bottom, #f97f51 100%, #f7cfde 0%);
         opacity: 0.93;
-
       }
-
-
-
 
       @media only screen and (max-width: 700px) {
-        .carousel{
+        .carousel {
           height: 0;
           visibility: hidden;
         }
@@ -307,7 +300,7 @@
 
         /* Create four equal columns that sits next to each other */
         .column {
-           -ms-flex: 50%;
+          -ms-flex: 50%;
           flex: 50%;
           max-width: 50%;
         }
@@ -317,15 +310,15 @@
           width: 100%;
         }
 
-        .event-box img{
+        .event-box img {
           height: 60%;
         }
 
-        .event-text{
+        .event-text {
           height: 40%;
         }
 
-        .header{
+        .header {
           font-family: Raleway;
           font-style: normal;
           font-weight: 600;
@@ -333,42 +326,38 @@
           line-height: 44px;
           letter-spacing: 0.0038em;
         }
-}
-  </style>
-</head>
+      }
+    </style>
+  </head>
 
-<body>
-
-  <main>
-    <%- body %>
-  </main>
-  <!--<%- include('../partials/footer')%>-->
-  <script src='/javascripts/validateForms.js'></script>
-  <script>
-    const btn = document.querySelector("button.mobile-menu-button");
-    const menu = document.querySelector(".mobile-menu");
-   // add event listeners
-   btn.addEventListener("click", () => {
-  menu.classList.toggle("hidden");
-});
-  </script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <body>
+    <main><%- body %></main>
+    <!--<%- include('../partials/footer')%>-->
+    <script src="/stud/gymkhana/sports/public/javascripts/validateForms.js"></script>
+    <script>
+      const btn = document.querySelector("button.mobile-menu-button");
+      const menu = document.querySelector(".mobile-menu");
+      // add event listeners
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+    </script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- Initialize Swiper -->
     <script>
       var swiper = new Swiper(".mySwiper", {
-
         // spaceBetween: 30,
 
         breakpoints: {
-        // when window width is <= 499px
-        700: {
+          // when window width is <= 499px
+          700: {
             slidesPerView: 1.55,
             // spaceBetweenSlides: 50
-        },
-        400:{
-          slidesPerView: 1.05,
-        },
+          },
+          400: {
+            slidesPerView: 1.05,
+          },
         },
         loop: true,
         pagination: {
@@ -382,42 +371,56 @@
       });
     </script>
     <script>
-      if(window.location.href.indexOf("clubs") != -1){
-        document.getElementById("clubs").classList.add("border-yellow-500", "text-yellow-500");
+      if (window.location.href.indexOf("clubs") != -1) {
+        document
+          .getElementById("clubs")
+          .classList.add("border-yellow-500", "text-yellow-500");
         document.getElementById("clubs").classList.remove("border-white");
         document.getElementById("home").classList.add("border-white");
-        document.getElementById("home").classList.remove("border-yellow-500", "text-yellow-500");
-
+        document
+          .getElementById("home")
+          .classList.remove("border-yellow-500", "text-yellow-500");
       }
-      if(window.location.href.indexOf("teams") != -1){
-        document.getElementById("teams").classList.add("border-yellow-500","text-yellow-500");
+      if (window.location.href.indexOf("teams") != -1) {
+        document
+          .getElementById("teams")
+          .classList.add("border-yellow-500", "text-yellow-500");
         document.getElementById("teams").classList.remove("border-white");
         document.getElementById("home").classList.add("border-white");
-        document.getElementById("home").classList.remove("border-yellow-500", "text-yellow-500");
+        document
+          .getElementById("home")
+          .classList.remove("border-yellow-500", "text-yellow-500");
       }
-      if(window.location.href.indexOf("facilities") != -1){
-        document.getElementById("facilities").classList.add("border-yellow-500", "text-yellow-500");
+      if (window.location.href.indexOf("facilities") != -1) {
+        document
+          .getElementById("facilities")
+          .classList.add("border-yellow-500", "text-yellow-500");
         document.getElementById("facilities").classList.remove("border-white");
         document.getElementById("home").classList.add("border-white");
-        document.getElementById("home").classList.remove("border-yellow-500", "text-yellow-500");
+        document
+          .getElementById("home")
+          .classList.remove("border-yellow-500", "text-yellow-500");
       }
-      if(window.location.href.indexOf("spardha") != -1){
-        document.getElementById("spardha").classList.add("border-yellow-500", "text-yellow-500");
+      if (window.location.href.indexOf("spardha") != -1) {
+        document
+          .getElementById("spardha")
+          .classList.add("border-yellow-500", "text-yellow-500");
         document.getElementById("spardha").classList.remove("border-white");
         document.getElementById("home").classList.add("border-white");
-        document.getElementById("home").classList.remove("border-yellow-500", "text-yellow-500");
+        document
+          .getElementById("home")
+          .classList.remove("border-yellow-500", "text-yellow-500");
       }
-      if(window.location.href.indexOf("alumni") != -1){
-        document.getElementById("alumni").classList.add("border-yellow-500", "text-yellow-500");
+      if (window.location.href.indexOf("alumni") != -1) {
+        document
+          .getElementById("alumni")
+          .classList.add("border-yellow-500", "text-yellow-500");
         document.getElementById("alumni").classList.remove("border-white");
         document.getElementById("home").classList.add("border-white");
-        document.getElementById("home").classList.remove("border-yellow-500", "text-yellow-500");
+        document
+          .getElementById("home")
+          .classList.remove("border-yellow-500", "text-yellow-500");
       }
-
-
-
     </script>
-
-</body>
-
+  </body>
 </html>
