@@ -9,7 +9,7 @@
         <% if(gallery && gallery.length !=0 ) { %>
             <% for(var i = 0; i < gallery.length; i++) { %>
                 <div class="imgwrap shadow-sm" style = "display: inline-block;">
-                  <img src="/<%= gallery[i] %>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                  <img src="/stud/gymkhana/sports/<%= gallery[i] %>" width="200px" height="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
                   <a href="<%= process.env.BaseUrl %>/admin/team/gallery/<%=i%>/">X</a>
               </div>
             <% } %>

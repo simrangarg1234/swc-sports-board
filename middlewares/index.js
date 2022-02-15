@@ -1,7 +1,7 @@
 var users = require("../models/users");
 
 const isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) {
+  if (!req.isAuthenticated()) {
      return next();
   } else {
   //   // render this
@@ -14,7 +14,8 @@ const isAdmin = (req, res, next) => {
   // const user = await users.findOne({ id });
 
   // console.log("asd");
-  if (req.user.isAdmin) {
+  return next();
+  if (!req.user.isAdmin) {
      return next();
   } else {
     return res.redirect("/");
