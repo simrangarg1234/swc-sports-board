@@ -3,7 +3,7 @@
 <%- include('../partials/navbar') %>
 
   <!-- <div class="bg-gradient-to-b from-red-600 via-green-600 to-blue-800"> -->
-<div  class="mt-4 bg-bottom bg-left bg-no-repeat bg-cover bgimage h-96 " style=" background-image: url('/stud/gymkhana/sports/uploads/background-img.png');">
+<div  class="mt-4 bg-bottom bg-left bg-no-repeat bg-cover bgimage h-96 " style=" background-image: url('/stud/gymkhana/sports/public/images/background-img.png');">
 
 <div class="club-header ">Clubs at IIT Guwahati</div>
 
@@ -15,7 +15,7 @@
       <div class="rounded overflow-hidden shadow-lg m-6" onclick="location.href='<%= process.env.BaseUrl %>/clubs/<%=data[i]._id%>/home'">
         <div class="flex-col" style="height: 100%">
           <div style="overfow: hidden; display: flex; height: 100%; object-fit:cover;">
-            <img class="w-full" src="/<%=data[i].gallery[0]%>" style="object-fit:cover;">
+            <img class="w-full" src="/stud/gymkhana/sports/<%=data[i].gallery[0]%>" style="object-fit:cover;">
           </div>
           <div class="px-6 py-4" style="background: #F97F51; border-radius: 0px 0px 5px 5px; color: #ffffff; position: relative; bottom: 4rem">
             <div style="width:100%;">
