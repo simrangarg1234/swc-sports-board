@@ -17,6 +17,7 @@
                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
                     <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Email</th>
                     <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">isAdmin</th>
+                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
                     <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Action</th>
                     <!-- <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th> -->
                 </tr>
@@ -27,8 +28,9 @@
               <% for (let user of usersList){%>
                 <tr>
                     <td class="w-1/3 text-left py-3 px-4"><%= user.name %></td>
-                    <td class="w-1/3 text-left py-3 px-4"><a href="" target="_blank"> <%= user.email %></a></td>
-                    <td class="w-1/3 text-left py-3 px-4"><a href=""><%= user.isAdmin %></a></td>
+                    <td class="w-1/3 text-left py-3 px-4"> <%= user.email %></td>
+                    <td class="w-1/3 text-left py-3 px-4"><%= user.isAdmin %></td>
+                    <td class="w-1/3 text-left py-3 px-4"><a href="/stud/gymkhana/sports/admin/users/delete/<%= user.outlookId %>"> Delete </a></td>
 
                     <% if(user.isAdmin){ %>
                         <td class="w-1/3 text-left py-3 px-4"><form action= "/stud/gymkhana/sports/admin/users/<%= user.outlookId %>?_method=put"

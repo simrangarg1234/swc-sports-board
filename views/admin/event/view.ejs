@@ -1,7 +1,7 @@
 <%- include("../partials/header.ejs") %>
 <main class="w-full flex-grow p-6">
   <div class="imgwrap shadow-sm">
-        <img src="/<%=data.image%>" style="width: 400px; height: 350px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+        <img src="<%= process.env.BaseUrl %>/<%=data.image%>" style="width: 400px; height: 350px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
     </div>
   <div class="mt-20">
     <div class="px-4 py-3 text-white font-light tracking-wider bg-gray-900 rounded" style="display: inline-block;">Name</div>
@@ -13,8 +13,9 @@
   <div class="desc w-full px-5 m-2  py-4 text-gray-700 bg-gray-200 rounded"><%=data.desc%></div>
 
   <div class="mt-5">
-    <label class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" for="pdf">Score card</label>
-    <%if(data.score){%>
+  <%if(data.score){%>
+    <label class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" for="pdf">Pdf</label>
+    
         <div class="mb-5">
             <a class="px-4 py-1 text-black font-light tracking-wider bg-blue-400 rounded" href="<%= process.env.BaseUrl %>/pdf/<%=data.score%>" target="_blank">
             Score card</a>

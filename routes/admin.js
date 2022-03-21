@@ -18,10 +18,18 @@ adminRouter.get("/users",isLoggedIn,isAdmin, async (req, res) => {
   res.render("admin/usersList", { usersList });
 });
 
+adminRouter.get("/users/delete/:id",isLoggedIn,isAdmin, async (req, res) => {
+  const id = req.params.id;
+  const user = await User.deleteOne({ outlookId: id });
+
+  // console.log(usersList);
+  res.render("admin/usersList", { usersList });
+});
+
 adminRouter.put("/users/:id",isLoggedIn,isAdmin, async function (req, res) {
   try {
     const id = req.params.id;
-    console.log(id);
+
     const user = await User.findOne({ outlookId: id });
     if (!user) {
       res.status(404).json({ status: "Failed", message: "User not found!" });

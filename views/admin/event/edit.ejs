@@ -26,19 +26,13 @@
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="info">Description</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="desc" type="text"
-                            name="desc" value="<%= event.desc %>>
+                            name="desc" value="<%= event.desc %>">
                     </div>
 
                     <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="info">Start Date</label>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="start" type="text"
-                            name="start" value=<%= event.start %>>
-                    </div>
-
-                    <div class="mt-2">
-                        <label class="block text-sm text-gray-600" for="info">End Date</label>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="end" type="text"
-                            name="end" value=<%= event.end%>>
+                        <label class="block text-sm text-gray-600" for="info">Date</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="date" type="text"
+                            name="date" value=<%= event.date %>>
                     </div>
 
                     <%if(event.image){%>
@@ -46,7 +40,7 @@
                         Present Gallery
                      
                             <div class="imgwrap shadow-sm">
-                                <img src="/<%=event.image%>" width="100px" height="100px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                <img src="<%= process.env.BaseUrl %>/<%=event.image%>" width="100px" height="100px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
                                 <a href="<%= process.env.BaseUrl %>/admin/events/<%=event._id%>/delimg/">X</a>
                             </div>
           
@@ -59,7 +53,7 @@
                   </div>
 
                   <div class="mt-2">
-                    <label class="block text-sm text-gray-600" for="name">ScoreCard</label>
+                    <label class="block text-sm text-gray-600" for="name">PDF</label>
                     <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="scoreCard" type="file"
                      name="pdf" >
                   </div>

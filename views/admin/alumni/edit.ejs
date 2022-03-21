@@ -34,7 +34,7 @@
                     <%if(alumni.image){%>
                         Present Image
                             <div class="imgwrap shadow-sm">
-                                <img src="/<%=alumni.image%>" width="100px" height="100px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                <img src="<%= process.env.BaseUrl %>/<%=alumni.image%>" width="100px" height="100px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
                                 <a href="<%= process.env.BaseUrl %>/admin/alumni/<%=alumni._id%>/delimg/">X</a>
                             </div>
                     <%}%>

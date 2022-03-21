@@ -22,8 +22,7 @@ eventsRouter.post("/add",isLoggedIn,isAdmin, uploadval, async (req, res) => {
     const event = await new Event({
       name: data.name,
       desc: data.desc,
-      start: data.start,
-      end: data.end,
+      date: data.date,
     });
     
     if(req.files['images']){
@@ -34,6 +33,7 @@ eventsRouter.post("/add",isLoggedIn,isAdmin, uploadval, async (req, res) => {
         event.score = req.files['pdf'][0].path;
     }
     
+    console.log(data);
   
     await event.save();
     req.flash("success", "New Info added successfully!");
@@ -119,8 +119,8 @@ eventsRouter.post("/:id",isLoggedIn,isAdmin, uploadval, async (req, res) => {
     
     event.name = data.name;
     event.desc = data.desc;
-    event.start = data.start;
-    event.end = data.end;
+    event.date = data.date;
+
     if(req.files['images']){
         if (event.image!=null && event.image.indexOf("https://") == -1) {
             console.log(`${event.image}`);

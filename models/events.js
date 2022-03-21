@@ -13,12 +13,8 @@ const EventSchema = new Schema({
     
     
     //dates
-  	start: { 
+  	date: { 
         type: String, 
-    },
-
-    end:{
-        type: String,
     },
 
   	image: { 

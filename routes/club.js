@@ -64,6 +64,14 @@ router.post('/edit',isLoggedIn,isAdmin,(req,res)=>{
 //Delete club    
 router.get('/:id/delete/',isLoggedIn,isAdmin, catchAsync(async (req, res) => {
     const { id } = req.params;
+    Club.findOne({_id:req.params.id},(err,data)=>{
+        for(let i=0;i<data.gallery.length;i++){
+          fs.unlink(`${data.gallery[i]}`, (err) => {
+          if (err) {
+            console.error(err);
+          }});
+        }
+    });
     await Club.findByIdAndDelete(id);
     req.flash('success', 'Member no longer exists!')
     res.redirect(baseUrl+'/admin/club');

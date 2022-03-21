@@ -34,7 +34,7 @@
                         Present Gallery
                      
                             <div class="imgwrap shadow-sm">
-                                <img src="/<%=facility.image%>" width="100px" height="100px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                <img src="<%= process.env.BaseUrl %>/<%=facility.image%>" width="100px" height="100px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
                             </div>
           
                       <%}%>

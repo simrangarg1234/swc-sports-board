@@ -34,7 +34,7 @@
                     <%if(team.image){%>
                         Present Image
                             <div class="imgwrap shadow-sm">
-                                <img src="/<%=team.image%>" width="100px" height="100px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                <img src="<%= process.env.BaseUrl %>/<%=team.image%>" width="100px" height="100px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
                                 <a href="<%= process.env.BaseUrl %>/admin/team/<%=team._id%>/delimg/">X</a>
                             </div>
                     <%}%>

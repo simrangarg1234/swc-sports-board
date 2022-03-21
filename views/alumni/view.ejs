@@ -73,15 +73,19 @@
                                 <span > <i class="fas fa-times"></i> </span>
                                 </button>
                             </div>
-                            <h1 class="my-4 text-gray-700 sm:text-lg md:text-xl lg:text-2xl font-semibold">Experience</h1>
-                            <p class="my-4 text-gray-500 sm:text-sm md:text-md lg:text-lg ">
-                            <%= data[i].experience %>
-                            </p>
+                            <% if(data[i].experience.length) { %>
+                                 <h1 class="my-4 text-gray-700 sm:text-lg md:text-xl lg:text-2xl font-semibold">Experience</h1>
+                                                                <p class="my-4 text-gray-500 sm:text-sm md:text-md lg:text-lg ">
+                                                                 <%= data[i].experience %>
+                                                                </p>
+                            <% } %>
+                            <% if(data[i].achievements.length) { %>
                             <h1 class="my-4 mt-10 text-gray-700 sm:text-lg md:text-xl lg:text-2xl font-semibold">Achievements</h1>
                             <% for(let j=0; j<data[i].achievements.length; j++){ %>
                                 <p class="my-4 text-gray-500 sm:text-sm md:text-md lg:text-lg ">
                                     <%= j+1 %>. <%= data[i].achievements[j] %> <br>
                                 </p>
+                            <% } %>
                             <% } %>
                         </div>
                     </div>

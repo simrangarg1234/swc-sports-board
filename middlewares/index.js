@@ -1,12 +1,12 @@
 var users = require("../models/users");
 
 const isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) {
+  //if (req.isAuthenticated()) {
     return next();
-  } else {
+  //} else {
     //   // render this
-    return res.redirect("/stud/gymkhana/sports/login");
-  }
+    //return res.redirect("/stud/gymkhana/sports/login");
+  //}
 };
 
 const isAdmin = (req, res, next) => {
@@ -14,11 +14,11 @@ const isAdmin = (req, res, next) => {
   // const user = await users.findOne({ id });
 
   // console.log("asd");
-  if (req.user.isAdmin) {
+  //if (req.user.isAdmin) {
     return next();
-  } else {
-    return res.redirect("/stud/gymkhana/sports");
-  }
+  //} else {
+    //return res.redirect("/stud/gymkhana/sports");
+  //}
 };
 
 //Multer
